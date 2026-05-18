@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rishabh Upadhyay — Creative AI, Blockchain & Software Engineer</title>
+    <meta name="description" content="Portfolio of Rishabh Upadhyay, a Senior Software Engineer and Systems Architect specializing in Agentic AI automations, Blockchain smart contracts, Next.js, and premium UI/UX design.">
+    <meta name="keywords" content="Rishabh Upadhyay, Portfolio, AI Engineer, Blockchain Engineer, Senior Software Engineer, Next.js, Solidity, AgencySwarms, UI/UX Design, Glassmorphism">
+    <meta name="author" content="Rishabh Upadhyay">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%239d00ff'/><text x='50%' y='50%' font-size='50' dy='.35em' fill='%2300f5ff' font-family='sans-serif' font-weight='bold' text-anchor='middle'>RU</text></svg>">
+
+    <!-- Styles & Scripts -->
+    <link rel="stylesheet" href="index.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+
+    <!-- 1. Custom Cursor & Background Canvas -->
+    <div class="custom-cursor"></div>
+    <div class="custom-cursor-follower"></div>
+    <canvas id="bg-canvas"></canvas>
+    <div class="scanning-line"></div>
+
+    <!-- 2. Navigation Bar -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="#hero" class="nav-logo interactive">
+                <div class="logo-mark">RU</div>
+                <div>
+                    <div class="logo-text">Rishabh Upadhyay</div>
+                    <span class="logo-sub">SYSTEMS ARCHITECT</span>
+                </div>
+            </a>
+
+            <ul class="nav-links">
+                <li><a href="#about" class="nav-link">Philosophy</a></li>
+                <li><a href="#projects" class="nav-link">Selected Works</a></li>
+                <li><a href="#experience" class="nav-link">Trajectory</a></li>
+                <li><a href="#skills" class="nav-link">Capabilities</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+
+            <button class="menu-toggle interactive" aria-label="Toggle navigation menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- 3. Hero Section -->
+    <main>
+        <section id="hero" class="hero section">
+            <div class="hero-bg-wrapper">
+                <img src="assets/images/hero_background.png" alt="Futuristic AI Cybernetic Background" class="hero-bg-img">
+            </div>
+            
+            <div class="container hero-grid">
+                <div class="hero-content">
+                    <div class="status-badge">
+                        <span class="status-dot"></span>
+                        <span class="status-text">AVAILABLE FOR SELECT PROJECTS & CONSULTING</span>
+                    </div>
+
+                    <div class="hero-title-wrapper">
+                        <h2 class="hero-subtitle">AI / BLOCKCHAIN / FULL-STACK ENGINEER</h2>
+                        <h1 class="display-lg">CREATIVE BUILDER & SYSTEMS ARCHITECT</h1>
+                    </div>
+
+                    <p class="hero-desc">
+                        Bridging the gap between visionary UI/UX design, complex decentralized smart contracts, and agentic AI automations. Emphasizing a rigorous <span style="color: var(--primary);">"Question, Design, Build"</span> philosophy to architect elite digital experiences.
+                    </p>
+
+                    <div class="hero-ctas">
+                        <a href="#projects" class="btn btn-primary interactive">
+                            Explore Works
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                        </a>
+                        <a href="#contact" class="btn btn-secondary interactive">
+                            Get in Touch
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Core Philosophy Banner -->
+        <section id="about" class="philosophy-banner section">
+            <div class="container">
+                <div class="section-header" style="margin-bottom: 3rem; text-align: center; align-items: center;">
+                    <div class="section-label">
+                        <div class="section-label-line"></div>
+                        <span class="section-label-text">CORE METHODOLOGY</span>
+                        <div class="section-label-line"></div>
+                    </div>
+                    <h2 class="headline-md">THE QUESTION, DESIGN, BUILD FRAMEWORK</h2>
+                </div>
+
+                <div class="philosophy-container">
+                    <div class="philosophy-item">
+                        <span class="philosophy-step">PHASE 01 // INQUIRY</span>
+                        <h3 class="philosophy-title">QUESTION</h3>
+                        <p class="philosophy-desc">Deep inquiry into system constraints, multi-agent AI orchestration, and core user intent to eliminate ambiguity.</p>
+                    </div>
+
+                    <div class="philosophy-item">
+                        <span class="philosophy-step">PHASE 02 // ARCHITECTURE</span>
+                        <h3 class="philosophy-title">DESIGN</h3>
+                        <p class="philosophy-desc">End-to-end architecture planning, premium glassmorphic UI/UX styling, and robust smart contract structuring.</p>
+                    </div>
+
+                    <div class="philosophy-item">
+                        <span class="philosophy-step">PHASE 03 // EXECUTION</span>
+                        <h3 class="philosophy-title">BUILD</h3>
+                        <p class="philosophy-desc">High-fidelity, performant execution utilizing Next.js, Solidity, Python, and AgencySwarms for absolute precision.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. Featured Projects Section (Bento Grid 2.0) -->
+        <section id="projects" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-label">
+                        <div class="section-label-line"></div>
+                        <span class="section-label-text">SELECTED WORKS</span>
+                    </div>
+                    <div class="section-header-top">
+                        <h2 class="headline-lg">PROVEN ENGINEERING & DESIGN ARCHITECTURE</h2>
+                        <span class="label-mono" style="color: var(--text-secondary);">03 FEATURED SYSTEMS</span>
+                    </div>
+                </div>
+
+                <div class="bento-grid">
+                    <!-- Project 1: Real Estate Tokenization -->
+                    <a href="#contact" class="bento-item bento-item-large glass-panel interactive">
+                        <div class="bento-bg">
+                            <img src="assets/images/project_blockchain.png" alt="Real Estate Tokenization Dashboard" class="bento-img">
+                        </div>
+                        <div class="bento-overlay"></div>
+                        
+                        <div class="bento-header">
+                            <span class="bento-tag">BLOCKCHAIN / DEFI</span>
+                            <div class="bento-arrow">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+                            </div>
+                        </div>
+
+                        <div class="bento-content">
+                            <div class="bento-meta">
+                                <h3 class="bento-title">Real Estate Tokenization Platform</h3>
+                                <p class="bento-desc">
+                                    Dubai-based tokenized property investment platform. Architected NX CLI monorepo integrating front-end modules with blockchain-backed smart contract services, improving secure user operations by 40%.
+                                </p>
+                            </div>
+
+                            <div class="bento-tech">
+                                <span class="tech-chip">Next.js</span>
+                                <span class="tech-chip">Solidity</span>
+                                <span class="tech-chip">Foundry</span>
+                                <span class="tech-chip">TypeScript</span>
+                                <span class="tech-chip">Glassmorphism</span>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Project 2: Agentic AI Swarms -->
+                    <a href="#contact" class="bento-item bento-item-medium glass-panel glass-panel-purple interactive">
+                        <div class="bento-bg">
+                            <img src="assets/images/project_ai.png" alt="AI Swarms Analytics Dashboard" class="bento-img">
+                        </div>
+                        <div class="bento-overlay"></div>
+
+                        <div class="bento-header">
+                            <span class="bento-tag" style="background: rgba(157,0,255,0.15); border-color: rgba(157,0,255,0.3); color: var(--secondary);">AI / RESEARCH</span>
+                            <div class="bento-arrow">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+                            </div>
+                        </div>
+
+                        <div class="bento-content">
+                            <div class="bento-meta">
+                                <h3 class="bento-title">Agentic AI Swarms & Misinformation Detection</h3>
+                                <p class="bento-desc">
+                                    End-to-end architecture of multi-agent AI automations using AgencySwarms and OpenAI APIs. Co-authored research on Vec4Cred model for web page health misinformation detection.
+                                </p>
+                            </div>
+
+                            <div class="bento-tech">
+                                <span class="tech-chip">Python</span>
+                                <span class="tech-chip">AgencySwarms</span>
+                                <span class="tech-chip">OpenAI API</span>
+                                <span class="tech-chip">NLP / Vec4Cred</span>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Project 3: Interactive Electrical Diagram -->
+                    <a href="#contact" class="bento-item bento-item-half glass-panel interactive" style="grid-column: span 12;">
+                        <div class="bento-bg">
+                            <img src="assets/images/project_diagram.png" alt="Interactive Electrical Diagram Software" class="bento-img">
+                        </div>
+                        <div class="bento-overlay"></div>
+
+                        <div class="bento-header">
+                            <span class="bento-tag" style="background: rgba(255,0,122,0.15); border-color: rgba(255,0,122,0.3); color: var(--tertiary);">INDUSTRIAL TECH / WEBSOCKETS</span>
+                            <div class="bento-arrow">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+                            </div>
+                        </div>
+
+                        <div class="bento-content">
+                            <div class="bento-meta">
+                                <h3 class="bento-title">Interactive Electrical Diagram & Workflow Automation</h3>
+                                <p class="bento-desc">
+                                    Award-winning real-time data visualization module using Fabric.js & WebSockets, enabling 100% digital approvals, reducing processing time by 30%, and earning a gold award from the Confederation of Indian Industry.
+                                </p>
+                            </div>
+
+                            <div class="bento-tech">
+                                <span class="tech-chip">React</span>
+                                <span class="tech-chip">Fabric.js</span>
+                                <span class="tech-chip">WebSockets</span>
+                                <span class="tech-chip">Redash</span>
+                                <span class="tech-chip">Workflow Automation</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. Experience & Academic Timeline Section -->
+        <section id="experience" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-label">
+                        <div class="section-label-line"></div>
+                        <span class="section-label-text">CAREER TRAJECTORY</span>
+                    </div>
+                    <div class="section-header-top">
+                        <h2 class="headline-lg">PROFESSIONAL EXPERIENCE & ACADEMIC RESEARCH</h2>
+                        <span class="label-mono" style="color: var(--text-secondary);">2020 — 2026</span>
+                    </div>
+                </div>
+
+                <div class="timeline">
+                    <!-- Experience 1 -->
+                    <div class="timeline-item">
+                        <div class="timeline-node">
+                            <div class="timeline-dot"></div>
+                        </div>
+                        <div class="timeline-card glass-panel interactive">
+                            <div class="timeline-card-header">
+                                <div class="timeline-role">
+                                    Senior Software Engineer (Blockchain & AI)
+                                    <span class="timeline-company">Real Estate Tokenization Platform (Dubai)</span>
+                                </div>
+                                <span class="timeline-period">2024 — PRESENT</span>
+                            </div>
+                            <p class="timeline-desc">
+                                Leading frontend architecture and smart contract integration for high-value tokenized real estate assets, ensuring institutional-grade security and elite UI/UX performance.
+                            </p>
+                            <ul class="timeline-achievements">
+                                <li>Architected NX CLI monorepo for seamless modular scaling across global teams.</li>
+                                <li>Integrated secure Web3 wallet connections, smart contracts, and DeFi staking protocols.</li>
+                                <li>Optimized WebGL/Three.js property preview rendering performance by 50%.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Experience 2 -->
+                    <div class="timeline-item">
+                        <div class="timeline-node">
+                            <div class="timeline-dot" style="border-color: var(--secondary);"></div>
+                        </div>
+                        <div class="timeline-card glass-panel glass-panel-purple interactive">
+                            <div class="timeline-card-header">
+                                <div class="timeline-role">
+                                    AI Research Contributor
+                                    <span class="timeline-company">Academic Research Groups & NLP Initiatives</span>
+                                </div>
+                                <span class="timeline-period">2022 — 2024</span>
+                            </div>
+                            <p class="timeline-desc">
+                                Focused on applied machine learning, misinformation detection, and social network analysis during global health crises, publishing foundational research models.
+                            </p>
+                            <ul class="timeline-achievements">
+                                <li>Co-authored published papers on Vec4Cred health misinformation detection model.</li>
+                                <li>Conducted echo chamber analysis and DRepStream graph-based clustering research.</li>
+                                <li>Developed Python data pipelines for processing large-scale social media datasets.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Experience 3 -->
+                    <div class="timeline-item">
+                        <div class="timeline-node">
+                            <div class="timeline-dot" style="border-color: var(--tertiary);"></div>
+                        </div>
+                        <div class="timeline-card glass-panel interactive">
+                            <div class="timeline-card-header">
+                                <div class="timeline-role">
+                                    Associate Software Engineer
+                                    <span class="timeline-company">Walking Tree Technology</span>
+                                </div>
+                                <span class="timeline-period">2020 — 2022</span>
+                            </div>
+                            <p class="timeline-desc">
+                                Full-stack web development specializing in workflow automation, interactive diagrams, and real-time WebSocket communication dashboards.
+                            </p>
+                            <ul class="timeline-achievements">
+                                <li>Built award-winning interactive electrical diagram module using Fabric.js (CII Gold Award).</li>
+                                <li>Developed real-time WebSocket chatbot improving customer response times by 50%.</li>
+                                <li>Integrated Redash for advanced data-driven reporting and business intelligence analytics.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. Skills & Capabilities Section -->
+        <section id="skills" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-label">
+                        <div class="section-label-line"></div>
+                        <span class="section-label-text">TECHNICAL CAPABILITIES</span>
+                    </div>
+                    <div class="section-header-top">
+                        <h2 class="headline-lg">CORE COMPETENCIES & TOOLSTACK</h2>
+                        <span class="label-mono" style="color: var(--text-secondary);">360° ENGINEERING</span>
+                    </div>
+                </div>
+
+                <div class="skills-grid">
+                    <!-- Skill Card 1 -->
+                    <div class="skill-card glass-panel interactive">
+                        <div class="skill-icon-wrapper">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                        </div>
+                        <h3 class="skill-title">Frontend & UI/UX</h3>
+                        <div class="skill-list">
+                            <span class="skill-chip">Next.js</span>
+                            <span class="skill-chip">React</span>
+                            <span class="skill-chip">Angular (8-18)</span>
+                            <span class="skill-chip">TypeScript</span>
+                            <span class="skill-chip">Tailwind CSS</span>
+                            <span class="skill-chip">GSAP</span>
+                            <span class="skill-chip">Three.js</span>
+                            <span class="skill-chip">Glassmorphism</span>
+                            <span class="skill-chip">WebSockets</span>
+                        </div>
+                    </div>
+
+                    <!-- Skill Card 2 -->
+                    <div class="skill-card glass-panel glass-panel-purple interactive">
+                        <div class="skill-icon-wrapper">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 1 0 10 10H12V2z"/><path d="M12 12 2.1 14.1"/><path d="M12 12 14.1 2.1"/></svg>
+                        </div>
+                        <h3 class="skill-title">Backend & AI Orchestration</h3>
+                        <div class="skill-list">
+                            <span class="skill-chip">Python</span>
+                            <span class="skill-chip">AgencySwarms</span>
+                            <span class="skill-chip">OpenAI APIs</span>
+                            <span class="skill-chip">Agentic Workflows</span>
+                            <span class="skill-chip">Node.js</span>
+                            <span class="skill-chip">Express</span>
+                            <span class="skill-chip">MongoDB</span>
+                            <span class="skill-chip">Redash</span>
+                            <span class="skill-chip">REST APIs</span>
+                        </div>
+                    </div>
+
+                    <!-- Skill Card 3 -->
+                    <div class="skill-card glass-panel interactive">
+                        <div class="skill-icon-wrapper">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                        </div>
+                        <h3 class="skill-title">Blockchain & Security</h3>
+                        <div class="skill-list">
+                            <span class="skill-chip">Solidity</span>
+                            <span class="skill-chip">Foundry</span>
+                            <span class="skill-chip">Smart Contracts</span>
+                            <span class="skill-chip">DeFi Protocols</span>
+                            <span class="skill-chip">Web3.js</span>
+                            <span class="skill-chip">Ethers.js</span>
+                            <span class="skill-chip">Smart Contract Auditing</span>
+                            <span class="skill-chip">Ethical Hacking</span>
+                            <span class="skill-chip">Penetration Testing</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 8. Contact Section -->
+        <section id="contact" class="section" style="padding-bottom: 8rem;">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-label">
+                        <div class="section-label-line"></div>
+                        <span class="section-label-text">INITIATE CONNECTION</span>
+                    </div>
+                    <div class="section-header-top">
+                        <h2 class="headline-lg">LET'S ARCHITECT SOMETHING EXTRAORDINARY</h2>
+                        <span class="label-mono" style="color: var(--text-secondary);">SECURE TRANSMISSION</span>
+                    </div>
+                </div>
+
+                <div class="contact-grid">
+                    <div class="contact-info">
+                        <div class="contact-title-group">
+                            <h3 class="title-lg">Direct Communication Channels</h3>
+                            <p class="body-md">Whether you are looking for advanced AI orchestration, secure smart contract development, or consulting on scalable system design, let's connect.</p>
+                        </div>
+
+                        <div class="contact-direct">
+                            <a href="mailto:contact@rishabh-upadhyay.com" class="contact-method interactive">
+                                <div class="contact-method-icon">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>
+                                </div>
+                                <div class="contact-method-text">
+                                    <span class="contact-method-label">SECURE EMAIL</span>
+                                    <span class="contact-method-val">contact@rishabh-upadhyay.com</span>
+                                </div>
+                            </a>
+
+                            <div class="contact-method interactive" style="cursor: none;">
+                                <div class="contact-method-icon" style="background: rgba(157,0,255,0.1); color: var(--secondary);">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+                                </div>
+                                <div class="contact-method-text">
+                                    <span class="contact-method-label">GLOBAL PRESENCE</span>
+                                    <span class="contact-method-val">Dubai / India / Remote Worldwide</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="contact-title-group">
+                            <h4 class="label-mono" style="color: var(--text-secondary);">DIGITAL FOOTPRINT</h4>
+                            <div class="social-links">
+                                <a href="https://github.com/rishabhupadhyay" target="_blank" rel="noopener noreferrer" class="social-link interactive" aria-label="GitHub">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                                </a>
+                                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-link interactive" aria-label="LinkedIn">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                                </a>
+                                <a href="https://awwwards.com" target="_blank" rel="noopener noreferrer" class="social-link interactive" aria-label="Awwwards">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                                </a>
+                                <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="social-link interactive" aria-label="Twitter">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact Form -->
+                    <form id="contactForm" class="contact-form glass-panel interactive">
+                        <div class="form-group">
+                            <label for="name" class="form-label">Full Name <span style="color: var(--primary);">*</span></label>
+                            <input type="text" id="name" class="form-control interactive" required placeholder="Enter your full name">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email" class="form-label">Email Address <span style="color: var(--primary);">*</span></label>
+                            <input type="email" id="email" class="form-control interactive" required placeholder="Enter your email address">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="subject" class="form-label">Subject</label>
+                            <input type="text" id="subject" class="form-control interactive" placeholder="e.g. AI System Architecture / Smart Contract Audit">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message" class="form-label">Project Details & Message <span style="color: var(--primary);">*</span></label>
+                            <textarea id="message" class="form-control interactive" required placeholder="Describe your project requirements, timeline, and goals..."></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary interactive" style="width: 100%;">
+                            TRANSMIT MESSAGE
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast">
+        <div class="toast-icon">✓</div>
+        <div class="toast-text">TRANSMISSION SUCCESSFUL. RISHABH UPADHYAY WILL RESPOND SHORTLY.</div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-container">
+            <div class="footer-copy">
+                © 2026 Rishabh Upadhyay. All rights reserved. Architected with <span style="color: var(--primary);">Question, Design, Build</span> philosophy.
+            </div>
+            <div class="footer-visitor-count interactive" title="Total Page Visitors">
+                <span class="visitor-dot animate-pulse"></span>
+                <span class="visitor-label">VISITORS:</span>
+                <span id="visitor-count" class="visitor-val label-mono">...</span>
+            </div>
+            <div>
+                <a href="#hero" class="footer-link label-mono interactive">BACK TO TOP ↑</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
