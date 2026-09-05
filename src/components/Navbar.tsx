@@ -1,19 +1,20 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const NAV_ITEMS = [
-  { label: "About",    href: "#about" },
-  { label: "Works",    href: "#works" },
-  { label: "Journey",  href: "#experience" },
-  { label: "Certs",    href: "#certifications" },
-  { label: "Contact",  href: "#contact" },
+  { label: "Home",     href: "/" },
+  { label: "Skills",   href: "/skills" },
+  { label: "Works",    href: "/works" },
+  { label: "Journey",  href: "/journey" },
+  { label: "Contact",  href: "/contact" },
 ];
 
 export const Navbar: React.FC = () => {
   const [scrolled, setScrolled] = useState(false);
-  const [mobileOpen, setMobileOpen] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -37,27 +38,33 @@ export const Navbar: React.FC = () => {
             : "bg-transparent border-transparent"
         }`}
       >
-        <button
-          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          className="flex flex-col items-start bg-transparent border-none p-0 cursor-pointer group mr-4"
+        <Link
+          href="/"
+          className="flex flex-col items-start bg-transparent border-none p-0 cursor-pointer group mr-4 no-underline"
         >
           <span className="font-display font-bold text-sm tracking-widest text-[var(--text-primary)] group-hover:text-[var(--terracotta)] transition-colors">
             JAIKEY
           </span>
-        </button>
+        </Link>
 
         <div className="hidden md:flex items-center gap-1">
-          {NAV_ITEMS.map((item) => (
-            <a
-              key={item.label}
-              href={item.href}
-              className="px-4 py-2 rounded-full font-mono text-xs uppercase tracking-wider text-[var(--text-secondary)] hover:text-[var(--terracotta)] hover:bg-[var(--surface-hover)] transition-all"
-            >
-              {item.label}
-            </a>
-          ))}
+          {NAV_ITEMS.map((item) => {
+            const isActive = pathname === item.href;
+            return (
+              <Link
+                key={item.label}
+                href={item.href}
+                className={`px-4 py-2 rounded-full font-mono text-xs uppercase tracking-wider transition-all no-underline ${
+                  isActive 
+                    ? "text-[var(--terracotta)] bg-[var(--surface-hover)] font-bold" 
+                    : "text-[var(--text-secondary)] hover:text-[var(--terracotta)] hover:bg-[var(--surface-hover)]"
+                }`}
+              >
+                {item.label}
+              </Link>
+            );
+          })}
         </div>
-
       </nav>
     </header>
   );

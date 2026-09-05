@@ -5,6 +5,7 @@ import { Preloader } from "@/components/Preloader";
 import { ViewportHeightHandler } from "@/components/ViewportHeightHandler";
 import { ThemeProvider } from "next-themes";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { FoldingGrid } from "@/components/FoldingGrid";
 
 export function ClientLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -18,6 +19,9 @@ export function ClientLayout({ children }: { children: React.ReactNode }) {
           <ThemeToggle />
         </div>
       </div>
+
+      {/* Global Background Grid */}
+      <FoldingGrid />
 
       <Navbar />
       <main className="w-full relative z-20">

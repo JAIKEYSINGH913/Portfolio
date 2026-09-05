@@ -3,19 +3,22 @@
 import React, { useEffect, useRef } from "react";
 import { useTheme } from "next-themes";
 import { motion, useScroll, useTransform, useSpring, useMotionTemplate } from "framer-motion";
+import { usePathname } from "next/navigation";
 
 export function FoldingGrid() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const { resolvedTheme } = useTheme();
+  const pathname = usePathname();
   
   const { scrollYProgress } = useScroll();
   const smoothProgress = useSpring(scrollYProgress, { stiffness: 50, damping: 20 });
   
-  // As the user scrolls down (and statue fades out), the grid expands to the left
-  // to fill the entire floor.
-  const maskPositionX = useTransform(smoothProgress, [0, 0.45], [80, 50]);
-  const maskCore = useTransform(smoothProgress, [0, 0.45], [30, 80]);
-  const maskFade = useTransform(smoothProgress, [0, 0.45], [70, 150]);
+  // On home page, animate based on scroll. On other pages, fully expand.
+  const isHome = pathname === "/";
+  
+  const maskPositionX = useTransform(smoothProgress, [0, 0.45], isHome ? [80, 50] : [50, 50]);
+  const maskCore = useTransform(smoothProgress, [0, 0.45], isHome ? [30, 80] : [80, 80]);
+  const maskFade = useTransform(smoothProgress, [0, 0.45], isHome ? [70, 150] : [150, 150]);
   
   const maskImage = useMotionTemplate`radial-gradient(ellipse at ${maskPositionX}% 100%, black ${maskCore}%, transparent ${maskFade}%)`;
 
