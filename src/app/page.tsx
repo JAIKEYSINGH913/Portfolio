@@ -47,20 +47,6 @@ function AmbientCanvas() {
   return <canvas ref={ref} className="fixed inset-0 pointer-events-none z-[1] mix-blend-screen" />;
 }
 
-/* ── Scroll Progress Bar ── */
-function ScrollProgressBar() {
-  const [pct, setPct] = useState(0);
-  useEffect(() => {
-    const fn = () => {
-      const max = document.body.scrollHeight - window.innerHeight;
-      setPct(max > 0 ? (window.scrollY / max) * 100 : 0);
-    };
-    window.addEventListener("scroll", fn, { passive: true });
-    return () => window.removeEventListener("scroll", fn);
-  }, []);
-  return <div className="fixed top-0 left-0 h-[2px] z-[200]" style={{ width: `${pct}%`, background: "linear-gradient(90deg,#C85A2A,#E5A93D,#C85A2A)", transition: "width 80ms linear" }} />;
-}
-
 /* ── Hero Section ── */
 function Hero() {
   return (
@@ -111,7 +97,6 @@ export default function Portfolio() {
     <div className="w-full relative text-white" style={{ background: "#080604" }}>
       <CinematicBackground />
       <AmbientCanvas />
-      <ScrollProgressBar />
 
       {/* ─── HERO ─── */}
       <Hero />
