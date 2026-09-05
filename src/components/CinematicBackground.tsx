@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useTheme } from "next-themes";
+import { FoldingGrid } from "@/components/FoldingGrid";
 
 export function CinematicBackground() {
   const { resolvedTheme } = useTheme();
@@ -17,6 +18,7 @@ export function CinematicBackground() {
       className="fixed inset-0 z-0 pointer-events-none overflow-hidden transition-colors duration-700"
       style={{ backgroundColor: isLight ? "#F5F5F5" : "#080604" }}
     >
+      <FoldingGrid />
 
       <motion.div
         className="w-full h-full absolute inset-0 flex items-center justify-center"
