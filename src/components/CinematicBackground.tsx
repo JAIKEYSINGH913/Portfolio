@@ -25,17 +25,14 @@ export function CinematicBackground() {
         style={{ transform: "translateX(-25%) translateY(0%) scale(1.5) rotate(-2deg)" }}
       >
         <img 
-          src="/assets/images/david_right.jpg"
+          src="/assets/images/david_right.png"
           alt="Low Poly David Revolving"
           style={{
             width: "100vw",
             height: "100vh",
             objectFit: "contain",
             objectPosition: "center center",
-            opacity: 0.8,
-            mixBlendMode: isLight ? "multiply" : "screen",
-            maskImage: "radial-gradient(ellipse at center, black 30%, transparent 70%)",
-            WebkitMaskImage: "radial-gradient(ellipse at center, black 30%, transparent 70%)",
+            opacity: 0.9,
             filter: isLight ? "invert(1) contrast(1.1) brightness(1.1)" : "none",
             transition: "filter 0.7s ease"
           }}

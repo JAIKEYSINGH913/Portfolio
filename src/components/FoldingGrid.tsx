@@ -154,8 +154,8 @@ export function FoldingGrid() {
       ref={canvasRef} 
       className="absolute inset-0 z-0 pointer-events-none"
       style={{
-        maskImage: "linear-gradient(to top, black 20%, transparent 100%)",
-        WebkitMaskImage: "linear-gradient(to top, black 20%, transparent 100%)",
+        maskImage: "linear-gradient(to right, transparent 30%, black 80%)",
+        WebkitMaskImage: "linear-gradient(to right, transparent 30%, black 80%)",
       }}
     />
   );
