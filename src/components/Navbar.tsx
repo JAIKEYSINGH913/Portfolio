@@ -42,7 +42,7 @@ export const Navbar: React.FC = () => {
 
   return (
     <header 
-      className={`fixed top-0 left-0 right-0 z-50 flex justify-center py-4 px-4 transition-transform duration-500 ${
+      className={`fixed top-4 right-4 md:right-8 z-50 flex justify-end transition-transform duration-500 ${
         scrolled ? "translate-y-0" : "translate-y-2"
       }`}
     >
@@ -53,21 +53,12 @@ export const Navbar: React.FC = () => {
             : "bg-transparent border-transparent"
         }`}
       >
-        <Link
-          href="/"
-          className="flex flex-col items-start bg-transparent border-none p-0 cursor-pointer group no-underline relative z-10"
-        >
-          <span className="font-display font-bold text-sm tracking-widest text-[var(--text-primary)] group-hover:text-[var(--terracotta)] transition-colors">
-            JAIKEY
-          </span>
-        </Link>
-
         <AnimatePresence>
           {atBottom && (
             <motion.div 
-              initial={{ width: 0, opacity: 0, marginLeft: 0 }}
-              animate={{ width: "auto", opacity: 1, marginLeft: 24 }}
-              exit={{ width: 0, opacity: 0, marginLeft: 0 }}
+              initial={{ width: 0, opacity: 0, marginRight: 0 }}
+              animate={{ width: "auto", opacity: 1, marginRight: 24 }}
+              exit={{ width: 0, opacity: 0, marginRight: 0 }}
               transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
               className="hidden md:flex items-center gap-1 overflow-hidden"
             >
@@ -90,6 +81,15 @@ export const Navbar: React.FC = () => {
             </motion.div>
           )}
         </AnimatePresence>
+
+        <Link
+          href="/"
+          className="flex flex-col items-start bg-transparent border-none p-0 cursor-pointer group no-underline relative z-10"
+        >
+          <span className="font-display font-bold text-sm tracking-widest text-[var(--text-primary)] group-hover:text-[var(--terracotta)] transition-colors">
+            JAIKEY
+          </span>
+        </Link>
       </nav>
     </header>
   );
