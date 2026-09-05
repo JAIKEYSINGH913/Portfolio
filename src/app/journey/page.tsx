@@ -29,7 +29,7 @@ export default function JourneyPage() {
   const [activeCert, setActiveCert] = useState<string | null>(null);
 
   return (
-    <div className="w-full relative text-white" style={{ paddingTop: '8rem', paddingBottom: '8rem' }}>
+    <div className="w-full relative text-white" style={{ paddingTop: '8rem', paddingBottom: '4rem' }}>
       {/* ─── EXPERIENCE ─── */}
       <section id="experience" className="relative z-10" style={{ paddingBottom: "8rem" }}>
         <div className="bg-label" style={{ top: "20%", left: -40, opacity: 0.3 }}>EXP.</div>

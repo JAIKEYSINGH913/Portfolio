@@ -102,7 +102,7 @@ export default function Portfolio() {
       <Hero />
 
       {/* ─── ABOUT ─── */}
-      <section id="about" className="relative z-10" style={{ paddingTop: "8rem", paddingBottom: "16rem" }}>
+      <section id="about" className="relative z-10" style={{ paddingTop: "4rem", paddingBottom: "6rem" }}>
         <div className="section-wrap">
           {/* Stats row */}
           <ScrollReveal animation="fade-up">

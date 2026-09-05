@@ -7,7 +7,7 @@ import { ResumeViewer } from "@/components/ResumeViewer";
 
 export default function ContactPage() {
   return (
-    <div className="w-full relative text-white" style={{ paddingTop: '8rem', paddingBottom: '8rem' }}>
+    <div className="w-full relative text-white" style={{ paddingTop: '8rem', paddingBottom: '4rem' }}>
       <section id="contact" className="relative z-10">
         <div className="bg-label" style={{ top: -60, left: 0, opacity: 0.3 }}>CONTACT</div>
         <div className="section-wrap">
