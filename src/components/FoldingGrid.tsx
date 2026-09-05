@@ -63,8 +63,8 @@ export function FoldingGrid() {
       }
 
       ctx.save();
-      // Center the origin
-      ctx.translate(width / 2, height / 2 + 50);
+      // Center the origin at the bottom of the screen
+      ctx.translate(width / 2, height - 100);
 
       // 3D to 2D projection function
       const project = (x: number, y: number, z: number) => {
@@ -74,7 +74,7 @@ export function FoldingGrid() {
         const wz = y * size; // depth into screen
 
         // Camera position
-        const camY = 250; // height above grid
+        const camY = 150; // height above grid
         const camZ = -200; 
 
         const rx = wx;
@@ -154,8 +154,8 @@ export function FoldingGrid() {
       ref={canvasRef} 
       className="absolute inset-0 z-0 pointer-events-none"
       style={{
-        maskImage: "linear-gradient(to right, transparent 30%, black 80%)",
-        WebkitMaskImage: "linear-gradient(to right, transparent 30%, black 80%)",
+        maskImage: "radial-gradient(ellipse at 80% 100%, black 30%, transparent 70%)",
+        WebkitMaskImage: "radial-gradient(ellipse at 80% 100%, black 30%, transparent 70%)",
       }}
     />
   );
