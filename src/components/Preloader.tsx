@@ -1,181 +1,141 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
-
-const WELCOME_TEXT = "JAIKEY SINGH";
-
-const BAR_X_POSITIONS = [
-  10, 21, 32, 43, 54, 65, 76, 87, 98, 109, 120, 131, 142, 153, 164, 175, 186,
-  197, 208, 219,
-];
-
-// Opacity: starts at 0.88, peaks at 1.0 at center (index 10), symmetric
-const BAR_OPACITIES = [
-  0.88, 0.89, 0.9, 0.91, 0.92, 0.93, 0.94, 0.96, 0.97, 0.99, 1.0, 0.99,
-  0.97, 0.96, 0.94, 0.93, 0.92, 0.91, 0.9, 0.89,
-];
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 export function Preloader() {
-  const [isVisible, setIsVisible] = useState(true);
-  const [isExiting, setIsExiting] = useState(false);
-  const letterRefs = useRef<(HTMLSpanElement | null)[]>([]);
-  const svgRef = useRef<SVGSVGElement | null>(null);
-  const bgRef = useRef<HTMLDivElement | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     // Prevent scrolling during preloader
     document.body.style.overflow = "hidden";
-
-    const letters = letterRefs.current;
-    const totalLetters = WELCOME_TEXT.length;
-
-    // Step 1: Fade in letters one-by-one after 300ms
-    const fadeInTimeout = setTimeout(() => {
-      letters.forEach((el, i) => {
-        if (el) {
-          setTimeout(() => {
-            el.style.opacity = "1";
-          }, i * 80);
-        }
-      });
-    }, 300);
-
-    // Step 2: After all letters visible + 800ms hold
-    const allLettersTime = 300 + totalLetters * 80;
-    const holdTime = allLettersTime + 800;
-
-    // Step 3: Fade out SVG and letters
-    const fadeOutTimeout = setTimeout(() => {
-      setIsExiting(true);
-
-      // Fade out SVG bars
-      if (svgRef.current) {
-        svgRef.current.style.transition = "opacity 400ms ease";
-        svgRef.current.style.opacity = "0";
-      }
-
-      // Fade out letters
-      letters.forEach((el) => {
-        if (el) {
-          el.style.transition = "opacity 400ms ease";
-          el.style.opacity = "0";
-        }
-      });
-    }, holdTime);
-
-    // Step 4: Expand radial gradient after fade out
-    const expandTimeout = setTimeout(() => {
-      if (bgRef.current) {
-        const duration = 600;
-        const startTime = performance.now();
-
-        const animate = (currentTime: number) => {
-          const elapsed = currentTime - startTime;
-          const progress = Math.min(elapsed / duration, 1);
-          // Ease-out cubic
-          const eased = 1 - Math.pow(1 - progress, 3);
-          const size = eased * 150;
-
-          if (bgRef.current) {
-            bgRef.current.style.background = `radial-gradient(circle at center, transparent ${size}%, #FFF8F0 100%)`;
-          }
-
-          if (progress < 1) {
-            requestAnimationFrame(animate);
-          } else {
-            // Step 5: Remove from DOM
-            document.body.style.overflow = "";
-            setIsVisible(false);
-          }
-        };
-
-        requestAnimationFrame(animate);
-      }
-    }, holdTime + 400);
+    
+    // Hold the preloader for 2.8 seconds
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+      document.body.style.overflow = "";
+    }, 2800);
 
     return () => {
-      clearTimeout(fadeInTimeout);
-      clearTimeout(fadeOutTimeout);
-      clearTimeout(expandTimeout);
+      clearTimeout(timer);
       document.body.style.overflow = "";
     };
   }, []);
 
-  if (!isVisible) return null;
-
   return (
-    <>
-      {/* Heartbeat keyframe styles */}
-      <style jsx global>{`
-        @keyframes heartbeat {
-          0%,
-          100% {
-            transform: scaleY(1);
-          }
-          50% {
-            transform: scaleY(2.2);
-          }
-        }
-      `}</style>
-
-      {/* Background overlay with radial gradient */}
-      <div
-        ref={bgRef}
-        className="fixed inset-0 z-[9999]"
-        style={{
-          pointerEvents: "none",
-          background:
-            "radial-gradient(circle at center, transparent 0%, #FFF8F0 0%)",
-        }}
-      />
-
-      {/* SVG Audio Wave Heart */}
-      <div className="fixed inset-0 z-[10000] flex items-center justify-center pointer-events-none">
-        <svg
-          ref={svgRef}
-          viewBox="0 0 240 100"
-          className="w-60 h-auto"
-          xmlns="http://www.w3.org/2000/svg"
+    <AnimatePresence>
+      {isLoading && (
+        <motion.div
+          key="preloader"
+          initial={{ opacity: 1 }}
+          exit={{ opacity: 0, scale: 1.05, filter: "blur(10px)" }}
+          transition={{ duration: 0.8, ease: [0.76, 0, 0.24, 1] }}
+          className="fixed inset-0 z-[9999] bg-[var(--canvas)] flex items-center justify-center overflow-hidden"
         >
-          {BAR_X_POSITIONS.map((x, i) => (
-            <rect
-              key={i}
-              x={x}
-              y={42}
-              width={3}
-              height={16}
-              rx={1.5}
-              fill="#D96B43"
+          {/* Hyper-speed 3D Grid Space */}
+          <div className="absolute inset-0 opacity-20 md:opacity-30 [perspective:800px]">
+            {/* Floor Grid */}
+            <div 
+              className="absolute w-[200%] h-[150%] left-[-50%] bottom-[-20%] origin-bottom"
               style={{
-                opacity: BAR_OPACITIES[i],
-                animation: `heartbeat 0.8s ease-in-out ${i * 0.04}s infinite`,
-                transformOrigin: `${x + 1.5}px 50px`,
+                transform: "rotateX(75deg)",
+                backgroundImage: "linear-gradient(to right, var(--accent) 1px, transparent 1px), linear-gradient(to bottom, var(--accent) 1px, transparent 1px)",
+                backgroundSize: "80px 80px",
+                animation: "grid-hyper 0.4s linear infinite",
+                WebkitMaskImage: "linear-gradient(to top, black 20%, transparent 100%)",
+                maskImage: "linear-gradient(to top, black 20%, transparent 100%)",
               }}
             />
-          ))}
-        </svg>
-      </div>
-
-      {/* Letter-by-letter text */}
-      <div className="fixed inset-0 z-[10000] flex items-center justify-center pointer-events-none">
-        <p className="text-4xl md:text-5xl lg:text-6xl tracking-wider font-display font-bold text-[#2B2825]">
-          {WELCOME_TEXT.split("").map((char, i) => (
-            <span
-              key={i}
-              ref={(el) => {
-                letterRefs.current[i] = el;
-              }}
-              className="letter inline-block opacity-0"
+            {/* Ceiling Grid */}
+            <div 
+              className="absolute w-[200%] h-[150%] left-[-50%] top-[-20%] origin-top"
               style={{
-                transition: "opacity 300ms ease",
-                whiteSpace: char === " " ? "pre" : undefined,
+                transform: "rotateX(-75deg)",
+                backgroundImage: "linear-gradient(to right, var(--accent) 1px, transparent 1px), linear-gradient(to top, var(--accent) 1px, transparent 1px)",
+                backgroundSize: "80px 80px",
+                animation: "grid-hyper 0.4s linear infinite",
+                WebkitMaskImage: "linear-gradient(to bottom, black 20%, transparent 100%)",
+                maskImage: "linear-gradient(to bottom, black 20%, transparent 100%)",
               }}
+            />
+          </div>
+
+          <style>{`
+            @keyframes grid-hyper {
+              0% { background-position: 0 0; }
+              100% { background-position: 0 80px; }
+            }
+          `}</style>
+
+          {/* 3D Paper Fold Object */}
+          <div className="relative z-10 w-24 h-24 md:w-32 md:h-32" style={{ perspective: "1000px" }}>
+            <motion.div
+              animate={{
+                rotateX: [0, 180, 180, 0, 0],
+                rotateY: [0, 0, 180, 180, 0],
+              }}
+              transition={{
+                duration: 2.2,
+                ease: "easeInOut",
+                times: [0, 0.25, 0.5, 0.75, 1],
+                repeat: Infinity,
+                repeatDelay: 0.1
+              }}
+              className="w-full h-full relative"
+              style={{ transformStyle: "preserve-3d" }}
             >
-              {char}
-            </span>
-          ))}
-        </p>
-      </div>
-    </>
+              {/* Front Face */}
+              <div 
+                className="absolute inset-0 bg-[var(--surface-1)] border-2 border-[var(--border-strong)] flex items-center justify-center shadow-lg"
+                style={{ backfaceVisibility: "hidden" }}
+              >
+                <span className="font-mono text-sm font-bold text-[var(--accent)] tracking-widest">
+                  INIT
+                </span>
+              </div>
+              {/* Back Face (Paper Folded Over) */}
+              <div 
+                className="absolute inset-0 bg-[var(--accent)] border-2 border-[var(--surface-1)] flex items-center justify-center shadow-accent"
+                style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)" }}
+              >
+                <span className="font-mono text-sm font-bold text-[#080604] tracking-widest">
+                  LOAD
+                </span>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Loading Text & Progress Line */}
+          <div className="absolute bottom-12 right-12 md:bottom-24 md:right-24 flex flex-col items-end z-10">
+            <motion.div 
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+              className="font-display font-bold text-5xl md:text-7xl tracking-tighter text-[var(--text-primary)]"
+            >
+              JAIKEY
+            </motion.div>
+            
+            <div className="w-full overflow-hidden mt-2">
+              <motion.div 
+                initial={{ x: "-100%" }}
+                animate={{ x: "0%" }}
+                transition={{ delay: 0.5, duration: 2.3, ease: "circOut" }}
+                className="h-[2px] bg-[var(--accent)] w-full"
+              />
+            </div>
+            
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: [0, 1, 0.5, 1] }}
+              transition={{ delay: 0.8, duration: 1.5, repeat: Infinity }}
+              className="font-mono text-xs md:text-sm text-[var(--text-secondary)] mt-4 uppercase tracking-widest"
+            >
+              Building Space...
+            </motion.div>
+          </div>
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 }
