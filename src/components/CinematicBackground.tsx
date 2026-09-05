@@ -17,58 +17,6 @@ export function CinematicBackground() {
       className="fixed inset-0 z-0 pointer-events-none overflow-hidden transition-colors duration-700"
       style={{ backgroundColor: isLight ? "#F5F5F5" : "#080604" }}
     >
-      <style>{`
-        @keyframes grid-forward {
-          0% { background-position: 0 0; }
-          100% { background-position: 0 60px; }
-        }
-      `}</style>
-
-      {/* 3D Grid Floor */}
-      <div 
-        className="absolute inset-x-0 bottom-0 h-[60vh] opacity-50"
-        style={{
-          perspective: "800px",
-          maskImage: "linear-gradient(to top, black 10%, transparent 100%)",
-          WebkitMaskImage: "linear-gradient(to top, black 10%, transparent 100%)",
-        }}
-      >
-        <div 
-          className="absolute w-[200%] h-[150%] left-[-50%] bottom-0"
-          style={{
-            transformOrigin: "bottom center",
-            transform: "rotateX(70deg)",
-            backgroundImage: isLight
-              ? "linear-gradient(to right, rgba(0,0,0,0.15) 1px, transparent 1px), linear-gradient(to bottom, rgba(0,0,0,0.15) 1px, transparent 1px)"
-              : "linear-gradient(to right, rgba(200,90,42,0.2) 1px, transparent 1px), linear-gradient(to bottom, rgba(200,90,42,0.2) 1px, transparent 1px)",
-            backgroundSize: "60px 60px",
-            animation: "grid-forward 2s linear infinite"
-          }}
-        />
-      </div>
-
-      {/* 3D Grid Ceiling */}
-      <div 
-        className="absolute inset-x-0 top-0 h-[60vh] opacity-30"
-        style={{
-          perspective: "800px",
-          maskImage: "linear-gradient(to bottom, black 10%, transparent 100%)",
-          WebkitMaskImage: "linear-gradient(to bottom, black 10%, transparent 100%)",
-        }}
-      >
-        <div 
-          className="absolute w-[200%] h-[150%] left-[-50%] top-0"
-          style={{
-            transformOrigin: "top center",
-            transform: "rotateX(-70deg)",
-            backgroundImage: isLight
-              ? "linear-gradient(to right, rgba(0,0,0,0.1) 1px, transparent 1px), linear-gradient(to top, rgba(0,0,0,0.1) 1px, transparent 1px)"
-              : "linear-gradient(to right, rgba(200,90,42,0.15) 1px, transparent 1px), linear-gradient(to top, rgba(200,90,42,0.15) 1px, transparent 1px)",
-            backgroundSize: "60px 60px",
-            animation: "grid-forward 2s linear infinite"
-          }}
-        />
-      </div>
 
       <motion.div
         className="w-full h-full absolute inset-0 flex items-center justify-center"
