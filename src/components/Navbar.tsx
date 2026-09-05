@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { ThemeToggle } from "@/components/ThemeToggle";
+
 
 const NAV_ITEMS = [
   { label: "About",    href: "#about" },
@@ -58,9 +58,6 @@ export const Navbar: React.FC = () => {
           ))}
         </div>
 
-        <div className="pl-4 border-l border-[var(--border-light)]">
-          <ThemeToggle />
-        </div>
       </nav>
     </header>
   );
