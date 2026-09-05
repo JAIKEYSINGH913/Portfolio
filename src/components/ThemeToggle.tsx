@@ -2,6 +2,7 @@
 
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 
 export function ThemeToggle() {
   const { theme, setTheme, resolvedTheme } = useTheme();
@@ -18,7 +19,14 @@ export function ThemeToggle() {
   const isDark = resolvedTheme === "dark";
 
   return (
-    <div className="relative flex flex-col items-center">
+    <motion.button
+      onClick={() => setTheme(isDark ? "light" : "dark")}
+      whileTap={{ y: 80 }}
+      transition={{ type: "spring", stiffness: 400, damping: 15 }}
+      className="relative flex flex-col items-center bg-transparent border-0 p-0 m-0 rounded-none cursor-pointer overflow-visible group"
+      aria-label="Toggle Theme"
+      title={isDark ? "Switch to Light Mode" : "Switch to Dark Mode"}
+    >
       {/* The hanging rope extending all the way up */}
       <div 
         className="absolute bottom-full w-[2px] h-[100vh] pointer-events-none" 
@@ -29,13 +37,7 @@ export function ThemeToggle() {
         }} 
       />
 
-      <button
-        onClick={() => setTheme(isDark ? "light" : "dark")}
-        className="paper-btn pointer-events-auto bg-transparent border-0 p-0 m-0 rounded-none flex items-center justify-center cursor-pointer overflow-visible group relative"
-        aria-label="Toggle Theme"
-        title={isDark ? "Switch to Light Mode" : "Switch to Dark Mode"}
-      >
-        <div className="relative w-16 h-24 rotate-180 transform origin-center transition-transform hover:scale-105 duration-300">
+      <div className="relative w-16 h-24 rotate-180 transform origin-center transition-transform hover:scale-105 duration-300">
         {/* Rays (visible only in light mode) */}
         <div 
           className={`absolute inset-0 -m-6 transition-all duration-700 ease-[cubic-bezier(0.34,1.56,0.64,1)] ${isDark ? 'opacity-0 scale-50 rotate-[-30deg]' : 'opacity-100 scale-100 rotate-0'}`}
@@ -113,7 +115,6 @@ export function ThemeToggle() {
           </g>
         </svg>
       </div>
-    </button>
-    </div>
+    </motion.button>
   );
 }
