@@ -71,52 +71,53 @@ export const Navbar: React.FC = () => {
             {/* Decorative background grid for the menu */}
             <div className="absolute inset-0 z-0 opacity-10 pointer-events-none" style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
 
-            <div className="relative z-10 w-full max-w-7xl px-4 md:px-8 mt-16 md:mt-24">
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 border-t border-l border-white/10">
-                {NAV_ITEMS.map((item, i) => {
-                  const isActive = pathname === item.href;
-                  return (
+            <div className="relative z-10 flex flex-col w-full max-w-7xl px-4 md:px-12 mt-20">
+              {/* Top boundary line */}
+              <div className="w-full h-[1px] bg-white/10"></div>
+
+              {NAV_ITEMS.map((item, i) => {
+                const isActive = pathname === item.href;
+                return (
+                  <React.Fragment key={item.label}>
                     <motion.div
-                      key={item.label}
-                      initial={{ opacity: 0, y: 30 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: 20 }}
-                      transition={{ duration: 0.6, delay: 0.2 + (i * 0.08), ease: [0.16, 1, 0.3, 1] }}
-                      className="w-full h-full border-b border-r border-white/10 group hover:bg-white/[0.02] transition-colors duration-500"
+                      initial={{ opacity: 0, x: 100 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: 50 }}
+                      transition={{ duration: 0.6, delay: 0.2 + (i * 0.1), ease: [0.16, 1, 0.3, 1] }}
+                      className="w-full group hover:bg-white/[0.03] transition-colors duration-500"
                     >
                       <Link
                         href={item.href}
-                        className="flex flex-col justify-between w-full h-full p-8 md:p-10 lg:p-12 aspect-[3/2] sm:aspect-square no-underline"
+                        className="group relative flex flex-col md:flex-row md:items-center justify-between py-8 md:py-12 lg:py-16 font-display font-black uppercase tracking-tighter no-underline transition-colors duration-300 w-full"
                       >
-                        {/* Top row of the cell: Number + Arrow */}
-                        <div className="flex justify-between items-start w-full">
-                          <span className="font-mono text-xs md:text-sm tracking-widest text-white/30">
+                        <span className="relative z-10 flex flex-col md:flex-row md:items-center gap-2 md:gap-12">
+                          {/* Row Number */}
+                          <span className="font-mono text-sm md:text-base tracking-widest text-white/30 self-start md:mt-4">
                             0{i + 1}
                           </span>
-                          <span className={`text-2xl md:text-3xl transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-                            isActive 
-                              ? "text-[var(--terracotta)] opacity-100 translate-x-2 -translate-y-2" 
-                              : "text-[var(--gold-400)] opacity-0 group-hover:opacity-100 group-hover:translate-x-2 group-hover:-translate-y-2"
-                          }`}>
-                            ↗
-                          </span>
-                        </div>
-                        
-                        {/* Bottom row of the cell: Huge Text */}
-                        <div className="mt-auto">
-                          <span className={`font-display font-bold text-4xl md:text-5xl xl:text-6xl uppercase tracking-tighter transition-colors duration-300 block ${
+                          
+                          {/* Label (Massive High Text) */}
+                          <span className={`text-6xl md:text-8xl lg:text-[9rem] leading-[0.85] transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] md:group-hover:translate-x-6 ${
                             isActive 
                               ? "text-[var(--terracotta)]" 
                               : "text-[#FAFAF7] group-hover:text-[var(--gold-400)]"
                           }`}>
                             {item.label}
                           </span>
-                        </div>
+                        </span>
+                        
+                        {/* Arrow indicator on hover */}
+                        <span className="opacity-0 -translate-x-8 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] text-4xl md:text-6xl text-[var(--terracotta)] hidden md:block">
+                          ↗
+                        </span>
                       </Link>
                     </motion.div>
-                  );
-                })}
-              </div>
+                    
+                    {/* Visible row line separating items */}
+                    <div className="w-full h-[1px] bg-white/10"></div>
+                  </React.Fragment>
+                );
+              })}
             </div>
             
             {/* Social / Extra links at bottom of menu */}
