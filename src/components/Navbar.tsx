@@ -61,9 +61,9 @@ export const Navbar: React.FC = () => {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, clipPath: "circle(0% at 100% 0%)" }}
-            animate={{ opacity: 1, clipPath: "circle(150% at 100% 0%)" }}
-            exit={{ opacity: 0, clipPath: "circle(0% at 100% 0%)" }}
+            initial={{ x: "100%" }}
+            animate={{ x: "0%" }}
+            exit={{ x: "100%" }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="fixed inset-0 z-[90] flex flex-col justify-center items-center"
             style={{ background: "rgba(8, 6, 4, 0.98)", backdropFilter: "blur(20px)" }}
@@ -71,31 +71,50 @@ export const Navbar: React.FC = () => {
             {/* Decorative background grid for the menu */}
             <div className="absolute inset-0 z-0 opacity-10 pointer-events-none" style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
 
-            <div className="relative z-10 flex flex-col items-center gap-2 md:gap-4">
+            <div className="relative z-10 flex flex-col w-full max-w-6xl px-6 md:px-12 mt-16">
+              {/* Top boundary line */}
+              <div className="w-full h-[1px] bg-white/10"></div>
+
               {NAV_ITEMS.map((item, i) => {
                 const isActive = pathname === item.href;
                 return (
-                  <motion.div
-                    key={item.label}
-                    initial={{ opacity: 0, y: 50 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 20 }}
-                    transition={{ duration: 0.6, delay: 0.1 + (i * 0.05), ease: [0.16, 1, 0.3, 1] }}
-                  >
-                    <Link
-                      href={item.href}
-                      className={`group relative flex items-center justify-center font-display font-bold text-5xl md:text-7xl lg:text-8xl uppercase tracking-tighter no-underline transition-colors duration-300 ${
-                        isActive 
-                          ? "text-[var(--terracotta)]" 
-                          : "text-[#FAFAF7] hover:text-[var(--gold-400)]"
-                      }`}
+                  <React.Fragment key={item.label}>
+                    <motion.div
+                      initial={{ opacity: 0, x: 100 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: 50 }}
+                      transition={{ duration: 0.6, delay: 0.2 + (i * 0.1), ease: [0.16, 1, 0.3, 1] }}
+                      className="w-full"
                     >
-                      <span className="relative z-10">{item.label}</span>
-                      
-                      {/* Hover strike-through or accent line */}
-                      <span className={`absolute top-1/2 left-[-10%] w-[120%] h-2 md:h-4 bg-[var(--terracotta)] -translate-y-1/2 -z-10 origin-left transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${isActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'}`}></span>
-                    </Link>
-                  </motion.div>
+                      <Link
+                        href={item.href}
+                        className={`group relative flex items-center justify-between py-6 md:py-8 lg:py-10 font-display font-bold text-5xl md:text-7xl lg:text-8xl uppercase tracking-tighter no-underline transition-colors duration-300 w-full ${
+                          isActive 
+                            ? "text-[var(--terracotta)]" 
+                            : "text-[#FAFAF7] hover:text-[var(--gold-400)]"
+                        }`}
+                      >
+                        <span className="relative z-10 flex items-start gap-4 md:gap-8">
+                          {/* Row Number */}
+                          <span className="font-mono text-xs md:text-sm tracking-widest text-white/30 mt-2 md:mt-4">
+                            0{i + 1}
+                          </span>
+                          {/* Label */}
+                          <span className="group-hover:translate-x-4 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]">
+                            {item.label}
+                          </span>
+                        </span>
+                        
+                        {/* Arrow indicator on hover */}
+                        <span className="opacity-0 -translate-x-8 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] text-3xl md:text-5xl text-[var(--terracotta)]">
+                          ↗
+                        </span>
+                      </Link>
+                    </motion.div>
+                    
+                    {/* Visible row line separating items */}
+                    <div className="w-full h-[1px] bg-white/10"></div>
+                  </React.Fragment>
                 );
               })}
             </div>
@@ -104,7 +123,7 @@ export const Navbar: React.FC = () => {
             <motion.div 
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 0.6, duration: 1 }}
+              transition={{ delay: 0.8, duration: 1 }}
               className="absolute bottom-12 left-0 right-0 flex justify-center gap-8 font-mono text-xs tracking-widest text-white/50 uppercase"
             >
               <a href="#" className="hover:text-[var(--terracotta)] transition-colors">LinkedIn</a>
