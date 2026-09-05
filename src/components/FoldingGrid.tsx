@@ -2,10 +2,22 @@
 
 import React, { useEffect, useRef } from "react";
 import { useTheme } from "next-themes";
+import { motion, useScroll, useTransform, useSpring, useMotionTemplate } from "framer-motion";
 
 export function FoldingGrid() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const { resolvedTheme } = useTheme();
+  
+  const { scrollYProgress } = useScroll();
+  const smoothProgress = useSpring(scrollYProgress, { stiffness: 50, damping: 20 });
+  
+  // As the user scrolls down (and statue fades out), the grid expands to the left
+  // to fill the entire floor.
+  const maskPositionX = useTransform(smoothProgress, [0, 0.45], [80, 50]);
+  const maskCore = useTransform(smoothProgress, [0, 0.45], [30, 80]);
+  const maskFade = useTransform(smoothProgress, [0, 0.45], [70, 150]);
+  
+  const maskImage = useMotionTemplate`radial-gradient(ellipse at ${maskPositionX}% 100%, black ${maskCore}%, transparent ${maskFade}%)`;
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -150,12 +162,12 @@ export function FoldingGrid() {
   }, [resolvedTheme]);
 
   return (
-    <canvas 
+    <motion.canvas 
       ref={canvasRef} 
       className="absolute inset-0 z-0 pointer-events-none"
       style={{
-        maskImage: "radial-gradient(ellipse at 80% 100%, black 30%, transparent 70%)",
-        WebkitMaskImage: "radial-gradient(ellipse at 80% 100%, black 30%, transparent 70%)",
+        maskImage: maskImage,
+        WebkitMaskImage: maskImage,
       }}
     />
   );
