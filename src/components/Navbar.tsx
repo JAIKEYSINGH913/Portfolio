@@ -65,13 +65,13 @@ export const Navbar: React.FC = () => {
             animate={{ x: "0%" }}
             exit={{ x: "100%" }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed inset-0 z-[90] flex flex-col justify-center items-center"
+            className="fixed inset-0 z-[90] flex flex-col items-center overflow-y-auto overflow-x-hidden"
             style={{ background: "rgba(8, 6, 4, 0.98)", backdropFilter: "blur(20px)" }}
           >
             {/* Decorative background grid for the menu */}
-            <div className="absolute inset-0 z-0 opacity-10 pointer-events-none" style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
+            <div className="fixed inset-0 z-0 opacity-10 pointer-events-none" style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
 
-            <div className="relative z-10 flex flex-col w-full max-w-7xl px-4 md:px-12 mt-20">
+            <div className="relative z-10 flex flex-col w-full max-w-7xl px-4 md:px-12 mt-24 mb-24 min-h-max">
               {/* Top boundary line */}
               <div className="w-full h-[1px] bg-white/10"></div>
 
@@ -83,31 +83,34 @@ export const Navbar: React.FC = () => {
                       initial={{ opacity: 0, x: 100 }}
                       animate={{ opacity: 1, x: 0 }}
                       exit={{ opacity: 0, x: 50 }}
-                      transition={{ duration: 0.6, delay: 0.2 + (i * 0.1), ease: [0.16, 1, 0.3, 1] }}
+                      transition={{ duration: 0.6, delay: 0.1 + (i * 0.1), ease: [0.16, 1, 0.3, 1] }}
                       className="w-full group hover:bg-white/[0.03] transition-colors duration-500"
                     >
                       <Link
                         href={item.href}
-                        className="group relative flex flex-col md:flex-row md:items-center justify-between py-8 md:py-12 lg:py-16 font-display font-black uppercase tracking-tighter no-underline transition-colors duration-300 w-full"
+                        className="group relative flex flex-col md:flex-row md:items-center justify-between py-6 md:py-8 lg:py-12 font-display font-black uppercase tracking-tighter no-underline transition-colors duration-300 w-full"
                       >
                         <span className="relative z-10 flex flex-col md:flex-row md:items-center gap-2 md:gap-12">
                           {/* Row Number */}
-                          <span className="font-mono text-sm md:text-base tracking-widest text-white/30 self-start md:mt-4">
+                          <span className="font-mono text-sm md:text-base tracking-widest text-white/30 self-start md:mt-2">
                             0{i + 1}
                           </span>
                           
-                          {/* Label (Massive High Text) */}
-                          <span className={`text-6xl md:text-8xl lg:text-[9rem] leading-[0.85] transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] md:group-hover:translate-x-6 ${
-                            isActive 
-                              ? "text-[var(--terracotta)]" 
-                              : "text-[#FAFAF7] group-hover:text-[var(--gold-400)]"
-                          }`}>
+                          {/* Label (Fluid Massive Text) */}
+                          <span 
+                            className={`leading-[0.85] transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] md:group-hover:translate-x-6 ${
+                              isActive 
+                                ? "text-[var(--terracotta)]" 
+                                : "text-[#FAFAF7] group-hover:text-[var(--gold-400)]"
+                            }`}
+                            style={{ fontSize: "clamp(3rem, min(9vw, 13vh), 9rem)" }}
+                          >
                             {item.label}
                           </span>
                         </span>
                         
                         {/* Arrow indicator on hover */}
-                        <span className="opacity-0 -translate-x-8 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] text-4xl md:text-6xl text-[var(--terracotta)] hidden md:block">
+                        <span className="opacity-0 -translate-x-8 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] text-3xl md:text-6xl text-[var(--terracotta)] hidden md:block">
                           ↗
                         </span>
                       </Link>
@@ -125,7 +128,7 @@ export const Navbar: React.FC = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.8, duration: 1 }}
-              className="absolute bottom-12 left-0 right-0 flex justify-center gap-8 font-mono text-xs tracking-widest text-white/50 uppercase"
+              className="w-full max-w-7xl px-4 md:px-12 pb-12 flex justify-center gap-8 font-mono text-xs tracking-widest text-white/50 uppercase mt-auto"
             >
               <a href="#" className="hover:text-[var(--terracotta)] transition-colors">LinkedIn</a>
               <a href="#" className="hover:text-[var(--terracotta)] transition-colors">GitHub</a>
