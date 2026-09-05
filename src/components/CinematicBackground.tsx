@@ -32,7 +32,10 @@ export function CinematicBackground() {
             height: "100vh",
             objectFit: "contain",
             objectPosition: "center center",
-            opacity: 0.7,
+            opacity: 0.8,
+            mixBlendMode: isLight ? "multiply" : "screen",
+            maskImage: "radial-gradient(ellipse at center, black 30%, transparent 70%)",
+            WebkitMaskImage: "radial-gradient(ellipse at center, black 30%, transparent 70%)",
             filter: isLight ? "invert(1) contrast(1.1) brightness(1.1)" : "none",
             transition: "filter 0.7s ease"
           }}
