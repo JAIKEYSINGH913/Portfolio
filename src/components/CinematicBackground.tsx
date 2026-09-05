@@ -1,67 +1,14 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import { motion } from "framer-motion";
 import { useTheme } from "next-themes";
 
 export function CinematicBackground() {
-  const { scrollYProgress } = useScroll();
   const { resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
-  const [frame, setFrame] = useState("/assets/images/david_right.jpg");
-  const [isFlipped, setIsFlipped] = useState(false);
 
   useEffect(() => setMounted(true), []);
-
-  // Smooth out the scroll progress
-  const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 50,
-    damping: 25,
-    restDelta: 0.001
-  });
-
-  // Frame order: Side → Front → Back → Flipped Side → Side
-  useEffect(() => {
-    return smoothProgress.onChange((v) => {
-      if (v < 0.125) {
-        setFrame("/assets/images/david_right.jpg"); // Hero: Side profile
-        setIsFlipped(false);
-      } else if (v < 0.375) {
-        setFrame("/assets/images/david_statue.jpg"); // About: Front facing
-        setIsFlipped(false);
-      } else if (v < 0.625) {
-        setFrame("/assets/images/david_back.jpg");   // Skills: Back
-        setIsFlipped(false);
-      } else if (v < 0.875) {
-        setFrame("/assets/images/david_right.jpg");  // Works: Left profile (flipped)
-        setIsFlipped(true);
-      } else {
-        setFrame("/assets/images/david_right.jpg");  // End: Side again
-        setIsFlipped(false);
-      }
-    });
-  }, [smoothProgress]);
-
-  // Positions mapped to sections
-  const x = useTransform(smoothProgress, 
-    [0, 0.25, 0.5, 0.75, 1], 
-    ["-25%", "25%", "0%", "-20%", "0%"]
-  );
-  
-  const y = useTransform(smoothProgress, 
-    [0, 0.25, 0.5, 0.75, 1], 
-    ["0%", "5%", "15%", "-5%", "10%"]
-  );
-  
-  const scale = useTransform(smoothProgress, 
-    [0, 0.2, 0.4, 0.6, 0.8, 1], 
-    [1.5, 1.6, 1.8, 1.5, 1.6, 1.4]
-  );
-  
-  const rotateZ = useTransform(smoothProgress, 
-    [0, 0.25, 0.5, 0.75, 1], 
-    [-2, 3, 0, -2, 0]
-  );
 
   const isLight = mounted && resolvedTheme === "light";
 
@@ -125,10 +72,10 @@ export function CinematicBackground() {
 
       <motion.div
         className="w-full h-full absolute inset-0 flex items-center justify-center"
-        style={{ x, y, scale, rotateZ }}
+        style={{ transform: "translateX(-25%) translateY(0%) scale(1.5) rotate(-2deg)" }}
       >
         <img 
-          src={frame}
+          src="/assets/images/david_right.jpg"
           alt="Low Poly David Revolving"
           style={{
             width: "100vw",
@@ -136,10 +83,8 @@ export function CinematicBackground() {
             objectFit: "contain",
             objectPosition: "center center",
             opacity: 0.7,
-            // Flip the image if it's the left profile, and apply light mode inversion
-            transform: isFlipped ? "scaleX(-1)" : "scaleX(1)",
             filter: isLight ? "invert(1) contrast(1.1) brightness(1.1)" : "none",
-            transition: "filter 0.7s ease, opacity 0.7s ease, transform 0.1s linear" // fast transform so flip is instant
+            transition: "filter 0.7s ease"
           }}
         />
       </motion.div>
