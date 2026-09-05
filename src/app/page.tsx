@@ -1,326 +1,507 @@
 "use client";
 
-import React, { useEffect, useRef, useState, useCallback } from "react";
-import Link from "next/link";
-import { useGlobalState } from "@/context/GlobalState";
+import React, { useEffect, useRef, useState } from "react";
+import { motion } from "framer-motion";
+import { ScrollReveal } from "@/components/ScrollReveal";
+import { ContactForm } from "@/components/ContactForm";
+import { ResumeViewer } from "@/components/ResumeViewer";
+import { HexBrainCanvas, PaperHandLeft, PaperHandRight } from "@/components/HexBrain";
+import { CinematicBackground } from "@/components/CinematicBackground";
 
-/* ─── Blockchain cubes SVG overlay (hero section 0) ─── */
-function BlockchainCubes() {
+const SKILLS_A = [
+  { n: "Java", e: "☕" }, { n: "Spring Boot", e: "🍃" }, { n: "React", e: "⚛️" },
+  { n: "Next.js", e: "▲" }, { n: "TypeScript", e: "💙" }, { n: "Node.js", e: "🟩" },
+  { n: "Python", e: "🐍" }, { n: "GraphRAG", e: "🕸️" },
+];
+const SKILLS_B = [
+  { n: "Neo4j", e: "🔵" }, { n: "GCP", e: "☁️" }, { n: "Docker", e: "🐳" },
+  { n: "MongoDB", e: "🍃" }, { n: "PostgreSQL", e: "🐘" }, { n: "Kubernetes", e: "⚙️" },
+  { n: "Django", e: "🎯" }, { n: "Flutter", e: "💙" },
+];
+
+const PROJECTS = [
+  {
+    title: "EcoThread Backend",
+    desc: "Architected a scalable microservices backend in Java/Spring Boot for a sustainable fashion platform. Implemented JWT auth and PostgreSQL.",
+    tags: ["Java", "Spring Boot", "PostgreSQL", "Docker", "JWT"],
+    accent: "#6BA86F",
+    num: "01",
+  },
+  {
+    title: "GraphRAG Engine",
+    desc: "AI knowledge retrieval system combining LLMs with Neo4j graph databases to eliminate hallucinations by 95%.",
+    tags: ["Python", "Neo4j", "OpenAI", "FastAPI"],
+    accent: "#6096BA",
+    num: "02",
+  },
+  {
+    title: "FinDash Realtime",
+    desc: "A high-performance financial dashboard handling WebSockets for live market data visualization.",
+    tags: ["React", "TypeScript", "Tailwind", "WebSockets"],
+    accent: "#E5A93D",
+    num: "03",
+  },
+  {
+    title: "Cloud Infrastructure CI/CD",
+    desc: "Automated deployment pipelines to GCP using GitHub Actions, Terraform, and Docker registries. Zero-downtime deploys.",
+    tags: ["GCP", "Terraform", "GitHub Actions", "Docker"],
+    accent: "#C85A2A",
+    num: "04",
+  },
+];
+
+const EXPERIENCE = [
+  {
+    role: "Backend Architecture Trainee",
+    company: "Tech Mahindra",
+    date: "Jun 2024 – Present",
+    points: [
+      "Designed and implemented RESTful microservices using Spring Boot and Java 17.",
+      "Optimized database queries, reducing response times by 30%.",
+      "Collaborated in an Agile team to deliver features in 2-week sprints.",
+    ],
+    accent: "#C85A2A",
+  },
+  {
+    role: "Full Stack Developer Intern",
+    company: "StartUp Inc.",
+    date: "Jan 2024 – May 2024",
+    points: [
+      "Built a modern React frontend with Next.js and complex state management.",
+      "Developed Python automation scripts for data processing pipelines.",
+      "Set up CI/CD pipelines via GitHub Actions.",
+    ],
+    accent: "#6096BA",
+  },
+  {
+    role: "B.Tech Computer Science",
+    company: "NITRA Technical Campus",
+    date: "2022 – 2026",
+    points: [
+      "Core coursework: DSA, OS, DBMS, Computer Networks.",
+      "Vice President of the Coding Club — organized hackathons for 200+ students.",
+      "Maintaining 9.2 CGPA across 5 semesters.",
+    ],
+    accent: "#6BA86F",
+  },
+];
+
+const CERTS = [
+  { name: "Big Data & Hadoop", url: "https://drive.google.com/file/d/1MdiT7AG94_l482c6DyL8qfBmxrH3n76I/preview", color: "#6096BA" },
+  { name: "Android App Dev", url: "https://drive.google.com/file/d/1yJKvzYBPgMcD_yzs2uPGchgxFOme_Mea/preview", color: "#6BA86F" },
+  { name: "Java Fundamentals", url: "https://drive.google.com/file/d/1phjadKG2GQzZ55n55yvBS7jQIWIFZHZO/preview", color: "#E5A93D" },
+  { name: "Agile Development", url: "https://drive.google.com/file/d/1FQ9vPboe0u6QcQv6QX2cXEEhNDQ9V2cD/preview", color: "#C85A2A" },
+  { name: "Gen AI Overview", url: "https://drive.google.com/file/d/1cY7SivizIIM_Lm15HlLXT4LAr9cRb_dW/preview", color: "#B460BA" },
+];
+
+/* ── AmbientCanvas: floating embers ── */
+function AmbientCanvas() {
+  const ref = useRef<HTMLCanvasElement>(null);
+  useEffect(() => {
+    const canvas = ref.current; if (!canvas) return;
+    const ctx = canvas.getContext("2d"); if (!ctx) return;
+    let w = canvas.width = window.innerWidth;
+    let h = canvas.height = window.innerHeight;
+    const onResize = () => { w = canvas.width = window.innerWidth; h = canvas.height = window.innerHeight; };
+    window.addEventListener("resize", onResize);
+    const pts = Array.from({ length: 22 }, () => ({
+      x: Math.random() * w, y: Math.random() * h,
+      vx: (Math.random() - 0.5) * 0.15, vy: -0.08 - Math.random() * 0.25,
+      r: Math.random() * 1.8 + 0.5, sw: Math.random() * Math.PI * 2,
+    }));
+    let raf: number, t = 0;
+    const draw = () => {
+      ctx.clearRect(0, 0, w, h);
+      t += 0.008;
+      pts.forEach(p => {
+        p.x += p.vx + Math.sin(t + p.sw) * 0.25;
+        p.y += p.vy;
+        if (p.y < -60) { p.y = h + 60; p.x = Math.random() * w; }
+        const alpha = 0.15 + Math.sin(t * 2 + p.sw) * 0.08;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(200,90,42,${alpha})`;
+        ctx.fill();
+        ctx.beginPath();
+        ctx.moveTo(p.x, p.y);
+        ctx.quadraticCurveTo(p.x + Math.sin(t + p.sw) * 15, p.y + 30, p.x, p.y + 60);
+        ctx.strokeStyle = `rgba(200,90,42,${alpha * 0.4})`;
+        ctx.lineWidth = 0.8;
+        ctx.stroke();
+      });
+      raf = requestAnimationFrame(draw);
+    };
+    draw();
+    return () => { cancelAnimationFrame(raf); window.removeEventListener("resize", onResize); };
+  }, []);
+  return <canvas ref={ref} className="fixed inset-0 pointer-events-none z-[1] mix-blend-screen" />;
+}
+
+/* ── Scroll Progress Bar ── */
+function ScrollProgressBar() {
+  const [pct, setPct] = useState(0);
+  useEffect(() => {
+    const fn = () => {
+      const max = document.body.scrollHeight - window.innerHeight;
+      setPct(max > 0 ? (window.scrollY / max) * 100 : 0);
+    };
+    window.addEventListener("scroll", fn, { passive: true });
+    return () => window.removeEventListener("scroll", fn);
+  }, []);
+  return <div className="fixed top-0 left-0 h-[2px] z-[200]" style={{ width: `${pct}%`, background: "linear-gradient(90deg,#C85A2A,#E5A93D,#C85A2A)", transition: "width 80ms linear" }} />;
+}
+
+/* ── Hero Section ── */
+function Hero() {
   return (
-    <div className="absolute md:top-1/2 top-[45%] left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 scale-50 md:scale-75 lg:scale-100">
-      <div className="relative w-96 h-48 flex items-center justify-center">
-        <svg viewBox="0 0 400 200" className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="blockGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#ffffff" stopOpacity="0.8" />
-              <stop offset="100%" stopColor="#ffffff" stopOpacity="0.3" />
-            </linearGradient>
-            <filter id="blockGlow">
-              <feGaussianBlur stdDeviation="2" result="coloredBlur" />
-              <feMerge>
-                <feMergeNode in="coloredBlur" />
-                <feMergeNode in="SourceGraphic" />
-              </feMerge>
-            </filter>
-          </defs>
-          {/* Chain lines between cubes */}
-          <line x1="85" y1="100" x2="165" y2="100" stroke="#ffffff" strokeWidth="2" opacity="0.5" />
-          <line x1="235" y1="100" x2="315" y2="100" stroke="#ffffff" strokeWidth="2" opacity="0.5" />
-          {/* Cube 1 */}
-          <g transform="translate(50, 100)">
-            <path d="M 0,-40 L 35,-20 L 0,0 L -35,-20 Z" stroke="#ffffff" fill="url(#blockGradient)" strokeWidth="1.5" />
-            <path d="M -35,-20 L -35,20 L 0,40 L 0,0 Z" stroke="#ffffff" fill="black" strokeWidth="1.5" opacity="1" filter="url(#blockGlow)" />
-            <path d="M 35,-20 L 35,20 L 0,40 L 0,0 Z" stroke="#ffffff" fill="black" strokeWidth="1.5" opacity="1" filter="url(#blockGlow)" />
-          </g>
-          {/* Cube 2 */}
-          <g transform="translate(200, 100)">
-            <path d="M 0,-40 L 35,-20 L 0,0 L -35,-20 Z" stroke="#ffffff" fill="url(#blockGradient)" strokeWidth="1.5" />
-            <path d="M -35,-20 L -35,20 L 0,40 L 0,0 Z" stroke="#ffffff" fill="black" strokeWidth="1.5" opacity="1" filter="url(#blockGlow)" />
-            <path d="M 35,-20 L 35,20 L 0,40 L 0,0 Z" stroke="#ffffff" fill="black" strokeWidth="1.5" opacity="1" filter="url(#blockGlow)" />
-          </g>
-          {/* Cube 3 */}
-          <g transform="translate(350, 100)">
-            <path d="M 0,-40 L 35,-20 L 0,0 L -35,-20 Z" stroke="#ffffff" fill="url(#blockGradient)" strokeWidth="1.5" />
-            <path d="M -35,-20 L -35,20 L 0,40 L 0,0 Z" stroke="#ffffff" fill="black" strokeWidth="1.5" opacity="1" filter="url(#blockGlow)" />
-            <path d="M 35,-20 L 35,20 L 0,40 L 0,0 Z" stroke="#ffffff" fill="black" strokeWidth="1.5" opacity="1" filter="url(#blockGlow)" />
-          </g>
+    <section
+      className="hero-section"
+      style={{ background: "transparent" }}
+    >
+      {/* Bottom fade to blend into next section */}
+      <div className="absolute inset-x-0 bottom-0 h-48 z-[5]" style={{ background: "linear-gradient(to top, #080604, transparent)" }} />
+
+      <div className="hero-content relative z-10 flex flex-col items-end text-right">
+        {/* Role eyebrow */}
+        <p className="hero-role mb-6">
+          B.Tech CSE &nbsp;·&nbsp; Graduating 2026 &nbsp;·&nbsp; Software Engineer
+        </p>
+
+        {/* Giant name */}
+        <h1 className="hero-name mb-2">
+          Jaikey<br />
+          <span className="hero-name-accent">Singh.</span>
+        </h1>
+
+        {/* Thin divider */}
+        <div style={{ width: "clamp(120px, 40vw, 360px)", height: 1, background: "rgba(255,255,255,0.1)", marginBottom: "1.5rem" }} />
+
+        {/* Descriptor */}
+        <p className="hero-desc mb-8" style={{ textAlign: "right" }}>
+          I architect scalable, intelligent backend systems — Java microservices,
+          GraphRAG AI pipelines, and cloud-native platforms that ship to production.
+        </p>
+
+        {/* CTAs */}
+        <div className="flex flex-wrap gap-3 justify-end mb-0">
+          <a href="#works" className="hero-cta-primary">
+            Selected Works
+            <svg width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.2" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </a>
+          <a href="#contact" className="hero-cta-secondary">Get In Touch</a>
+          <a href="#certifications" className="hero-cta-secondary">📜 Credentials</a>
+        </div>
+      </div>
+
+      {/* Scroll indicator */}
+      <div className="scroll-cue">
+        <svg width="24" height="24" fill="none" stroke="rgba(255,255,255,0.3)" strokeWidth="1.5" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
         </svg>
+      </div>
+    </section>
+  );
+}
+
+/* ── Hex Skills Section ── */
+function HexSkillsSection() {
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+  useEffect(() => {
+    const el = ref.current; if (!el) return;
+    const obs = new IntersectionObserver(([e]) => setVisible(e.isIntersecting), { threshold: 0.1 });
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+  return (
+    <div ref={ref} className="hex-skills-section">
+      <HexBrainCanvas visible={visible} />
+      <PaperHandLeft visible={visible} />
+      <PaperHandRight visible={visible} />
+      <div style={{ position: "relative", zIndex: 10, textAlign: "center", padding: "2rem", maxWidth: 600, margin: "0 auto" }}>
+        <ScrollReveal animation="fade-up">
+          <p style={{ fontFamily: "var(--font-mono)", fontSize: 10, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "#C85A2A", marginBottom: "1rem", display: "flex", alignItems: "center", justifyContent: "center", gap: 12 }}>
+            <span style={{ width: 28, height: 1.5, background: "#C85A2A", display: "inline-block" }} />
+            Neural Skill Map
+            <span style={{ width: 28, height: 1.5, background: "#C85A2A", display: "inline-block" }} />
+          </p>
+          <h2 style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "clamp(2.5rem,6vw,4.5rem)", lineHeight: 0.9, letterSpacing: "-0.04em", textTransform: "uppercase", color: "#FAFAF7", marginBottom: "1.25rem" }}>
+            Technology<br /><span style={{ color: "#C85A2A" }}>Arsenal.</span>
+          </h2>
+          <p style={{ fontSize: "1rem", color: "rgba(255,255,255,0.45)", lineHeight: 1.7, marginBottom: "2rem" }}>
+            Hover any hex node. Each cell is a battle-tested skill in the stack.
+          </p>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: 8, justifyContent: "center" }}>
+            {[ { label: "Languages", val: "Java · Python · Dart · TS" }, { label: "Frameworks", val: "Spring · React · Flutter" }, { label: "Data", val: "Neo4j · Postgres · Mongo" }, { label: "Cloud", val: "GCP · Firebase · CI/CD" } ].map(c => (
+              <div key={c.label} style={{ padding: "10px 18px", borderRadius: 50, background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.09)", backdropFilter: "blur(8px)" }}>
+                <div style={{ fontFamily: "var(--font-mono)", fontSize: 8, letterSpacing: "0.16em", textTransform: "uppercase", color: "#C85A2A", marginBottom: 3 }}>{c.label}</div>
+                <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, fontWeight: 700, color: "rgba(255,255,255,0.65)" }}>{c.val}</div>
+              </div>
+            ))}
+          </div>
+        </ScrollReveal>
       </div>
     </div>
   );
 }
 
-/* ─── Speed Slider (hemisphere on left edge) ─── */
-function SpeedSlider() {
-  const { animationSpeed, setAnimationSpeed } = useGlobalState();
-  const [isOpen, setIsOpen] = useState(false);
-  const trackRef = useRef<HTMLDivElement>(null);
-  const [isDragging, setIsDragging] = useState(false);
-
-  const SLIDER_HEIGHT = 256;
-  const MIN_SPEED = 1.0;
-  const MAX_SPEED = 11.0;
-
-  const getPercent = useCallback(() => {
-    return ((animationSpeed - MIN_SPEED) / (MAX_SPEED - MIN_SPEED)) * 100;
-  }, [animationSpeed]);
-
-  const updateSpeed = useCallback((clientY: number) => {
-    if (!trackRef.current) return;
-    const rect = trackRef.current.getBoundingClientRect();
-    let y = clientY - rect.top;
-    y = Math.max(0, Math.min(SLIDER_HEIGHT, y));
-    const fraction = 1 - y / SLIDER_HEIGHT;
-    const speed = MIN_SPEED + fraction * (MAX_SPEED - MIN_SPEED);
-    setAnimationSpeed(Number(speed.toFixed(1)));
-  }, [setAnimationSpeed]);
-
+/* ── Cert Modal ── */
+function CertModal({ url, onClose }: { url: string; onClose: () => void }) {
   return (
-    <>
-      {/* ".?.: " trigger on left edge — always visible as white half-circle */}
-      <div className="fixed top-0 left-0 flex items-center justify-start w-screen h-screen pointer-events-none z-10 overflow-hidden">
-        <svg
-          className="h-full pointer-events-auto cursor-pointer"
-          width="10%"
-          viewBox="0 0 400 1000"
-          xmlns="http://www.w3.org/2000/svg"
-          preserveAspectRatio="xMinYMid meet"
-          onClick={() => setIsOpen(!isOpen)}
-        >
-          <path
-            d="M 0 0 L 0 1000 L 0 1000 A 400 500 0 0 0 0 0 Z"
-            fill="rgba(255, 255, 255, 1)"
-            style={{ transition: "fill 0.3s ease" }}
-          />
-          <text
-            x="250"
-            y="500"
-            textAnchor="middle"
-            dominantBaseline="central"
-            fontSize="150"
-            fontWeight="600"
-            fill="rgba(0, 0, 0, 1)"
-            fontFamily="inter,sans-serif"
-            style={{ transition: "fill 0.3s ease" }}
-          >
-            .?.:
-          </text>
-        </svg>
-      </div>
-
-      {/* Full Slider Panel — slides in from the left */}
-      <div
-        className="fixed left-0 top-[20%] z-50 flex items-center pointer-events-auto transition-all duration-500 ease-out"
-        style={{
-          opacity: isOpen ? 1 : 0,
-          transform: isOpen ? "translateX(0) scale(1)" : "translateX(-100%) scale(0.8)",
-        }}
-      >
-        <div className="relative">
-          {/* Hemisphere background SVG */}
-          <svg width="100%" height="50vh" viewBox="0 0 120 400" className="drop-shadow-2xl">
-            <defs>
-              <linearGradient id="hemisphereGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="rgba(255, 255, 255, 0.95)" />
-                <stop offset="100%" stopColor="rgba(255, 255, 255, 0.85)" />
-              </linearGradient>
-            </defs>
-            <path d="M 0 0 L 0 400 A 80 200 0 0 0 0 0 Z" fill="url(#hemisphereGradient)" opacity="0.95" />
-            <path d="M 0 0 L 0 400 A 80 200 0 0 0 0 0 Z" fill="none" stroke="rgba(0, 0, 0, 0.1)" strokeWidth="1" />
-          </svg>
-
-          {/* Slider controls positioned over the hemisphere */}
-          <div className="absolute left-0 top-1/2 scale-75 -translate-y-1/2 flex flex-col items-center">
-            {/* Faster label & speed value */}
-            <div className="mb-4 text-center">
-              <div className="text-black text-xs font-light opacity-60">Faster</div>
-              <div className="text-black text-2xl font-semibold tracking-tight">{animationSpeed.toFixed(1)}</div>
+    <div className="fixed inset-0 z-[300] flex items-center justify-center p-4">
+      <div className="absolute inset-0 cert-modal-backdrop" onClick={onClose} />
+      <div className="relative w-full max-w-4xl" style={{ height: "80vh" }}>
+        <div className="cert-modal-card w-full h-full relative p-4 flex flex-col rounded-2xl border border-[rgba(255,255,255,0.12)]">
+          <div className="flex justify-between items-center mb-4">
+            <div style={{ display: "flex", gap: 8 }}>
+              {["#E57373","#FFB74D","#81C784"].map(c => <span key={c} style={{ width: 12, height: 12, borderRadius: "50%", background: c, display: "inline-block" }} />)}
             </div>
-
-            {/* Slider track */}
-            <div
-              ref={trackRef}
-              className="relative w-12 cursor-pointer select-none"
-              style={{ height: SLIDER_HEIGHT }}
-              onPointerDown={(e) => {
-                setIsDragging(true);
-                e.currentTarget.setPointerCapture(e.pointerId);
-                updateSpeed(e.clientY);
-              }}
-              onPointerMove={(e) => { if (isDragging) updateSpeed(e.clientY); }}
-              onPointerUp={(e) => { setIsDragging(false); e.currentTarget.releasePointerCapture(e.pointerId); }}
-            >
-              {/* Track background */}
-              <div className="absolute left-1/2 -translate-x-1/2 w-1 h-full bg-black/20 rounded-full" />
-              {/* Active fill */}
-              <div
-                className="absolute left-1/2 -translate-x-1/2 w-1 bg-black rounded-full"
-                style={{ bottom: 0, height: `${getPercent()}%` }}
-              />
-              {/* Handle */}
-              <div
-                className="absolute left-1/2 -translate-x-1/2 w-8 h-8 bg-black rounded-full shadow-lg cursor-grab active:cursor-grabbing hover:scale-110 transition-transform"
-                style={{
-                  bottom: `calc(${getPercent()}% - 16px)`,
-                  filter: "drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3))",
-                }}
-              />
-              {/* Tick marks */}
-              {[0, 25, 50, 75, 100].map((pos) => (
-                <div
-                  key={pos}
-                  className="absolute left-1/2 translate-x-2 w-2 h-px bg-black/30"
-                  style={{ bottom: `${pos}%` }}
-                />
-              ))}
-            </div>
-
-            {/* Steady label */}
-            <div className="mt-4 flex flex-col items-center gap-1">
-              <div className="text-black text-xs font-light opacity-60">Steady</div>
-            </div>
+            <button onClick={onClose} style={{ width: 32, height: 32, borderRadius: "50%", background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", color: "rgba(255,255,255,0.6)", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer" }}>✕</button>
+          </div>
+          <div className="flex-1 w-full rounded-lg overflow-hidden" style={{ background: "#111" }}>
+            <iframe src={url} style={{ width: "100%", height: "100%", border: "none" }} allow="autoplay" />
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 
-/* ─── Main Home Page Component ─── */
-export default function Home() {
-  const { activeSection, setActiveSection } = useGlobalState();
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => { setMounted(true); }, []);
-
-  useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
-    const handleScroll = () => {
-      const scrollTop = container.scrollTop;
-      const height = window.innerHeight;
-      const sectionIndex = Math.round(scrollTop / height);
-      if (sectionIndex !== activeSection) setActiveSection(sectionIndex);
-    };
-    container.addEventListener("scroll", handleScroll, { passive: true });
-    return () => container.removeEventListener("scroll", handleScroll);
-  }, [activeSection, setActiveSection]);
-
-  if (!mounted) return <div className="h-screen bg-black" />;
+/* ══════════════════════════════════════════
+   MAIN PAGE
+══════════════════════════════════════════ */
+export default function Portfolio() {
+  const [activeCert, setActiveCert] = useState<string | null>(null);
 
   return (
-    <main className="overflow-hidden h-screen">
-      {/* Speed Slider */}
-      <SpeedSlider />
+    <div className="w-full relative text-white" style={{ background: "#080604" }}>
+      <CinematicBackground />
+      <AmbientCanvas />
+      <ScrollProgressBar />
 
-      {/* Scroll container */}
-      <div ref={containerRef} className="h-full w-full overflow-y-scroll overflow-x-hidden snap-y snap-mandatory custom-scrollbar">
-        {/* ═══ SECTION 0: HERO ═══ */}
-        <div className="scroll-section snap-start snap-always relative pt-[2%]">
-          {/* Name — top-left positioned */}
-          <div className="absolute p-4 font-museo-extralight top-[10%] md:top-[10vw] lg:top-[10%] left-0 text-[2rem] md:text-[3rem] lg:text-[5rem] leading-tight md:leading-10 max-w-[90%] md:max-w-none hyphens-none"
-               style={{ fontFamily: "var(--font-display), sans-serif" }}>
-            JAIKEY SINGH
-            <br />
-            <span className="font-thin font-oxanium text-[0.7rem] md:text-[1.25rem] lg:text-[1.5rem] whitespace-nowrap">
-              Software Engineer | Full-Stack & Backend | AI/ML Integration
-            </span>
-          </div>
+      {/* ─── HERO ─── */}
+      <Hero />
 
-          {/* Blockchain cubes — center */}
-          <BlockchainCubes />
-
-          {/* Bottom-right text */}
-          <div className="absolute md:bottom-[6%] bottom-[15%] right-4 md:right-8 items-end flex flex-col gap-4 md:gap-6 z-20 max-w-[95%] md:max-w-[95%] lg:max-w-[100%]">
-            <div className="max-w-[60%] md:max-w-[55%] lg:max-w-[50%] self-end opacity-100">
-              <div className="rounded-lg p-0 md:p-2 shadow-xl">
-                <div className="font-thin text-right text-[3vw] md:text-[1.5vw] lg:text-[1.5vw] whitespace-pre-line break-words hyphens-none">
-                  Building high-performance APIs, robust database architectures, and scalable AI solutions.
+      {/* ─── ABOUT ─── */}
+      <section id="about" className="relative z-10" style={{ paddingTop: "8rem", paddingBottom: "8rem" }}>
+        <div className="section-wrap">
+          {/* Stats row */}
+          <ScrollReveal animation="fade-up">
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 1, background: "rgba(255,255,255,0.07)", borderRadius: 24, overflow: "hidden", marginBottom: "6rem" }}>
+              {[
+                { num: "3×", label: "Faster API\nvia caching" },
+                { num: "4+", label: "Production\nprojects shipped" },
+                { num: "95%", label: "LLM hallucination\nreduction" },
+              ].map(s => (
+                <div key={s.num} className="stat-card" style={{ padding: "3rem 2rem", textAlign: "center", background: "rgba(15,13,11,0.8)", backdropFilter: "blur(12px)" }}>
+                  <div className="stat-number">{s.num}</div>
+                  <div className="stat-label" style={{ whiteSpace: "pre-line" }}>{s.label}</div>
                 </div>
-              </div>
+              ))}
             </div>
-            <div className="text-right font-medium text-[1.8rem] sm:text-[3rem] md:text-[7vw] lg:text-[5vw] leading-tight md:leading-tight break-words hyphens-none">
-              Perceive. Design. Develop
-            </div>
+          </ScrollReveal>
+
+          {/* Bio */}
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "5rem", alignItems: "center" }}>
+            <ScrollReveal animation="slide-right">
+              <p className="eyebrow" style={{ marginBottom: "1.5rem" }}>The Architecture</p>
+              <h2 className="display-lg" style={{ marginBottom: "2rem" }}>
+                Engineering for<br /><span style={{ color: "#C85A2A" }}>Scale & Impact.</span>
+              </h2>
+              <p style={{ fontSize: "1.05rem", color: "var(--text-secondary)", lineHeight: 1.8, marginBottom: "1.5rem" }}>
+                As a Software Engineer specializing in backend architecture, I don&apos;t just write code — I build robust, self-healing systems that scale under pressure.
+              </p>
+              <p style={{ fontSize: "1.05rem", color: "var(--text-secondary)", lineHeight: 1.8 }}>
+                Currently pursuing my B.Tech in CSE at NITRA Technical Campus, maintaining a 9.2 CGPA while shipping production-ready applications.
+              </p>
+            </ScrollReveal>
+            <ScrollReveal animation="slide-left" delay={150}>
+              <blockquote style={{ borderLeft: "3px solid #C85A2A", paddingLeft: "2rem", margin: 0 }}>
+                <p style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1.4rem,3vw,2.2rem)", fontWeight: 700, lineHeight: 1.3, letterSpacing: "-0.02em", color: "rgba(255,255,255,0.85)", marginBottom: "1rem" }}>
+                  &ldquo;Code is the closest thing we have to a superpower.&rdquo;
+                </p>
+                <cite style={{ fontFamily: "var(--font-mono)", fontSize: 10, letterSpacing: "0.15em", textTransform: "uppercase", color: "#C85A2A", fontStyle: "normal" }}>— Jaikey Singh</cite>
+              </blockquote>
+            </ScrollReveal>
           </div>
         </div>
+      </section>
 
-        {/* ═══ SECTION 1: PHILOSOPHY ═══ */}
-        <div className="scroll-section snap-start snap-always relative pt-[2%]">
-          {/* Top-left text */}
-          <div className="absolute top-[10%] md:top-[10vw] lg:top-[10%] left-2 md:left-4 p-4 max-w-[90%] md:max-w-[40%] z-20">
-            <div className="font-thin text-[0.9rem] md:text-[1.1rem] lg:text-[1.2rem] leading-relaxed whitespace-pre-line break-words hyphens-none">
-              <b>Modularity & performance</b> are vital.
-              <br />
-              Designing microservices that are clean, database queries that are optimized, and backend structures built to scale.
-            </div>
-          </div>
-          {/* Bottom-right large text */}
-          <div className="absolute md:bottom-[6%] bottom-[15%] right-4 md:right-8 items-end flex flex-col gap-4 md:gap-6 z-20 max-w-[95%] md:max-w-[95%] lg:max-w-[100%]">
-            <div className="text-right font-medium text-[1.8rem] sm:text-[3rem] md:text-[7vw] lg:text-[5vw] leading-tight md:leading-tight break-words hyphens-none">
-              Modularity & maintainability by design
-            </div>
-          </div>
+      {/* ─── SKILLS TICKER ─── */}
+      <div className="ticker-wrap" style={{ padding: "2rem 0", borderTop: "1px solid rgba(255,255,255,0.07)", borderBottom: "1px solid rgba(255,255,255,0.07)", background: "rgba(8,6,4,0.6)", backdropFilter: "blur(8px)", position: "relative", zIndex: 10 }}>
+        <div className="ticker-track ticker-left" style={{ marginBottom: 10 }}>
+          {[...SKILLS_A, ...SKILLS_A, ...SKILLS_A].map((s, i) => <span className="skill-chip" key={i}><span>{s.e}</span>{s.n}</span>)}
         </div>
-
-        {/* ═══ SECTION 2: AI & KNOWLEDGE GRAPHS ═══ */}
-        <div className="scroll-section snap-start snap-always relative pt-[2%]">
-          {/* Top-right text */}
-          <div className="absolute top-[10%] md:top-[10vw] lg:top-[10%] right-2 md:right-4 p-4 max-w-[90%] md:max-w-[40%] z-20">
-            <div className="font-thin text-[0.9rem] md:text-[1.1rem] lg:text-[1.2rem] leading-relaxed whitespace-pre-line break-words hyphens-none">
-              Connecting raw text and semantic graphs.
-              <br />
-              Published researcher on hybrid <b>GraphRAG</b> architectures using <b>Neo4j</b> to achieve hallucination-free legal mappings.
-            </div>
-          </div>
-          {/* Bottom-left large text */}
-          <div className="absolute md:bottom-[6%] bottom-[15%] left-4 md:left-8 items-start flex flex-col gap-4 md:gap-6 z-20 max-w-[95%] md:max-w-[95%] lg:max-w-[100%]">
-            <div className="text-left font-medium text-[1.8rem] sm:text-[3rem] md:text-[7vw] lg:text-[5vw] leading-tight md:leading-tight break-words hyphens-none">
-              NyayMitra: Proposed GraphRAG Architecture
-            </div>
-          </div>
-        </div>
-
-        {/* ═══ SECTION 3: BACKEND SCALABILITY ═══ */}
-        <div className="scroll-section snap-start snap-always relative pt-[2%]">
-          {/* Top-left text */}
-          <div className="absolute top-[10%] md:top-[10vw] lg:top-[10%] left-2 md:left-4 p-4 max-w-[90%] md:max-w-[40%] z-20">
-            <div className="font-thin text-[0.9rem] md:text-[1.1rem] lg:text-[1.2rem] leading-relaxed whitespace-pre-line break-words hyphens-none">
-              Pipelining clean architectures.
-              <br />
-              Whether it&apos;s robust Java/Spring Boot microservices or highly async FastAPI backends, I write code that expects high throughput.
-            </div>
-          </div>
-          {/* Bottom-right large text */}
-          <div className="absolute md:bottom-[6%] bottom-[15%] right-4 md:right-8 items-end flex flex-col gap-4 md:gap-6 z-20 max-w-[95%] md:max-w-[95%] lg:max-w-[100%]">
-            <div className="text-right font-medium text-[1.8rem] sm:text-[3rem] md:text-[7vw] lg:text-[5vw] leading-tight md:leading-tight break-words hyphens-none">
-              Cause &amp; Effect
-            </div>
-          </div>
-        </div>
-
-        {/* ═══ SECTION 4: CONNECTION ═══ */}
-        <div className="scroll-section snap-start snap-always relative pt-[2%]">
-          {/* Top-right text */}
-          <div className="absolute top-[10%] md:top-[10vw] lg:top-[10%] right-2 md:right-4 p-4 max-w-[90%] md:max-w-[40%] z-20">
-            <div className="font-thin text-[0.9rem] md:text-[1.1rem] lg:text-[1.2rem] leading-relaxed whitespace-pre-line break-words hyphens-none">
-              Interested in collaborating, hiring, or discussing backend architectures & AI?
-              <br />
-              Sounds interesting?{" "}
-              <Link href="/about" className="font-bold hover:text-blue-200">
-                Let&apos;s connect..
-              </Link>
-            </div>
-          </div>
-          {/* Bottom-left large text */}
-          <div className="absolute md:bottom-[6%] bottom-[15%] left-4 md:left-8 items-start flex flex-col gap-4 md:gap-6 z-20 max-w-[95%] md:max-w-[95%] lg:max-w-[100%]">
-            <div className="text-left font-medium text-[1.8rem] sm:text-[3rem] md:text-[7vw] lg:text-[5vw] leading-tight md:leading-tight break-words hyphens-none">
-              Turn complex architectures into scalable realities
-            </div>
-          </div>
+        <div className="ticker-track ticker-right">
+          {[...SKILLS_B, ...SKILLS_B, ...SKILLS_B].map((s, i) => <span className="skill-chip" key={i}><span>{s.e}</span>{s.n}</span>)}
         </div>
       </div>
-    </main>
+
+      {/* ─── HEX SKILLS ─── */}
+      <HexSkillsSection />
+
+      {/* ─── PROJECTS ─── */}
+      <section id="works" className="relative z-10" style={{ paddingTop: "8rem", paddingBottom: "8rem", background: "rgba(8,6,4,0.5)", backdropFilter: "blur(4px)" }}>
+        <div className="bg-label" style={{ top: -20, right: -40, opacity: 0.4 }}>WORKS</div>
+        <div className="section-wrap">
+          <ScrollReveal animation="fade-up">
+            <div style={{ marginBottom: "4rem" }}>
+              <p className="eyebrow" style={{ marginBottom: "1rem" }}>Selected Works</p>
+              <h2 className="display-lg">Things I&apos;ve<br /><span style={{ color: "#C85A2A" }}>Built.</span></h2>
+            </div>
+          </ScrollReveal>
+
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "1.5rem" }}>
+            {PROJECTS.map((p, i) => (
+              <ScrollReveal key={p.title} animation="fade-up" delay={i * 80}>
+                <div className="project-card" style={{ minHeight: 380, display: "flex", flexDirection: "column", justifyContent: "space-between", padding: "2.5rem" }}>
+                  {/* Top */}
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
+                    <span style={{ fontFamily: "var(--font-mono)", fontSize: 11, fontWeight: 700, color: "rgba(255,255,255,0.2)", letterSpacing: "0.12em" }}>{p.num}</span>
+                    <span className="project-badge" style={{ background: p.accent }}>{p.title.split(" ")[0]}</span>
+                  </div>
+                  {/* Accent top bar */}
+                  <div style={{ height: 2, background: p.accent, borderRadius: 2, margin: "1.5rem 0", width: "40%", opacity: 0.7 }} />
+                  {/* Content */}
+                  <div style={{ flex: 1 }}>
+                    <h3 style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "clamp(1.3rem,2.5vw,1.8rem)", color: "#FAFAF7", marginBottom: "0.75rem", lineHeight: 1.2, letterSpacing: "-0.02em" }}>{p.title}</h3>
+                    <p style={{ color: "var(--text-secondary)", fontSize: "0.92rem", lineHeight: 1.65, marginBottom: "1.5rem" }}>{p.desc}</p>
+                  </div>
+                  {/* Tags + Arrow */}
+                  <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+                    <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
+                      {p.tags.slice(0, 3).map(t => (
+                        <span key={t} style={{ padding: "3px 10px", borderRadius: 50, fontFamily: "var(--font-mono)", fontSize: 9, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", border: "1px solid rgba(255,255,255,0.09)", color: "var(--text-muted)", background: "rgba(255,255,255,0.04)" }}>{t}</span>
+                      ))}
+                    </div>
+                    <button className="project-arrow">
+                      <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+                    </button>
+                  </div>
+                </div>
+              </ScrollReveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─── EXPERIENCE ─── */}
+      <section id="experience" className="relative z-10" style={{ paddingTop: "8rem", paddingBottom: "8rem" }}>
+        <div className="bg-label" style={{ top: "20%", left: -40, opacity: 0.3 }}>EXP.</div>
+        <div className="section-wrap">
+          <ScrollReveal animation="fade-up">
+            <p className="eyebrow" style={{ marginBottom: "1rem", textAlign: "center" }}>The Journey</p>
+            <h2 className="display-lg" style={{ textAlign: "center", marginBottom: "5rem" }}>Professional<br /><span style={{ color: "#C85A2A" }}>Timeline.</span></h2>
+          </ScrollReveal>
+          <div style={{ maxWidth: 820, margin: "0 auto", position: "relative", paddingLeft: "2.5rem" }}>
+            <div className="timeline-line" />
+            <div style={{ display: "flex", flexDirection: "column", gap: "2.5rem" }}>
+              {EXPERIENCE.map((exp, i) => (
+                <ScrollReveal key={i} animation="slide-right" delay={i * 120}>
+                  <div className="exp-card">
+                    <div className="timeline-node" style={{ background: exp.accent }} />
+                    <div className="exp-card-accent-bar" style={{ background: exp.accent }} />
+                    <div style={{ display: "flex", flexWrap: "wrap", alignItems: "flex-start", justifyContent: "space-between", gap: 12, marginBottom: "1.25rem" }}>
+                      <div>
+                        <h3 className="display-sm" style={{ marginBottom: 4 }}>{exp.role}</h3>
+                        <p style={{ color: "var(--text-secondary)", fontSize: "0.95rem" }}>{exp.company}</p>
+                      </div>
+                      <span style={{ padding: "5px 14px", borderRadius: 50, fontFamily: "var(--font-mono)", fontSize: 10, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)", color: "var(--text-muted)", flexShrink: 0 }}>{exp.date}</span>
+                    </div>
+                    <ul style={{ display: "flex", flexDirection: "column", gap: "0.65rem" }}>
+                      {exp.points.map((pt, j) => (
+                        <li key={j} style={{ display: "flex", alignItems: "flex-start", gap: 12, color: "var(--text-secondary)", fontSize: "0.92rem", lineHeight: 1.65 }}>
+                          <span style={{ width: 5, height: 5, borderRadius: "50%", background: exp.accent, flexShrink: 0, marginTop: 8 }} />{pt}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </ScrollReveal>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── CERTIFICATIONS ─── */}
+      <section id="certifications" className="relative z-10" style={{ paddingTop: "8rem", paddingBottom: "8rem", background: "rgba(10,8,6,0.85)", backdropFilter: "blur(12px)" }}>
+        <div className="bg-label" style={{ top: 0, right: -40, opacity: 0.1, color: "#FAFAF7" }}>CERTS</div>
+        <div className="section-wrap">
+          <ScrollReveal animation="fade-up">
+            <p className="eyebrow" style={{ marginBottom: "1rem" }}>Verified Credentials</p>
+            <h2 className="display-lg" style={{ marginBottom: "4rem" }}>Continuous<br /><span style={{ color: "#C88A2A" }}>Learning.</span></h2>
+          </ScrollReveal>
+          <ScrollReveal animation="fade-up" delay={100}>
+            <div style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.07)", borderRadius: 24, overflow: "hidden", maxWidth: 700 }}>
+              {/* Mac title bar */}
+              <div style={{ padding: "14px 20px", background: "rgba(255,255,255,0.04)", borderBottom: "1px solid rgba(255,255,255,0.07)", display: "flex", alignItems: "center", gap: 8 }}>
+                {["#E57373","#FFB74D","#81C784"].map(c => <span key={c} style={{ width: 12, height: 12, borderRadius: "50%", background: c, display: "inline-block" }} />)}
+                <span style={{ fontFamily: "var(--font-mono)", fontSize: 11, color: "rgba(255,255,255,0.25)", marginLeft: 8, letterSpacing: "0.1em" }}>credentials.log</span>
+              </div>
+              {/* Cert list */}
+              <div style={{ padding: "0.5rem" }}>
+                {CERTS.map((cert, i) => (
+                  <div key={cert.name} className="cert-card">
+                    <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
+                      <span style={{ fontFamily: "var(--font-mono)", fontSize: 11, color: "rgba(255,255,255,0.2)" }}>0{i+1}</span>
+                      <span style={{ width: 7, height: 7, borderRadius: "50%", background: cert.color, display: "inline-block", flexShrink: 0 }} />
+                      <span style={{ fontFamily: "var(--font-mono)", fontSize: 13, color: "#FAFAF7", fontWeight: 700 }}>{cert.name}</span>
+                    </div>
+                    <button className="cert-view-btn" onClick={() => setActiveCert(cert.url)}>View ↗</button>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </ScrollReveal>
+        </div>
+      </section>
+
+      {/* ─── CONTACT ─── */}
+      <section id="contact" className="relative z-10" style={{ paddingTop: "8rem", paddingBottom: "8rem" }}>
+        <div className="bg-label" style={{ top: -60, left: 0, opacity: 0.3 }}>CONTACT</div>
+        <div className="section-wrap">
+          <ScrollReveal animation="fade-up">
+            <p className="eyebrow" style={{ marginBottom: "1rem", textAlign: "center" }}>Let&apos;s Collaborate</p>
+            <h2 className="display-lg" style={{ textAlign: "center", marginBottom: "5rem" }}>Let&apos;s build<br /><span style={{ color: "#C85A2A" }}>Something.</span></h2>
+          </ScrollReveal>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "3rem", alignItems: "start" }}>
+            <ScrollReveal animation="slide-right">
+              <ResumeViewer />
+            </ScrollReveal>
+            <ScrollReveal animation="slide-left" delay={120}>
+              <div style={{ background: "rgba(15,13,11,0.8)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 24, padding: "2.5rem", backdropFilter: "blur(12px)" }}>
+                <ContactForm />
+              </div>
+            </ScrollReveal>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── FOOTER ─── */}
+      <footer className="relative z-10" style={{ background: "rgba(8,6,4,0.95)", borderTop: "1px solid rgba(255,255,255,0.07)", padding: "2.5rem 0" }}>
+        <div className="section-wrap">
+          <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "space-between", gap: 20 }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+              <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#C85A2A", boxShadow: "0 0 8px rgba(200,90,42,0.6)" }} />
+              <div>
+                <div style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "1.05rem", color: "#F5F2EE", letterSpacing: "-0.02em" }}>JAIKEY SINGH</div>
+                <div style={{ fontFamily: "var(--font-mono)", fontSize: 9, color: "rgba(255,255,255,0.3)", letterSpacing: "0.08em", marginTop: 2 }}>© 2026 ALL RIGHTS RESERVED.</div>
+              </div>
+            </div>
+            <button
+              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+              style={{ fontFamily: "var(--font-mono)", fontSize: 10, fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: "#C85A2A", background: "none", border: "none", cursor: "pointer", display: "flex", alignItems: "center", gap: 6, transition: "gap 0.2s ease" }}
+            >
+              Back to Top
+              <svg width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M5 15l7-7 7 7" /></svg>
+            </button>
+          </div>
+        </div>
+      </footer>
+
+      {activeCert && <CertModal url={activeCert} onClose={() => setActiveCert(null)} />}
+    </div>
   );
 }

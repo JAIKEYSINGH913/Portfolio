@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 
-const WELCOME_TEXT = "Hi, Welcome";
+const WELCOME_TEXT = "JAIKEY SINGH";
 
 const BAR_X_POSITIONS = [
   10, 21, 32, 43, 54, 65, 76, 87, 98, 109, 120, 131, 142, 153, 164, 175, 186,
@@ -77,7 +77,7 @@ export function Preloader() {
           const size = eased * 150;
 
           if (bgRef.current) {
-            bgRef.current.style.background = `radial-gradient(circle at center, transparent ${size}%, black 100%)`;
+            bgRef.current.style.background = `radial-gradient(circle at center, transparent ${size}%, #FFF8F0 100%)`;
           }
 
           if (progress < 1) {
@@ -125,7 +125,7 @@ export function Preloader() {
         style={{
           pointerEvents: "none",
           background:
-            "radial-gradient(circle at center, transparent 0%, black 0%)",
+            "radial-gradient(circle at center, transparent 0%, #FFF8F0 0%)",
         }}
       />
 
@@ -145,7 +145,7 @@ export function Preloader() {
               width={3}
               height={16}
               rx={1.5}
-              fill="white"
+              fill="#D96B43"
               style={{
                 opacity: BAR_OPACITIES[i],
                 animation: `heartbeat 0.8s ease-in-out ${i * 0.04}s infinite`,
@@ -158,7 +158,7 @@ export function Preloader() {
 
       {/* Letter-by-letter text */}
       <div className="fixed inset-0 z-[10000] flex items-center justify-center pointer-events-none">
-        <p className="text-white text-4xl md:text-5xl lg:text-6xl font-light tracking-wider font-[family-name:var(--font-oxanium)]">
+        <p className="text-4xl md:text-5xl lg:text-6xl tracking-wider font-display font-bold text-[#2B2825]">
           {WELCOME_TEXT.split("").map((char, i) => (
             <span
               key={i}
