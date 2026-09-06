@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Space_Grotesk, Plus_Jakarta_Sans, Space_Mono } from "next/font/google";
+import { Analytics } from "@vercel/analytics/react";
 import { ClientLayout } from "@/components/ClientLayout";
 import "./globals.css";
 
@@ -40,6 +41,7 @@ export default function RootLayout({
     >
       <body className="antialiased transition-colors duration-500 bg-[var(--canvas)] text-[var(--text-primary)]" suppressHydrationWarning>
         <ClientLayout>{children}</ClientLayout>
+        <Analytics />
       </body>
     </html>
   );
