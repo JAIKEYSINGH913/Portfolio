@@ -8,23 +8,34 @@ export default function ContactPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate secure handshake/encryption delay
-    setTimeout(() => {
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        setIsSuccess(true);
+        setFormData({ name: "", email: "", subject: "", message: "" });
+        setTimeout(() => {
+          setIsSuccess(false);
+        }, 5000);
+      } else {
+        alert("Transmission failed. Please check your network connection.");
+      }
+    } catch (error) {
+      console.error(error);
+      alert("Transmission failed due to a network error.");
+    } finally {
       setIsSubmitting(false);
-      setIsSuccess(true);
-      
-      // Execute mailto: payload transmission
-      window.location.href = `mailto:jaikeysingh913@gmail.com?subject=Portfolio Contact - ${encodeURIComponent(formData.name)}&body=${encodeURIComponent("From: " + formData.name + " <" + formData.email + ">\n\n" + formData.message)}`;
-      
-      setTimeout(() => { 
-        setIsSuccess(false); 
-        setFormData({ name: "", email: "", subject: "", message: "" }); 
-      }, 5000);
-    }, 1500);
+    }
   };
 
   return (
