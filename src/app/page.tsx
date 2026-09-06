@@ -167,6 +167,7 @@ export default function Portfolio() {
               <a href="https://www.linkedin.com/in/jaikey-singh-2885a7232" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--accent)] transition-colors">LinkedIn</a>
               <a href="https://x.com/JAIKEYSINGH913" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--accent)] transition-colors">X</a>
               <a href="https://www.instagram.com/jaikey_singh913/" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--accent)] transition-colors">Instagram</a>
+              <a href="mailto:jaikeysingh913@gmail.com" className="hover:text-[var(--accent)] transition-colors">Gmail</a>
               <a href="tel:+919540352249" className="hover:text-[var(--accent)] transition-colors">+91 95403 52249</a>
             </div>
           </div>

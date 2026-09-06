@@ -145,6 +145,7 @@ export const Navbar: React.FC = () => {
               <a href="https://github.com/JAIKEYSINGH913" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--accent)] transition-colors">GitHub</a>
               <a href="https://x.com/JAIKEYSINGH913" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--accent)] transition-colors">X</a>
               <a href="https://www.instagram.com/jaikey_singh913/" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--accent)] transition-colors">Instagram</a>
+              <a href="mailto:jaikeysingh913@gmail.com" className="hover:text-[var(--accent)] transition-colors">Gmail</a>
               <a href="/contact" className="hover:text-[var(--accent)] transition-colors">Contact</a>
             </motion.div>
           </motion.div>
