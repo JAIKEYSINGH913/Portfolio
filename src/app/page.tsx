@@ -151,15 +151,21 @@ export default function Portfolio() {
       </section>
 
       {/* ─── FOOTER ─── */}
-      <footer className="relative z-10" style={{ background: "var(--canvas)", borderTop: "1px solid var(--glass-border)", padding: "2.5rem 0" }}>
+      <footer className="relative z-10" style={{ background: "var(--canvas)", borderTop: "1px solid var(--border-strong)", padding: "2.5rem 0" }}>
         <div className="section-wrap">
-          <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "space-between", gap: 20 }}>
-            <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-              <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#C85A2A", boxShadow: "0 0 8px rgba(200,90,42,0.6)" }} />
+          <div className="flex flex-wrap items-center justify-between gap-6">
+            <div className="flex items-center gap-4">
+              <div className="w-2 h-2 rounded-full bg-[var(--accent)] shadow-[var(--shadow-accent)]" />
               <div>
-                <div style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "1.05rem", color: "#F5F2EE", letterSpacing: "-0.02em" }}>JAIKEY SINGH</div>
-                <div style={{ fontFamily: "var(--font-mono)", fontSize: 9, color: "rgba(255,255,255,0.3)", letterSpacing: "0.08em", marginTop: 2 }}>© 2026 ALL RIGHTS RESERVED.</div>
+                <div className="font-display font-bold text-lg text-[var(--text-primary)] tracking-tight">JAIKEY SINGH</div>
+                <div className="font-mono text-[9px] text-[var(--text-secondary)] tracking-widest mt-1 uppercase">© 2026 ALL RIGHTS RESERVED.</div>
               </div>
+            </div>
+            
+            <div className="flex flex-wrap items-center gap-6 md:gap-8 font-mono text-xs font-bold tracking-widest text-[var(--text-secondary)] uppercase">
+              <a href="https://github.com/JAIKEYSINGH913" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--accent)] transition-colors">GitHub</a>
+              <a href="https://linkedin.com/in/jaikeysingh913" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--accent)] transition-colors">LinkedIn</a>
+              <a href="tel:+910000000000" className="hover:text-[var(--accent)] transition-colors">Phone</a>
             </div>
           </div>
         </div>
