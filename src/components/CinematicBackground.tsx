@@ -54,8 +54,8 @@ export function CinematicBackground() {
           style={{
             width: "100vw",
             height: "100vh",
-            objectFit: "contain",
-            objectPosition: "center center",
+            objectFit: "cover",
+            objectPosition: "center top",
             filter: isLight 
               ? "brightness(0.72) contrast(1.25) saturate(0.6) drop-shadow(0 20px 60px rgba(80,60,40,0.35))"
               : "brightness(1) contrast(1) saturate(1) drop-shadow(0 0 60px rgba(200,90,42,0.18))",
@@ -76,14 +76,14 @@ export function CinematicBackground() {
         />
       )}
 
-      {/* Vignettes — edge-bleed into the background canvas on both modes */}
+      {/* Vignettes — strong bottom bleed so the image never shows a hard edge on any device */}
       <div 
         className="absolute inset-0 pointer-events-none"
         style={{
           background: isLight
-            ? `linear-gradient(to top,  rgba(230,230,228,1) 0%, transparent 30%, rgba(230,230,228,0.6) 100%),
+            ? `linear-gradient(to top,  rgba(230,230,228,1) 0%, rgba(230,230,228,0.95) 12%, rgba(230,230,228,0.5) 28%, transparent 50%, rgba(230,230,228,0.6) 100%),
                linear-gradient(to right, rgba(230,230,228,0.9) 0%, transparent 25%, rgba(230,230,228,0.9) 100%)`
-            : `linear-gradient(to top,  rgba(8,6,4,1) 0%, transparent 30%, rgba(8,6,4,0.6) 100%),
+            : `linear-gradient(to top,  rgba(8,6,4,1) 0%, rgba(8,6,4,0.95) 12%, rgba(8,6,4,0.5) 28%, transparent 50%, rgba(8,6,4,0.6) 100%),
                linear-gradient(to right, rgba(8,6,4,0.9) 0%, transparent 25%, rgba(8,6,4,0.9) 100%)`,
         }}
       />
