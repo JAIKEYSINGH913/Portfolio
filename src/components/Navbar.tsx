@@ -35,7 +35,7 @@ export const Navbar: React.FC = () => {
   return (
     <>
       <header className="fixed top-4 right-4 md:right-8 z-[100] flex justify-end">
-        <nav className="flex items-center gap-6 px-6 py-3 rounded-full border border-[var(--border-light)] bg-[var(--surface-translucent)] shadow-lg backdrop-blur-xl">
+        <nav className="flex items-center gap-4 md:gap-6 px-4 md:px-6 py-3 rounded-full border border-[var(--border-light)] bg-[var(--surface-translucent)] shadow-lg backdrop-blur-xl">
           <Link href="/" className="no-underline relative z-10" onClick={(e) => { if (isOpen) { e.preventDefault(); setIsOpen(false); }}}>
             <span className="font-display font-bold text-sm tracking-widest text-[var(--text-primary)] hover:text-[var(--terracotta)] transition-colors">
               JAIKEY
@@ -44,9 +44,15 @@ export const Navbar: React.FC = () => {
           
           <div className="w-[1px] h-4 bg-[var(--border-light)]"></div>
 
+          <Link href="/contact" className="font-mono text-[10px] md:text-xs font-bold uppercase tracking-widest text-[var(--terracotta)] hover:text-[var(--gold-400)] transition-colors no-underline">
+            CONTACT
+          </Link>
+
+          <div className="w-[1px] h-4 bg-[var(--border-light)]"></div>
+
           <button 
             onClick={() => setIsOpen(!isOpen)}
-            className="font-mono text-xs font-bold uppercase tracking-widest text-[var(--text-secondary)] hover:text-[var(--terracotta)] transition-colors cursor-pointer bg-transparent border-none p-0 flex items-center gap-2"
+            className="font-mono text-[10px] md:text-xs font-bold uppercase tracking-widest text-[var(--text-secondary)] hover:text-[var(--terracotta)] transition-colors cursor-pointer bg-transparent border-none p-0 flex items-center gap-2"
           >
             {isOpen ? "CLOSE" : "MENU"}
             <div className="flex flex-col gap-[3px]">
