@@ -111,9 +111,24 @@ export function Preloader() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="font-display font-bold text-5xl md:text-7xl tracking-tighter text-[var(--text-primary)]"
+              className="font-display font-bold text-5xl md:text-7xl tracking-tighter leading-none flex items-baseline gap-3 flex-wrap justify-end"
             >
-              JAIKEY
+              <span className="text-[var(--text-primary)]">JAIKEY</span>
+              <motion.span
+                initial={{ opacity: 0, scaleX: 0 }}
+                animate={{ opacity: 1, scaleX: 1 }}
+                transition={{ delay: 0.45, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                style={{ 
+                  backgroundColor: "var(--accent)",
+                  color: "#ffffff",
+                  display: "inline-block",
+                  padding: "0 14px 4px 14px",
+                  transformOrigin: "left center",
+                  lineHeight: 1.1,
+                }}
+              >
+                SINGH
+              </motion.span>
             </motion.div>
             
             <div className="w-full overflow-hidden mt-2">
