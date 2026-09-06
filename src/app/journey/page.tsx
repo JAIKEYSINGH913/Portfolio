@@ -7,16 +7,14 @@ import { EXPERIENCE, CERTS } from "@/data/content";
 function CertModal({ url, onClose }: { url: string; onClose: () => void }) {
   return (
     <div className="fixed inset-0 z-[300] flex items-center justify-center p-4">
-      <div className="absolute inset-0 cert-modal-backdrop" onClick={onClose} />
+      <div className="absolute inset-0 bg-black/80 backdrop-blur-md cursor-pointer" onClick={onClose} />
       <div className="relative w-full max-w-4xl" style={{ height: "80vh" }}>
-        <div className="cert-modal-card w-full h-full relative p-4 flex flex-col rounded-2xl border border-[var(--border-strong)]">
+        <div className="w-full h-full relative p-4 flex flex-col rounded-none border border-[var(--border-strong)] bg-[var(--surface-1)]">
           <div className="flex justify-between items-center mb-4">
-            <div style={{ display: "flex", gap: 8 }}>
-              {["#E57373","#FFB74D","#81C784"].map(c => <span key={c} style={{ width: 12, height: 12, borderRadius: "50%", background: c, display: "inline-block" }} />)}
-            </div>
-            <button onClick={onClose} style={{ width: 32, height: 32, borderRadius: "50%", background: "rgba(255,255,255,0.06)", border: "1px solid var(--border-strong)", color: "rgba(255,255,255,0.6)", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer" }}>✕</button>
+            <span className="font-mono text-xs tracking-widest text-[var(--accent)]">VERIFIED_CREDENTIAL.PDF</span>
+            <button onClick={onClose} className="font-mono text-xs tracking-widest text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors cursor-pointer border border-[var(--border-strong)] px-3 py-1">CLOSE ✕</button>
           </div>
-          <div className="flex-1 w-full rounded-lg overflow-hidden" style={{ background: "#111" }}>
+          <div className="flex-1 w-full overflow-hidden border border-[var(--border-strong)] bg-black">
             <iframe src={url} style={{ width: "100%", height: "100%", border: "none" }} allow="autoplay" />
           </div>
         </div>
@@ -29,77 +27,101 @@ export default function JourneyPage() {
   const [activeCert, setActiveCert] = useState<string | null>(null);
 
   return (
-    <div className="w-full relative text-white" style={{ paddingTop: '8rem', paddingBottom: '4rem' }}>
+    <div className="w-full relative text-[var(--text-primary)]" style={{ paddingTop: '8rem', paddingBottom: '6rem' }}>
+      
       {/* ─── EXPERIENCE ─── */}
-      <section id="experience" className="relative z-10" style={{ paddingBottom: "8rem" }}>
-        <div className="bg-label" style={{ top: "20%", left: -40 }}>EXP.</div>
-        <div className="section-wrap left-bias">
-          <ScrollReveal animation="fade-up">
-            <p className="eyebrow" style={{ marginBottom: "1rem", textAlign: "center" }}>The Journey</p>
-            <h2 className="display-lg" style={{ textAlign: "center", marginBottom: "5rem" }}>Professional<br /><span style={{ color: "#C85A2A" }}>Timeline.</span></h2>
-          </ScrollReveal>
-          <div style={{ maxWidth: 820, margin: "0 auto", position: "relative", paddingLeft: "2.5rem" }}>
-            <div className="timeline-line" />
-            <div style={{ display: "flex", flexDirection: "column", gap: "2.5rem" }}>
-              {EXPERIENCE.map((exp, i) => (
-                <ScrollReveal key={i} animation="slide-right" delay={i * 120}>
-                  <div className="exp-card">
-                    <div className="timeline-node" style={{ background: exp.accent }} />
-                    <div className="exp-card-accent-bar" style={{ background: exp.accent }} />
-                    <div style={{ display: "flex", flexWrap: "wrap", alignItems: "flex-start", justifyContent: "space-between", gap: 12, marginBottom: "1.25rem" }}>
-                      <div>
-                        <h3 className="display-sm" style={{ marginBottom: 4 }}>{exp.role}</h3>
-                        <p style={{ color: "var(--text-secondary)", fontSize: "0.95rem" }}>{exp.company}</p>
-                      </div>
-                      <span style={{ padding: "5px 14px", borderRadius: 50, fontFamily: "var(--font-mono)", fontSize: 10, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", background: "rgba(255,255,255,0.05)", border: "1px solid var(--border-strong)", color: "var(--text-muted)", flexShrink: 0 }}>{exp.date}</span>
-                    </div>
-                    <ul style={{ display: "flex", flexDirection: "column", gap: "0.65rem" }}>
-                      {exp.points.map((pt, j) => (
-                        <li key={j} style={{ display: "flex", alignItems: "flex-start", gap: 12, color: "var(--text-secondary)", fontSize: "0.92rem", lineHeight: 1.65 }}>
-                          <span style={{ width: 5, height: 5, borderRadius: "50%", background: exp.accent, flexShrink: 0, marginTop: 8 }} />{pt}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </ScrollReveal>
-              ))}
-            </div>
+      <div className="section-wrap left-bias relative z-10 mb-24">
+        <div className="bg-label" style={{ top: -80, left: -40, opacity: 0.15, pointerEvents: "none" }}>JOURNEY</div>
+        
+        <ScrollReveal animation="fade-up" className="mb-16">
+          <div className="mb-6">
+            <h1 className="text-3xl md:text-5xl font-display font-bold text-[var(--text-primary)] uppercase tracking-tight">
+              Professional <span style={{ color: "var(--accent)" }}>Timeline</span>
+            </h1>
           </div>
+          <p style={{ fontSize: "1.1rem", color: "var(--text-secondary)", lineHeight: 1.8, maxWidth: "700px" }}>
+            A sequential breakdown of my engineering roles, system architecture implementations, and professional growth in building resilient software.
+          </p>
+        </ScrollReveal>
+
+        {/* Experience Matrix Grid */}
+        <div className="grid grid-cols-1 border-t border-[var(--border-strong)] relative z-10 w-full lg:w-[70vw] max-w-5xl">
+          {EXPERIENCE.map((exp, i) => (
+            <ScrollReveal key={i} animation="fade-up" delay={i * 100} className="h-full">
+              <div 
+                className="group relative h-full flex flex-col p-8 md:p-10 border-b border-[var(--border-strong)] bg-[var(--surface-translucent)] transition-all duration-500 hover:bg-[var(--surface-3)] overflow-hidden"
+                style={{ backdropFilter: "blur(12px)" }}
+              >
+                <div className="absolute left-0 top-0 bottom-0 w-1 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500" style={{ backgroundColor: exp.accent || "var(--accent)" }} />
+                <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[var(--accent)] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                
+                <div className="transform transition-transform duration-500 group-hover:translate-x-3 flex flex-col h-full">
+                  <div className="flex flex-wrap items-start justify-between mb-4 gap-4">
+                    <div>
+                      <h3 className="font-display font-bold text-2xl md:text-3xl text-[var(--text-primary)] leading-tight">{exp.role}</h3>
+                      <p className="text-[var(--text-secondary)] font-mono text-sm tracking-widest mt-2 uppercase">{exp.company}</p>
+                    </div>
+                    <span className="font-mono text-sm tracking-widest font-bold opacity-80" style={{ color: exp.accent || "var(--accent)" }}>{exp.date}</span>
+                  </div>
+                  
+                  <div className="w-16 h-1 mb-8 opacity-80" style={{ backgroundColor: exp.accent || "var(--accent)" }} />
+                  
+                  <ul className="flex flex-col gap-4">
+                    {exp.points.map((pt, j) => (
+                      <li key={j} className="flex items-start gap-4 text-[var(--text-secondary)] text-sm md:text-base leading-relaxed">
+                        <span className="w-1.5 h-1.5 rounded-none mt-2 flex-shrink-0" style={{ backgroundColor: exp.accent || "var(--accent)" }} />
+                        {pt}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </ScrollReveal>
+          ))}
         </div>
-      </section>
+      </div>
 
       {/* ─── CERTIFICATIONS ─── */}
-      <section id="certifications" className="relative z-10" style={{ paddingTop: "8rem", paddingBottom: "8rem", background: "var(--surface-translucent)", backdropFilter: "blur(12px)" }}>
-        <div className="bg-label" style={{ top: 0, right: -40, color: "var(--text-primary)" }}>CERTS</div>
-        <div className="section-wrap left-bias">
-          <ScrollReveal animation="fade-up">
-            <p className="eyebrow" style={{ marginBottom: "1rem" }}>Verified Credentials</p>
-            <h2 className="display-lg" style={{ marginBottom: "4rem" }}>Continuous<br /><span style={{ color: "#C88A2A" }}>Learning.</span></h2>
-          </ScrollReveal>
-          <ScrollReveal animation="fade-up" delay={100}>
-            <div style={{ background: "rgba(255,255,255,0.03)", border: "1px solid var(--glass-border)", borderRadius: 24, overflow: "hidden", maxWidth: 700 }}>
-              {/* Mac title bar */}
-              <div style={{ padding: "14px 20px", background: "rgba(255,255,255,0.04)", borderBottom: "1px solid var(--glass-border)", display: "flex", alignItems: "center", gap: 8 }}>
-                {["#E57373","#FFB74D","#81C784"].map(c => <span key={c} style={{ width: 12, height: 12, borderRadius: "50%", background: c, display: "inline-block" }} />)}
-                <span style={{ fontFamily: "var(--font-mono)", fontSize: 11, color: "rgba(255,255,255,0.25)", marginLeft: 8, letterSpacing: "0.1em" }}>credentials.log</span>
-              </div>
-              {/* Cert list */}
-              <div style={{ padding: "0.5rem" }}>
-                {CERTS.map((cert, i) => (
-                  <div key={cert.name} className="cert-card">
-                    <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
-                      <span style={{ fontFamily: "var(--font-mono)", fontSize: 11, color: "rgba(255,255,255,0.2)" }}>0{i+1}</span>
-                      <span style={{ width: 7, height: 7, borderRadius: "50%", background: cert.color, display: "inline-block", flexShrink: 0 }} />
-                      <span style={{ fontFamily: "var(--font-mono)", fontSize: 13, color: "var(--text-primary)", fontWeight: 700 }}>{cert.name}</span>
-                    </div>
-                    <button className="cert-view-btn" onClick={() => setActiveCert(cert.url)}>View ↗</button>
+      <div className="section-wrap left-bias relative z-10">
+        <div className="bg-label" style={{ top: -80, right: -40, opacity: 0.15, pointerEvents: "none" }}>CERTS</div>
+        
+        <ScrollReveal animation="fade-up" className="mb-16">
+          <div className="mb-6">
+            <h1 className="text-3xl md:text-5xl font-display font-bold text-[var(--text-primary)] uppercase tracking-tight">
+              Verified <span style={{ color: "var(--accent)" }}>Credentials</span>
+            </h1>
+          </div>
+          <p style={{ fontSize: "1.1rem", color: "var(--text-secondary)", lineHeight: 1.8, maxWidth: "700px" }}>
+            A verified ledger of professional certifications and continued education, proving rigorous theoretical and applied knowledge.
+          </p>
+        </ScrollReveal>
+
+        {/* Certifications Matrix Grid */}
+        <div className="grid grid-cols-1 border-t border-[var(--border-strong)] relative z-10 w-full lg:w-[70vw] max-w-5xl">
+          {CERTS.map((cert, i) => (
+            <ScrollReveal key={cert.name} animation="fade-up" delay={i * 100} className="h-full">
+              <div 
+                className="group relative h-full flex flex-col p-6 md:p-8 border-b border-[var(--border-strong)] bg-[var(--surface-translucent)] transition-all duration-500 hover:bg-[var(--surface-3)] overflow-hidden cursor-pointer"
+                style={{ backdropFilter: "blur(12px)" }}
+                onClick={() => setActiveCert(cert.url)}
+              >
+                <div className="absolute left-0 top-0 bottom-0 w-1 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500" style={{ backgroundColor: cert.color || "var(--accent)" }} />
+                
+                <div className="transform transition-transform duration-500 group-hover:translate-x-3 flex items-center justify-between">
+                  <div className="flex items-center gap-6">
+                    <span className="font-mono text-sm tracking-widest font-bold opacity-80" style={{ color: cert.color || "var(--accent)" }}>0{i+1}</span>
+                    <h3 className="font-display font-bold text-lg md:text-xl text-[var(--text-primary)] leading-tight">{cert.name}</h3>
                   </div>
-                ))}
+                  <button className="flex items-center text-[var(--text-secondary)] group-hover:text-[var(--text-primary)] transition-colors duration-300">
+                    <span className="font-mono text-[10px] font-bold tracking-widest uppercase mr-3 opacity-0 group-hover:opacity-100 transition-opacity">View Credential</span>
+                    <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+                  </button>
+                </div>
               </div>
-            </div>
-          </ScrollReveal>
+            </ScrollReveal>
+          ))}
         </div>
-      </section>
+      </div>
 
       {activeCert && <CertModal url={activeCert} onClose={() => setActiveCert(null)} />}
     </div>
