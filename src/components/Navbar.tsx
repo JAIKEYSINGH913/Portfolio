@@ -141,9 +141,9 @@ export const Navbar: React.FC = () => {
               transition={{ delay: 0.8, duration: 1 }}
               className="w-full max-w-7xl px-4 md:px-12 pb-12 flex justify-center gap-8 font-mono text-xs tracking-widest text-[var(--text-muted)] uppercase mt-auto"
             >
-              <a href="#" className="hover:text-[var(--terracotta)] transition-colors">LinkedIn</a>
-              <a href="#" className="hover:text-[var(--terracotta)] transition-colors">GitHub</a>
-              <a href="#" className="hover:text-[var(--terracotta)] transition-colors">Twitter</a>
+              <a href="https://linkedin.com/in/jaikeysingh913" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--accent)] transition-colors">LinkedIn</a>
+              <a href="https://github.com/JAIKEYSINGH913" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--accent)] transition-colors">GitHub</a>
+              <a href="/contact" className="hover:text-[var(--accent)] transition-colors">Contact</a>
             </motion.div>
           </motion.div>
         )}

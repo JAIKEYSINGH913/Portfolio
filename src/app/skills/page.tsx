@@ -54,7 +54,7 @@ const SKILL_CATEGORIES = [
 
 export default function SkillsPage() {
   return (
-    <div className="w-full relative text-[var(--text-primary)]" style={{ paddingTop: '8rem', paddingBottom: '6rem' }}>
+    <div className="w-full relative text-[var(--text-primary)]" style={{ paddingTop: '8rem', paddingBottom: '10rem' }}>
       
       <div className="section-wrap left-bias mt-16 md:mt-24 relative">
         <div className="bg-label" style={{ top: -80, left: -40, opacity: 0.15, pointerEvents: "none" }}>SKILLS</div>
@@ -163,8 +163,8 @@ export default function SkillsPage() {
       </div>
 
       {/* Ticker Tape Fixed to Bottom */}
-      <div className="fixed bottom-0 left-0 w-full ticker-wrap" style={{ padding: "1.5rem 0", borderTop: "1px solid var(--border-strong)", background: "var(--surface-translucent)", backdropFilter: "blur(12px)", zIndex: 40 }}>
-        <div className="ticker-track ticker-left" style={{ marginBottom: 10 }}>
+      <div className="fixed bottom-0 left-0 w-full ticker-wrap" style={{ padding: "1rem 0", borderTop: "1px solid var(--border-strong)", background: "var(--surface-translucent)", backdropFilter: "blur(12px)", zIndex: 40 }}>
+        <div className="ticker-track ticker-left" style={{ marginBottom: 8 }}>
           {[...SKILLS_TOP, ...SKILLS_TOP, ...SKILLS_TOP].map((s, i) => <span className="skill-chip" key={i}><span>{s.e}</span>{s.n}</span>)}
         </div>
         <div className="ticker-track ticker-right">

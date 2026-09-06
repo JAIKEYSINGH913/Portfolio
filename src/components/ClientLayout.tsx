@@ -18,7 +18,7 @@ export function ClientLayout({ children }: { children: React.ReactNode }) {
       <ScrollProgressBar />
       
       {/* Hanging Bulb fixed to the top right */}
-      <div className="fixed top-32 right-4 md:right-8 z-50 pointer-events-none">
+      <div className="fixed top-20 md:top-32 right-4 md:right-8 z-50 pointer-events-none">
         <div className="pointer-events-auto">
           <ThemeToggle />
         </div>
