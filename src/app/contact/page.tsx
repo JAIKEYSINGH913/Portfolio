@@ -11,10 +11,19 @@ export default function ContactPage() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    
+    // Simulate secure handshake/encryption delay
     setTimeout(() => {
       setIsSubmitting(false);
       setIsSuccess(true);
-      setTimeout(() => { setIsSuccess(false); setFormData({ name: "", email: "", subject: "", message: "" }); }, 5000);
+      
+      // Execute mailto: payload transmission
+      window.location.href = `mailto:jaikeysingh913@gmail.com?subject=Portfolio Contact - ${encodeURIComponent(formData.name)}&body=${encodeURIComponent("From: " + formData.name + " <" + formData.email + ">\n\n" + formData.message)}`;
+      
+      setTimeout(() => { 
+        setIsSuccess(false); 
+        setFormData({ name: "", email: "", subject: "", message: "" }); 
+      }, 5000);
     }, 1500);
   };
 
@@ -26,7 +35,7 @@ export default function ContactPage() {
         <ScrollReveal animation="fade-up" className="mb-16">
           <div className="mb-12">
             <h1 className="display-xl text-[var(--text-primary)]">
-              Initiate<br /><span style={{ color: "var(--accent)" }}>Protocol.</span>
+              Let's<br /><span style={{ color: "var(--accent)" }}>Connect.</span>
             </h1>
           </div>
           <p style={{ fontSize: "1.1rem", color: "var(--text-secondary)", lineHeight: 1.8, maxWidth: "700px" }}>
