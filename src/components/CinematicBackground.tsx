@@ -50,12 +50,10 @@ export function CinematicBackground() {
         <img 
           src="/assets/images/david_right.png"
           alt="Low Poly David"
-          className="transition-all duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)]"
+          className="transition-all duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)] object-cover object-top md:object-contain md:object-center"
           style={{
             width: "100vw",
             height: "100vh",
-            objectFit: "cover",
-            objectPosition: "center top",
             filter: isLight 
               ? "brightness(0.72) contrast(1.25) saturate(0.6) drop-shadow(0 20px 60px rgba(80,60,40,0.35))"
               : "brightness(1) contrast(1) saturate(1) drop-shadow(0 0 60px rgba(200,90,42,0.18))",
