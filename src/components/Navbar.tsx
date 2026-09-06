@@ -44,7 +44,10 @@ export const Navbar: React.FC = () => {
           
           <div className="w-[1px] h-4 bg-[var(--border-light)]"></div>
 
-          <Link href="/contact" className="font-mono text-[10px] md:text-xs font-bold uppercase tracking-widest text-[var(--terracotta)] hover:text-[var(--gold-400)] transition-colors no-underline">
+          <Link 
+            href="/contact" 
+            className="font-mono text-[10px] md:text-xs font-bold uppercase tracking-widest bg-[var(--accent)] text-white px-4 py-1.5 rounded-full hover:brightness-110 hover:shadow-[var(--shadow-accent)] transition-all no-underline"
+          >
             CONTACT
           </Link>
 
