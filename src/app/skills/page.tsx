@@ -1,55 +1,42 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React from "react";
 import { ScrollReveal } from "@/components/ScrollReveal";
-import { HexBrainCanvas, PaperHandLeft, PaperHandRight } from "@/components/HexBrain";
 import { SKILLS_A, SKILLS_B } from "@/data/content";
 
-function HexSkillsSection() {
-  const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
-  useEffect(() => {
-    const el = ref.current; if (!el) return;
-    const obs = new IntersectionObserver(([e]) => setVisible(e.isIntersecting), { threshold: 0.1 });
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, []);
-  return (
-    <div ref={ref} className="hex-skills-section" style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-      <HexBrainCanvas visible={visible} />
-      <PaperHandLeft visible={visible} />
-      <PaperHandRight visible={visible} />
-      <div style={{ position: "relative", zIndex: 10, textAlign: "center", padding: "2rem", maxWidth: 600, margin: "0 auto" }}>
-        <ScrollReveal animation="fade-up">
-          <p style={{ fontFamily: "var(--font-mono)", fontSize: 10, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "#C85A2A", marginBottom: "1rem", display: "flex", alignItems: "center", justifyContent: "center", gap: 12 }}>
-            <span style={{ width: 28, height: 1.5, background: "#C85A2A", display: "inline-block" }} />
-            Neural Skill Map
-            <span style={{ width: 28, height: 1.5, background: "#C85A2A", display: "inline-block" }} />
-          </p>
-          <h2 style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "clamp(2.5rem,6vw,4.5rem)", lineHeight: 0.9, letterSpacing: "-0.04em", textTransform: "uppercase", color: "var(--text-primary)", marginBottom: "1.25rem" }}>
-            Technology<br /><span style={{ color: "#C85A2A" }}>Arsenal.</span>
-          </h2>
-          <p style={{ fontSize: "1rem", color: "rgba(255,255,255,0.45)", lineHeight: 1.7, marginBottom: "2rem" }}>
-            Hover any hex node. Each cell is a battle-tested skill in the stack.
-          </p>
-          <div style={{ display: "flex", flexWrap: "wrap", gap: 8, justifyContent: "center" }}>
-            {[ { label: "Languages", val: "Java · Python · Dart · TS" }, { label: "Frameworks", val: "Spring · React · Flutter" }, { label: "Data", val: "Neo4j · Postgres · Mongo" }, { label: "Cloud", val: "GCP · Firebase · CI/CD" } ].map(c => (
-              <div key={c.label} style={{ padding: "10px 18px", borderRadius: 50, background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.09)", backdropFilter: "blur(8px)" }}>
-                <div style={{ fontFamily: "var(--font-mono)", fontSize: 8, letterSpacing: "0.16em", textTransform: "uppercase", color: "#C85A2A", marginBottom: 3 }}>{c.label}</div>
-                <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, fontWeight: 700, color: "rgba(255,255,255,0.65)" }}>{c.val}</div>
-              </div>
-            ))}
-          </div>
-        </ScrollReveal>
-      </div>
-    </div>
-  );
-}
+const SKILL_CATEGORIES = [
+  {
+    title: "Core Programming & Databases",
+    num: "01",
+    skills: ["Java (J2EE)", "Python", "Kotlin", "Dart", "C", "SQL", "MongoDB", "Neo4j"],
+    desc: "Proficient in developing high-performance applications using robust, strongly-typed languages. Experienced in designing optimized database schemas for relational (SQL) and NoSQL databases, alongside advanced graph architectures using Neo4j."
+  },
+  {
+    title: "Frameworks & Platforms",
+    num: "02",
+    skills: ["Spring Boot", "JWT", "Flutter", "React.js", "GCP", "Firebase", "FastAPI"],
+    desc: "Expert in engineering scalable microservices with Spring Boot and building cross-platform, responsive interfaces using Flutter and React. Leveraging Google Cloud Platform (GCP) and Firebase for real-time, cloud-native deployments."
+  },
+  {
+    title: "Architecture & AI Integration",
+    num: "03",
+    skills: ["Microservices", "GraphRAG", "RESTful APIs", "System Design", "DSA"],
+    desc: "Specializing in Distributed Systems and Cloud-Native Backend Architecture. Published researcher in GraphRAG technologies, pioneering hybrid Knowledge Graph pipelines that integrate LLMs to achieve deterministic, hallucination-free retrieval."
+  },
+  {
+    title: "DevOps & Tooling",
+    num: "04",
+    skills: ["Git/GitHub", "Docker", "Postman", "CI/CD", "SDLC"],
+    desc: "Automating software delivery through modern CI/CD pipelines and containerized environments. Adhering to rigorous Software Development Life Cycle (SDLC) best practices to ensure modularity, maintainability, and zero-downtime deployments."
+  }
+];
 
 export default function SkillsPage() {
   return (
-    <div className="w-full relative text-white" style={{ paddingTop: '8rem' }}>
-      <div className="ticker-wrap" style={{ padding: "2rem 0", borderTop: "1px solid var(--glass-border)", borderBottom: "1px solid var(--glass-border)", background: "rgba(8,6,4,0.6)", backdropFilter: "blur(8px)", position: "relative", zIndex: 10 }}>
+    <div className="w-full relative text-[var(--text-primary)]" style={{ paddingTop: '8rem', paddingBottom: '6rem' }}>
+      
+      {/* Ticker Tape */}
+      <div className="ticker-wrap" style={{ padding: "2rem 0", borderTop: "1px solid var(--glass-border)", borderBottom: "1px solid var(--glass-border)", background: "var(--surface-translucent)", backdropFilter: "blur(8px)", position: "relative", zIndex: 10 }}>
         <div className="ticker-track ticker-left" style={{ marginBottom: 10 }}>
           {[...SKILLS_A, ...SKILLS_A, ...SKILLS_A].map((s, i) => <span className="skill-chip" key={i}><span>{s.e}</span>{s.n}</span>)}
         </div>
@@ -57,7 +44,56 @@ export default function SkillsPage() {
           {[...SKILLS_B, ...SKILLS_B, ...SKILLS_B].map((s, i) => <span className="skill-chip" key={i}><span>{s.e}</span>{s.n}</span>)}
         </div>
       </div>
-      <HexSkillsSection />
+
+      <div className="section-wrap mt-16 md:mt-24">
+        <ScrollReveal animation="fade-up">
+          <p className="eyebrow" style={{ marginBottom: "1.5rem" }}>Technical Arsenal</p>
+          <h1 className="display-lg" style={{ marginBottom: "1.5rem", maxWidth: "800px" }}>
+            Architecting <span style={{ color: "var(--accent)" }}>Intelligent Systems</span> from the ground up.
+          </h1>
+          <p style={{ fontSize: "1.1rem", color: "var(--text-secondary)", lineHeight: 1.8, maxWidth: "700px", marginBottom: "4rem" }}>
+            I specialize in full-stack engineering with a heavy focus on distributed backend systems, AI/ML pipelines, and cloud-native architecture. Here is a comprehensive breakdown of my technical capabilities.
+          </p>
+        </ScrollReveal>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12">
+          {SKILL_CATEGORIES.map((cat, i) => (
+            <ScrollReveal key={cat.num} animation="fade-up" delay={i * 100}>
+              <div 
+                className="group relative h-full flex flex-col p-8 md:p-10 rounded-3xl border border-[var(--glass-border)] bg-[var(--surface-translucent)] transition-all duration-500 hover:border-[var(--accent)] hover:shadow-xl"
+                style={{ backdropFilter: "blur(12px)" }}
+              >
+                {/* Number & Title */}
+                <div className="flex items-start justify-between mb-6">
+                  <h3 className="font-display font-bold text-2xl md:text-3xl text-[var(--text-primary)] leading-tight">
+                    {cat.title}
+                  </h3>
+                  <span className="font-mono text-sm tracking-widest text-[var(--accent)] opacity-60 font-bold ml-4">
+                    {cat.num}
+                  </span>
+                </div>
+
+                {/* Description */}
+                <p className="text-[var(--text-secondary)] text-base md:text-lg leading-relaxed mb-8 flex-grow">
+                  {cat.desc}
+                </p>
+
+                {/* Skill Tags */}
+                <div className="flex flex-wrap gap-3 mt-auto pt-6 border-t border-[var(--glass-border)] group-hover:border-[var(--accent-glow)] transition-colors duration-500">
+                  {cat.skills.map(skill => (
+                    <span 
+                      key={skill} 
+                      className="px-4 py-2 rounded-full font-mono text-xs font-bold tracking-wider uppercase border border-[var(--glass-border)] text-[var(--text-primary)] bg-[var(--canvas)] group-hover:border-[var(--accent-glow)] transition-colors duration-300"
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </ScrollReveal>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }
