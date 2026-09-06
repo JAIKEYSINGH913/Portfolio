@@ -101,7 +101,7 @@ export const Navbar: React.FC = () => {
                       >
                         <span className="relative z-10 flex flex-col md:flex-row md:items-center gap-2 md:gap-12">
                           {/* Row Number */}
-                          <span className="font-mono text-sm md:text-base tracking-widest text-[var(--text-muted)] self-start md:mt-2">
+                          <span className={`font-mono text-sm md:text-base tracking-widest self-start md:mt-2 ${item.label === 'Contact' ? 'text-[var(--accent)] opacity-80' : 'text-[var(--text-muted)]'}`}>
                             0{i + 1}
                           </span>
                           
@@ -109,8 +109,10 @@ export const Navbar: React.FC = () => {
                           <span 
                             className={`leading-[0.85] transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] md:group-hover:translate-x-6 ${
                               isActive 
-                                ? "text-[var(--terracotta)]" 
-                                : "text-[var(--text-primary)] group-hover:text-[var(--gold-400)]"
+                                ? "text-[var(--accent)]" 
+                                : item.label === "Contact"
+                                  ? "text-[var(--accent)]"
+                                  : "text-[var(--text-primary)] group-hover:text-[var(--accent)]"
                             }`}
                             style={{ fontSize: "clamp(3rem, min(9vw, 13vh), 9rem)" }}
                           >
@@ -119,7 +121,7 @@ export const Navbar: React.FC = () => {
                         </span>
                         
                         {/* Arrow indicator on hover */}
-                        <span className="opacity-0 -translate-x-8 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] text-3xl md:text-6xl text-[var(--terracotta)] hidden md:block">
+                        <span className="opacity-0 -translate-x-8 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] text-3xl md:text-6xl text-[var(--accent)] hidden md:block">
                           ↗
                         </span>
                       </Link>
