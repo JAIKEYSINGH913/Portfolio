@@ -8,28 +8,24 @@ import { FoldingGrid } from "@/components/FoldingGrid";
 export function CinematicBackground() {
   const { resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
-  const [activeHash, setActiveHash] = useState("");
+
+  useEffect(() => setMounted(true), []);
+
   const isLight = mounted && resolvedTheme === "light";
 
-  useEffect(() => {
-    setMounted(true);
-    const handleHash = () => setActiveHash(window.location.hash || "#home");
-    handleHash();
-    window.addEventListener("hashchange", handleHash);
-    return () => window.removeEventListener("hashchange", handleHash);
-  }, []);
-
-  const isHome = activeHash === "#home" || activeHash === "";
-  const imageOpacity = isHome ? 0.9 : 0;
-  const imageScale = isHome ? 1.3 : 1.5;
-  const imageX = isHome ? "-25%" : "-40%";
+  const { scrollYProgress } = useScroll();
+  const smoothProgress = useSpring(scrollYProgress, { stiffness: 50, damping: 20 });
+  
+  // Fade out the statue image after the About section (around 35-45% scroll)
+  const imageOpacity = useTransform(smoothProgress, [0, 0.35, 0.45], [0.9, 0.9, 0]);
+  const imageScale = useTransform(smoothProgress, [0, 0.45], [1.5, 1.3]);
+  const imageX = useTransform(smoothProgress, [0, 0.45], ["-25%", "-40%"]); // moves further left as it fades
 
   return (
     <div 
-      className="fixed inset-0 z-0 pointer-events-none overflow-hidden transition-colors duration-700"
-      style={{ backgroundColor: isLight ? "#F5F5F5" : "var(--canvas)" }}
+      className="fixed inset-0 z-0 pointer-events-none overflow-hidden transition-colors duration-700 bg-transparent"
     >
-      <FoldingGrid />
+
       <motion.div
         className="w-full h-full absolute inset-0 flex items-center justify-center"
         style={{ 

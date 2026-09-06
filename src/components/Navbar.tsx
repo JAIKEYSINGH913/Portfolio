@@ -6,31 +6,21 @@ import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 
 const NAV_ITEMS = [
-  { label: "Home",     href: "#home" },
-  { label: "Skills",   href: "#skills" },
-  { label: "Works",    href: "#works" },
-  { label: "Journey",  href: "#journey" },
-  { label: "Contact",  href: "#contact" },
+  { label: "Home",     href: "/" },
+  { label: "Skills",   href: "/skills" },
+  { label: "Works",    href: "/works" },
+  { label: "Journey",  href: "/journey" },
+  { label: "Contact",  href: "/contact" },
 ];
 
 export const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [activeHash, setActiveHash] = useState("#home");
   const pathname = usePathname();
 
-  useEffect(() => {
-    const handleHashChange = () => {
-      setActiveHash(window.location.hash || "#home");
-    };
-    handleHashChange(); // set initial
-    window.addEventListener("hashchange", handleHashChange);
-    return () => window.removeEventListener("hashchange", handleHashChange);
-  }, []);
-
-  // Close menu when hash changes
+  // Close menu when route changes
   useEffect(() => {
     setIsOpen(false);
-  }, [activeHash, pathname]);
+  }, [pathname]);
 
   // Lock body scroll when menu is open
   useEffect(() => {
@@ -46,7 +36,7 @@ export const Navbar: React.FC = () => {
     <>
       <header className="fixed top-4 right-4 md:right-8 z-[100] flex justify-end">
         <nav className="flex items-center gap-4 md:gap-6 px-4 md:px-6 py-3 rounded-full border border-[var(--border-light)] bg-[var(--surface-translucent)] shadow-lg backdrop-blur-xl">
-          <Link href="#home" className="no-underline relative z-10" onClick={(e) => { if (isOpen) { e.preventDefault(); setIsOpen(false); }}}>
+          <Link href="/" className="no-underline relative z-10" onClick={(e) => { if (isOpen) { e.preventDefault(); setIsOpen(false); }}}>
             <span className="font-display font-bold text-sm tracking-widest text-[var(--text-primary)] hover:text-[var(--terracotta)] transition-colors">
               JAIKEY
             </span>
@@ -55,7 +45,7 @@ export const Navbar: React.FC = () => {
           <div className="w-[1px] h-4 bg-[var(--border-light)]"></div>
 
           <Link 
-            href="#contact" 
+            href="/contact" 
             className="font-mono text-[10px] md:text-xs font-bold uppercase tracking-widest bg-[var(--accent)] text-white px-4 py-1.5 rounded-full hover:brightness-110 hover:shadow-[var(--shadow-accent)] transition-all no-underline"
           >
             CONTACT
@@ -95,7 +85,7 @@ export const Navbar: React.FC = () => {
               <div className="w-full h-[1px] bg-[var(--border-strong)]"></div>
 
               {NAV_ITEMS.map((item, i) => {
-                const isActive = activeHash === item.href;
+                const isActive = pathname === item.href;
                 return (
                   <React.Fragment key={item.label}>
                     <motion.div

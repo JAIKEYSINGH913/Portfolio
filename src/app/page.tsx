@@ -4,11 +4,6 @@ import React, { useEffect, useRef, useState } from "react";
 import { ScrollReveal } from "@/components/ScrollReveal";
 import { CinematicBackground } from "@/components/CinematicBackground";
 
-import SkillsPage from '../components/sections/skills/page';
-import WorksPage from '../components/sections/works/page';
-import JourneyPage from '../components/sections/journey/page';
-import ContactPage from '../components/sections/contact/page';
-
 /* ── AmbientCanvas: floating embers ── */
 function AmbientCanvas() {
   const ref = useRef<HTMLCanvasElement>(null);
@@ -98,101 +93,74 @@ function Hero() {
    MAIN PAGE
 ══════════════════════════════════════════ */
 export default function Portfolio() {
-  const [activeHash, setActiveHash] = useState("#home");
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-    const handleHashChange = () => {
-      setActiveHash(window.location.hash || "#home");
-    };
-    handleHashChange();
-    window.addEventListener("hashchange", handleHashChange);
-    return () => window.removeEventListener("hashchange", handleHashChange);
-  }, []);
-
-  if (!mounted) return null;
-
   return (
-    <div className="w-full h-screen overflow-hidden relative text-white" style={{ background: "var(--canvas)" }}>
+    <div className="w-full relative text-[var(--text-primary)]" style={{ background: "transparent" }}>
       <CinematicBackground />
       <AmbientCanvas />
 
-      {/* Conditionally render sections to disable scrolling between them */}
-      <div className="w-full h-full overflow-y-auto">
-        {(activeHash === "#home" || activeHash === "") && (
-          <>
-            {/* ─── HERO ─── */}
-            <Hero />
+      {/* ─── HERO ─── */}
+      <Hero />
 
-            {/* ─── ABOUT ─── */}
-            <section id="about" className="relative z-10" style={{ paddingTop: "2rem", paddingBottom: "3rem" }}>
-              <div className="bg-label" style={{ top: -60, right: -40, pointerEvents: "none" }}>ABOUT</div>
-              <div className="section-wrap left-bias relative z-10">
-                {/* Stats row */}
-                <ScrollReveal animation="fade-up">
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-1 overflow-hidden rounded-none mb-12" style={{ background: "var(--glass-border)", borderTop: "1px solid var(--border-strong)", borderBottom: "1px solid var(--border-strong)" }}>
-                    {[
-                      { num: "100%", label: "Hallucination\nMitigation (GraphRAG)" },
-                      { num: "30%", label: "Reduced API\nLatency" },
-                      { num: "9.2", label: "CGPA at NITRA\nTechnical Campus" },
-                    ].map(s => (
-                      <div key={s.num} className="stat-card" style={{ padding: "2rem 1.5rem", textAlign: "center", background: "var(--surface-translucent)", backdropFilter: "blur(12px)" }}>
-                        <div className="stat-number" style={{ fontSize: "clamp(2rem, 4vw, 3.5rem)" }}>{s.num}</div>
-                        <div className="stat-label" style={{ whiteSpace: "pre-line" }}>{s.label}</div>
-                      </div>
-                    ))}
-                  </div>
-                </ScrollReveal>
-
-                {/* Bio */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
-                  <ScrollReveal animation="slide-right">
-                    <p className="eyebrow" style={{ marginBottom: "1rem" }}>The Architecture</p>
-                    <h2 className="display-lg text-[var(--text-primary)]" style={{ marginBottom: "1.5rem" }}>
-                      Engineering for<br /><span style={{ color: "var(--accent)" }}>Scale & Impact.</span>
-                    </h2>
-                    <p style={{ fontSize: "1rem", color: "var(--text-secondary)", lineHeight: 1.6, marginBottom: "1rem" }}>
-                      Expert in engineering scalable Java/Spring Boot Microservices and high-performance cross-platform applications. I don&apos;t just write code — I build robust, self-healing systems that scale under pressure.
-                    </p>
-                    <p style={{ fontSize: "1rem", color: "var(--text-secondary)", lineHeight: 1.6 }}>
-                      Published researcher in GraphRAG technologies with deep expertise in System Design and end-to-end Product Development, currently pursuing my B.Tech in CSE at NITRA Technical Campus.
-                    </p>
-                  </ScrollReveal>
-                  <ScrollReveal animation="slide-left" delay={150}>
-                    <blockquote style={{ borderLeft: "3px solid var(--accent)", paddingLeft: "1.5rem", margin: 0 }}>
-                      <p style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1.2rem, 2.5vw, 1.8rem)", fontWeight: 700, lineHeight: 1.3, letterSpacing: "-0.02em", color: "var(--text-primary)", marginBottom: "0.5rem" }}>
-                        &ldquo;Code is the closest thing we have to a superpower.&rdquo;
-                      </p>
-                      <cite style={{ fontFamily: "var(--font-mono)", fontSize: 10, letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--accent)", fontStyle: "normal" }}>— Jaikey Singh</cite>
-                    </blockquote>
-                  </ScrollReveal>
+      {/* ─── ABOUT ─── */}
+      <section id="about" className="relative z-10" style={{ paddingTop: "2rem", paddingBottom: "3rem" }}>
+        <div className="bg-label" style={{ top: -60, right: -40, pointerEvents: "none" }}>ABOUT</div>
+        <div className="section-wrap relative z-10">
+          {/* Stats row */}
+          <ScrollReveal animation="fade-up">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-1 overflow-hidden rounded-3xl mb-12" style={{ background: "var(--glass-border)" }}>
+              {[
+                { num: "100%", label: "Hallucination\nMitigation (GraphRAG)" },
+                { num: "30%", label: "Reduced API\nLatency" },
+                { num: "9.2", label: "CGPA at NITRA\nTechnical Campus" },
+              ].map(s => (
+                <div key={s.num} className="stat-card" style={{ padding: "2rem 1.5rem", textAlign: "center", background: "var(--surface-translucent)", backdropFilter: "blur(12px)" }}>
+                  <div className="stat-number" style={{ fontSize: "clamp(2rem, 4vw, 3.5rem)" }}>{s.num}</div>
+                  <div className="stat-label" style={{ whiteSpace: "pre-line" }}>{s.label}</div>
                 </div>
-              </div>
-            </section>
+              ))}
+            </div>
+          </ScrollReveal>
 
-            {/* ─── FOOTER ─── */}
-            <footer className="relative z-10" style={{ background: "var(--canvas)", borderTop: "1px solid var(--border-strong)", padding: "2.5rem 0" }}>
-              <div className="section-wrap left-bias">
-                <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "space-between", gap: 20 }}>
-                  <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-                    <div style={{ width: 8, height: 8, borderRadius: "50%", background: "var(--accent)", boxShadow: "0 0 8px rgba(200,90,42,0.6)" }} />
-                    <div>
-                      <div style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "1.05rem", color: "var(--text-primary)", letterSpacing: "-0.02em" }}>JAIKEY SINGH</div>
-                      <div style={{ fontFamily: "var(--font-mono)", fontSize: 9, color: "var(--text-muted)", letterSpacing: "0.08em", marginTop: 2 }}>© 2026 ALL RIGHTS RESERVED.</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </footer>
-          </>
-        )}
+          {/* Bio */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
+            <ScrollReveal animation="slide-right">
+              <p className="eyebrow" style={{ marginBottom: "1rem" }}>The Architecture</p>
+              <h2 className="display-lg" style={{ marginBottom: "1.5rem" }}>
+                Engineering for<br /><span style={{ color: "#C85A2A" }}>Scale & Impact.</span>
+              </h2>
+              <p style={{ fontSize: "1rem", color: "var(--text-secondary)", lineHeight: 1.6, marginBottom: "1rem" }}>
+                Expert in engineering scalable Java/Spring Boot Microservices and high-performance cross-platform applications. I don&apos;t just write code — I build robust, self-healing systems that scale under pressure.
+              </p>
+              <p style={{ fontSize: "1rem", color: "var(--text-secondary)", lineHeight: 1.6 }}>
+                Published researcher in GraphRAG technologies with deep expertise in System Design and end-to-end Product Development, currently pursuing my B.Tech in CSE at NITRA Technical Campus.
+              </p>
+            </ScrollReveal>
+            <ScrollReveal animation="slide-left" delay={150}>
+              <blockquote style={{ borderLeft: "3px solid #C85A2A", paddingLeft: "1.5rem", margin: 0 }}>
+                <p style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1.2rem, 2.5vw, 1.8rem)", fontWeight: 700, lineHeight: 1.3, letterSpacing: "-0.02em", color: "var(--text-primary)", marginBottom: "0.5rem" }}>
+                  &ldquo;Code is the closest thing we have to a superpower.&rdquo;
+                </p>
+                <cite style={{ fontFamily: "var(--font-mono)", fontSize: 10, letterSpacing: "0.15em", textTransform: "uppercase", color: "#C85A2A", fontStyle: "normal" }}>— Jaikey Singh</cite>
+              </blockquote>
+            </ScrollReveal>
+          </div>
+        </div>
+      </section>
 
-        {activeHash === "#skills" && <SkillsPage />}
-        {activeHash === "#works" && <WorksPage />}
-        {activeHash === "#journey" && <JourneyPage />}
-        {activeHash === "#contact" && <ContactPage />}
-      </div>
+      {/* ─── FOOTER ─── */}
+      <footer className="relative z-10" style={{ background: "var(--canvas)", borderTop: "1px solid var(--glass-border)", padding: "2.5rem 0" }}>
+        <div className="section-wrap">
+          <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "space-between", gap: 20 }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+              <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#C85A2A", boxShadow: "0 0 8px rgba(200,90,42,0.6)" }} />
+              <div>
+                <div style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "1.05rem", color: "#F5F2EE", letterSpacing: "-0.02em" }}>JAIKEY SINGH</div>
+                <div style={{ fontFamily: "var(--font-mono)", fontSize: 9, color: "rgba(255,255,255,0.3)", letterSpacing: "0.08em", marginTop: 2 }}>© 2026 ALL RIGHTS RESERVED.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }

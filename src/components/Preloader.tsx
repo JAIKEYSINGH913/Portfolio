@@ -10,11 +10,11 @@ export function Preloader() {
     // Prevent scrolling during preloader
     document.body.style.overflow = "hidden";
     
-    // Hold the preloader briefly
+    // Hold the preloader for 2.8 seconds
     const timer = setTimeout(() => {
       setIsLoading(false);
       document.body.style.overflow = "";
-    }, 400);
+    }, 2800);
 
     return () => {
       clearTimeout(timer);
