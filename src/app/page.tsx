@@ -102,7 +102,7 @@ export default function Portfolio() {
       <Hero />
 
       {/* ─── ABOUT ─── */}
-      <section id="about" className="relative z-10" style={{ paddingTop: "2rem", paddingBottom: "6rem" }}>
+      <section id="about" className="relative z-10" style={{ paddingTop: "14rem", paddingBottom: "6rem" }}>
         <div className="bg-label" style={{ top: -60, left: -40, opacity: 0.15, pointerEvents: "none" }}>ABOUT</div>
         <div className="section-wrap left-bias relative z-10">
           
