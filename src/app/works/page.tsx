@@ -6,50 +6,77 @@ import { PROJECTS } from "@/data/content";
 
 export default function WorksPage() {
   return (
-    <div className="w-full relative text-white" style={{ paddingTop: '8rem', paddingBottom: '4rem' }}>
-      <section id="works" className="relative z-10" style={{ background: "var(--canvas)", backdropFilter: "blur(4px)", padding: '2rem' }}>
-        <div className="bg-label" style={{ top: -20, right: -40 }}>WORKS</div>
-        <div className="section-wrap left-bias">
-          <ScrollReveal animation="fade-up">
-            <div style={{ marginBottom: "4rem" }}>
-              <p className="eyebrow" style={{ marginBottom: "1rem" }}>Selected Works</p>
-              <h2 className="display-lg">Things I&apos;ve<br /><span style={{ color: "#C85A2A" }}>Built.</span></h2>
-            </div>
-          </ScrollReveal>
+    <div className="w-full relative text-[var(--text-primary)]" style={{ paddingTop: '8rem', paddingBottom: '6rem' }}>
+      <div className="section-wrap left-bias relative z-10">
+        <div className="bg-label" style={{ top: -80, left: -40, opacity: 0.15, pointerEvents: "none" }}>WORKS</div>
+        
+        <ScrollReveal animation="fade-up" className="mb-16">
+          <div className="mb-6">
+            <h1 className="text-3xl md:text-5xl font-display font-bold text-[var(--text-primary)] uppercase tracking-tight">
+              Selected <span style={{ color: "var(--accent)" }}>Works</span>
+            </h1>
+          </div>
+          <p style={{ fontSize: "1.1rem", color: "var(--text-secondary)", lineHeight: 1.8, maxWidth: "700px" }}>
+            A curated matrix of systems and platforms I've architected, focusing on massive data handling, cloud-native deployments, and seamless cross-platform client delivery.
+          </p>
+        </ScrollReveal>
 
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "1.5rem" }}>
-            {PROJECTS.map((p, i) => (
-              <ScrollReveal key={p.title} animation="fade-up" delay={i * 80}>
-                <div className="project-card" style={{ minHeight: 380, display: "flex", flexDirection: "column", justifyContent: "space-between", padding: "2.5rem" }}>
-                  {/* Top */}
-                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
-                    <span style={{ fontFamily: "var(--font-mono)", fontSize: 11, fontWeight: 700, color: "rgba(255,255,255,0.2)", letterSpacing: "0.12em" }}>{p.num}</span>
-                    <span className="project-badge" style={{ background: p.accent }}>{p.title.split(" ")[0]}</span>
+        {/* Constrain the grid strictly to 70% width, single column row-wise */}
+        <div className="grid grid-cols-1 border-t border-[var(--border-strong)] relative z-10 w-full lg:w-[70vw] max-w-5xl">
+          {PROJECTS.map((p, i) => (
+            <ScrollReveal key={p.title} animation="fade-up" delay={i * 100} className="h-full">
+              <div 
+                className="group relative h-full flex flex-col p-8 md:p-10 border-b border-[var(--border-strong)] bg-[var(--surface-translucent)] transition-all duration-500 hover:bg-[var(--surface-3)] overflow-hidden"
+                style={{ backdropFilter: "blur(12px)" }}
+              >
+                {/* Left Edge Hover Indicator */}
+                <div className="absolute left-0 top-0 bottom-0 w-1 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500" style={{ backgroundColor: p.accent || "var(--accent)" }} />
+                
+                {/* Top Subtle Gradient */}
+                <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[var(--accent)] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+                <div className="transform transition-transform duration-500 group-hover:translate-x-3 flex flex-col h-full">
+                  {/* Number & Title */}
+                  <div className="flex items-start justify-between mb-4">
+                    <h3 className="font-display font-bold text-2xl md:text-3xl text-[var(--text-primary)] leading-tight max-w-[80%]">
+                      {p.title}
+                    </h3>
+                    <span className="font-mono text-sm tracking-widest opacity-50 font-bold ml-2" style={{ color: p.accent || "var(--accent)" }}>
+                      {p.num}
+                    </span>
                   </div>
-                  {/* Accent top bar */}
-                  <div style={{ height: 2, background: p.accent, borderRadius: 2, margin: "1.5rem 0", width: "40%", opacity: 0.7 }} />
-                  {/* Content */}
-                  <div style={{ flex: 1 }}>
-                    <h3 style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "clamp(1.3rem,2.5vw,1.8rem)", color: "var(--text-primary)", marginBottom: "0.75rem", lineHeight: 1.2, letterSpacing: "-0.02em" }}>{p.title}</h3>
-                    <p style={{ color: "var(--text-secondary)", fontSize: "0.92rem", lineHeight: 1.65, marginBottom: "1.5rem" }}>{p.desc}</p>
-                  </div>
-                  {/* Tags + Arrow */}
-                  <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-                    <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
-                      {p.tags.slice(0, 3).map(t => (
-                        <span key={t} style={{ padding: "3px 10px", borderRadius: 50, fontFamily: "var(--font-mono)", fontSize: 9, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", border: "1px solid rgba(255,255,255,0.09)", color: "var(--text-muted)", background: "rgba(255,255,255,0.04)" }}>{t}</span>
+
+                  {/* Accent Line */}
+                  <div className="w-16 h-1 rounded-full mb-6 opacity-80" style={{ backgroundColor: p.accent || "var(--accent)" }} />
+
+                  {/* Description */}
+                  <p className="text-[var(--text-secondary)] text-sm md:text-base leading-relaxed mb-8 flex-grow">
+                    {p.desc}
+                  </p>
+
+                  {/* Skill Tags & Arrow */}
+                  <div className="flex flex-wrap items-center justify-between gap-4 mt-auto pt-6 border-t border-[var(--glass-border)] group-hover:border-[var(--accent-glow)] transition-colors duration-500">
+                    <div className="flex flex-wrap gap-2">
+                      {p.tags.map(t => (
+                        <span 
+                          key={t} 
+                          className="px-3 py-1.5 font-mono text-[10px] font-bold tracking-widest uppercase border border-[var(--border-strong)] text-[var(--text-primary)] bg-[var(--surface-2)] group-hover:bg-[var(--accent-light)] transition-colors duration-300"
+                        >
+                          {t}
+                        </span>
                       ))}
                     </div>
-                    <button className="project-arrow">
-                      <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+                    
+                    <button className="text-[var(--text-secondary)] group-hover:text-[var(--text-primary)] transition-colors duration-300">
+                      <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
                     </button>
                   </div>
                 </div>
-              </ScrollReveal>
-            ))}
-          </div>
+              </div>
+            </ScrollReveal>
+          ))}
         </div>
-      </section>
+      </div>
     </div>
   );
 }
