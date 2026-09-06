@@ -35,13 +35,24 @@ export default function SkillsPage() {
   return (
     <div className="w-full relative text-[var(--text-primary)]" style={{ paddingTop: '8rem', paddingBottom: '6rem' }}>
       
-      {/* Ticker Tape */}
-      <div className="ticker-wrap" style={{ padding: "2rem 0", borderTop: "1px solid var(--glass-border)", borderBottom: "1px solid var(--glass-border)", background: "var(--surface-translucent)", backdropFilter: "blur(8px)", position: "relative", zIndex: 10 }}>
-        <div className="ticker-track ticker-left" style={{ marginBottom: 10 }}>
-          {[...SKILLS_A, ...SKILLS_A, ...SKILLS_A].map((s, i) => <span className="skill-chip" key={i}><span>{s.e}</span>{s.n}</span>)}
+      {/* Vertical Ticker Tape */}
+      <div 
+        className="fixed top-0 bottom-0 right-2 md:right-12 z-0 flex gap-4 md:gap-6 pointer-events-none opacity-40 md:opacity-60" 
+        style={{ maskImage: 'linear-gradient(to bottom, transparent, black 10%, black 90%, transparent)', WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 10%, black 90%, transparent)' }}
+      >
+        <div className="ticker-wrap h-full w-full max-w-[160px] overflow-hidden">
+          <div className="ticker-track-vertical ticker-up">
+            {[...SKILLS_A, ...SKILLS_B, ...SKILLS_A, ...SKILLS_B, ...SKILLS_A, ...SKILLS_B].map((s, i) => (
+              <span className="skill-chip !my-2 !mx-0 justify-center" key={i}><span>{s.e}</span>{s.n}</span>
+            ))}
+          </div>
         </div>
-        <div className="ticker-track ticker-right">
-          {[...SKILLS_B, ...SKILLS_B, ...SKILLS_B].map((s, i) => <span className="skill-chip" key={i}><span>{s.e}</span>{s.n}</span>)}
+        <div className="ticker-wrap h-full w-full max-w-[160px] overflow-hidden hidden lg:block" style={{ marginTop: '-50%' }}>
+          <div className="ticker-track-vertical ticker-down">
+            {[...SKILLS_B, ...SKILLS_A, ...SKILLS_B, ...SKILLS_A, ...SKILLS_B, ...SKILLS_A].map((s, i) => (
+              <span className="skill-chip !my-2 !mx-0 justify-center" key={i}><span>{s.e}</span>{s.n}</span>
+            ))}
+          </div>
         </div>
       </div>
 
