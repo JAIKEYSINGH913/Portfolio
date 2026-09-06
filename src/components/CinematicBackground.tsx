@@ -11,8 +11,6 @@ export function CinematicBackground() {
 
   useEffect(() => setMounted(true), []);
 
-  const isLight = mounted && resolvedTheme === "light";
-
   const { scrollYProgress } = useScroll();
   const smoothProgress = useSpring(scrollYProgress, { stiffness: 50, damping: 20 });
   
@@ -20,6 +18,10 @@ export function CinematicBackground() {
   const imageOpacity = useTransform(smoothProgress, [0, 0.35, 0.45], [0.9, 0.9, 0]);
   const imageScale = useTransform(smoothProgress, [0, 0.45], [1.5, 1.3]);
   const imageX = useTransform(smoothProgress, [0, 0.45], ["-25%", "-40%"]); // moves further left as it fades
+
+  if (!mounted) return null;
+
+  const isLight = resolvedTheme === "light";
 
   return (
     <div 
