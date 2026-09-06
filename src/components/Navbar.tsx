@@ -82,7 +82,7 @@ export const Navbar: React.FC = () => {
 
             <div className="relative z-10 flex flex-col w-full max-w-7xl px-4 md:px-12 mt-24 mb-24 min-h-max">
               {/* Top boundary line */}
-              <div className="w-full h-[1px] bg-[var(--border)]"></div>
+              <div className="w-full h-[1px] bg-[var(--border-strong)]"></div>
 
               {NAV_ITEMS.map((item, i) => {
                 const isActive = pathname === item.href;
@@ -128,7 +128,7 @@ export const Navbar: React.FC = () => {
                     </motion.div>
                     
                     {/* Visible row line separating items */}
-                    <div className="w-full h-[1px] bg-[var(--border)]"></div>
+                    <div className="w-full h-[1px] bg-[var(--border-strong)]"></div>
                   </React.Fragment>
                 );
               })}

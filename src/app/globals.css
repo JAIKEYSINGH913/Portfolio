@@ -60,14 +60,14 @@
   --text-primary:  var(--ink-900);
   --text-secondary:var(--ink-500);
   --text-muted:    var(--ink-300);
-  --border:        var(--glass-border);
-  --border-strong: var(--border-strong);
+  --border:        rgba(255,255,255,0.08);
+  --border-strong: rgba(255,255,255,0.15);
   --shadow-sm:     0 1px 3px rgba(0,0,0,0.3);
   --shadow-md:     0 4px 16px rgba(0,0,0,0.4);
   --shadow-lg:     0 20px 48px rgba(0,0,0,0.5);
   --shadow-accent: 0 8px 32px rgba(200,90,42,0.3), 0 2px 8px rgba(200,90,42,0.2);
   --surface-translucent: var(--surface-translucent);
-  --glass-border:  var(--glass-border);
+  --glass-border:  rgba(255,255,255,0.08);
 }
 
 *, *::before, *::after { box-sizing: border-box; }
