@@ -31,14 +31,6 @@ export const metadata: Metadata = {
     description: "Software Engineer crafting scalable systems with React, Next.js, Python, Java, AI/ML, and modern cloud architecture.",
     url: "https://jaikeysingh.vercel.app",
     siteName: "Jaikey Singh Portfolio",
-    images: [
-      {
-        url: "https://jaikeysingh.vercel.app/assets/images/david_right.png",
-        width: 1200,
-        height: 630,
-        alt: "Jaikey Singh - Software Engineer",
-      },
-    ],
     locale: "en_US",
     type: "website",
   },
@@ -46,7 +38,6 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Jaikey Singh — Software Engineer",
     description: "Software Engineer crafting scalable systems with React, Next.js, Python, Java, AI/ML, and modern cloud architecture.",
-    images: ["https://jaikeysingh.vercel.app/assets/images/david_right.png"],
   },
 };
 
