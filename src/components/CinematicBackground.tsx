@@ -39,42 +39,60 @@ export function CinematicBackground() {
           transformOrigin: "center center"
         }}
       >
+        {/* In light mode: keep the original dramatic low-poly render but clamp its brightness
+            so it reads as a dark sculptural form against granite rather than a washed-out ghost.
+            `brightness(0.72)` keeps the polygon shading rich and visible.
+            `contrast(1.25)` sharpens the facet edges for that chiseled, architectural look.
+            `saturate(0.6)` pulls back the original blue-tinted dark tones toward a neutral stone gray
+            that harmonises with the warm granite canvas.
+            `drop-shadow` adds sculptural depth rather than a flat silhouette.
+            `normal` blend keeps original polygon colors intact — no color inversion. */}
         <img 
           src="/assets/images/david_right.png"
-          alt="Low Poly David Revolving"
+          alt="Low Poly David"
+          className="transition-all duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)]"
           style={{
             width: "100vw",
             height: "100vh",
             objectFit: "contain",
             objectPosition: "center center",
-            filter: isLight ? "invert(1) contrast(1.1) brightness(1.1)" : "none",
-            transition: "filter 0.7s ease"
+            filter: isLight 
+              ? "brightness(0.72) contrast(1.25) saturate(0.6) drop-shadow(0 20px 60px rgba(80,60,40,0.35))"
+              : "brightness(1) contrast(1) saturate(1) drop-shadow(0 0 60px rgba(200,90,42,0.18))",
+            mixBlendMode: "normal",
           }}
         />
       </motion.div>
-      
-      {/* Vignettes for blending */}
+
+      {/* --- Light mode: warm amber overlay to unify the statue with the granite canvas ---
+          This tints the cold steel-grey of the statue very slightly amber/sepia,
+          matching the warm undertone in #E6E6E4, so nothing looks digitally foreign. */}
+      {isLight && (
+        <div
+          className="absolute inset-0 pointer-events-none transition-opacity duration-700"
+          style={{
+            background: "radial-gradient(ellipse 55% 70% at 62% 45%, rgba(200,150,90,0.10) 0%, transparent 70%)",
+          }}
+        />
+      )}
+
+      {/* Vignettes — edge-bleed into the background canvas on both modes */}
       <div 
-        className="absolute inset-0 transition-opacity duration-700"
+        className="absolute inset-0 pointer-events-none"
         style={{
-          background: isLight 
-            ? "linear-gradient(to top, rgba(245,245,245,0.9), transparent, rgba(245,245,245,0.9))" 
-            : "linear-gradient(to top, rgba(8,6,4,0.9), transparent, rgba(8,6,4,0.9))",
-          opacity: 0.3
-        }} 
-      />
-      <div 
-        className="absolute inset-0 transition-opacity duration-700"
-        style={{
-          background: isLight 
-            ? "linear-gradient(to right, rgba(245,245,245,0.8), transparent, rgba(245,245,245,0.8))" 
-            : "linear-gradient(to right, rgba(8,6,4,0.8), transparent, rgba(8,6,4,0.8))",
-          opacity: 0.3
-        }} 
+          background: isLight
+            ? `linear-gradient(to top,  rgba(230,230,228,1) 0%, transparent 30%, rgba(230,230,228,0.6) 100%),
+               linear-gradient(to right, rgba(230,230,228,0.9) 0%, transparent 25%, rgba(230,230,228,0.9) 100%)`
+            : `linear-gradient(to top,  rgba(8,6,4,1) 0%, transparent 30%, rgba(8,6,4,0.6) 100%),
+               linear-gradient(to right, rgba(8,6,4,0.9) 0%, transparent 25%, rgba(8,6,4,0.9) 100%)`,
+        }}
       />
       
-      {/* Digital noise overlay */}
-      <div className="absolute inset-0 opacity-[0.03] mix-blend-overlay pointer-events-none" style={{ backgroundImage: "url('data:image/svg+xml;utf8,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.85%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E')" }}></div>
+      {/* Digital grain — higher in light mode for the rough granite feel */}
+      <div 
+        className={`absolute inset-0 mix-blend-overlay pointer-events-none transition-opacity duration-700 ${isLight ? 'opacity-[0.10]' : 'opacity-[0.03]'}`}
+        style={{ backgroundImage: "url('data:image/svg+xml;utf8,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.85%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E')" }}
+      />
     </div>
   );
 }
