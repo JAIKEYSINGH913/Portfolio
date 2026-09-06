@@ -60,9 +60,9 @@ export default function SkillsPage() {
         <div className="bg-label" style={{ top: -80, left: -40, opacity: 0.15, pointerEvents: "none" }}>SKILLS</div>
         
         <ScrollReveal animation="fade-up" className="relative z-10 mb-16">
-          <div className="mb-6">
-            <h1 className="text-3xl md:text-5xl font-display font-bold text-[var(--text-primary)] uppercase tracking-tight">
-              Technical <span style={{ color: "var(--accent)" }}>Arsenal</span>
+          <div className="mb-12">
+            <h1 className="display-xl text-[var(--text-primary)]">
+              Technical<br /><span style={{ color: "var(--accent)" }}>Arsenal.</span>
             </h1>
           </div>
           
