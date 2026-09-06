@@ -66,9 +66,9 @@ export default function SkillsPage() {
             </h1>
           </div>
           
-          <div className="grid grid-cols-1 border-t border-l border-[var(--border-strong)] w-full lg:w-[70vw] max-w-5xl bg-[var(--surface-translucent)]" style={{ backdropFilter: "blur(12px)" }}>
+          <div className="grid grid-cols-1 border-t border-[var(--border-strong)] w-full lg:w-[70vw] max-w-5xl bg-[var(--surface-translucent)]" style={{ backdropFilter: "blur(12px)" }}>
             {/* Matrix Cell 1 */}
-            <div className="p-8 border-r border-b border-[var(--border-strong)] hover:bg-[var(--surface-3)] transition-colors duration-300 group cursor-default">
+            <div className="p-8 border-b border-[var(--border-strong)] hover:bg-[var(--surface-3)] transition-colors duration-300 group cursor-default">
               <h2 className="font-mono text-xs tracking-widest text-[var(--text-secondary)] mb-4 group-hover:text-[var(--accent)] transition-colors">01 // ARCHITECTURE</h2>
               <h3 className="text-xl font-bold font-display text-[var(--text-primary)] mb-3 uppercase tracking-wide">Intelligent Systems</h3>
               <p className="text-[var(--text-secondary)] text-sm leading-relaxed">
@@ -77,7 +77,7 @@ export default function SkillsPage() {
             </div>
             
             {/* Matrix Cell 2 */}
-            <div className="p-8 border-r border-b border-[var(--border-strong)] hover:bg-[var(--surface-3)] transition-colors duration-300 group cursor-default">
+            <div className="p-8 border-b border-[var(--border-strong)] hover:bg-[var(--surface-3)] transition-colors duration-300 group cursor-default">
               <h2 className="font-mono text-xs tracking-widest text-[var(--text-secondary)] mb-4 group-hover:text-[var(--accent)] transition-colors">02 // DATA PIPELINES</h2>
               <h3 className="text-xl font-bold font-display text-[var(--text-primary)] mb-3 uppercase tracking-wide">Graph AI & RAG</h3>
               <p className="text-[var(--text-secondary)] text-sm leading-relaxed">
@@ -86,7 +86,7 @@ export default function SkillsPage() {
             </div>
 
             {/* Matrix Cell 3 */}
-            <div className="p-8 border-r border-b border-[var(--border-strong)] hover:bg-[var(--surface-3)] transition-colors duration-300 group cursor-default">
+            <div className="p-8 border-b border-[var(--border-strong)] hover:bg-[var(--surface-3)] transition-colors duration-300 group cursor-default">
               <h2 className="font-mono text-xs tracking-widest text-[var(--text-secondary)] mb-4 group-hover:text-[var(--accent)] transition-colors">03 // INFRASTRUCTURE</h2>
               <h3 className="text-xl font-bold font-display text-[var(--text-primary)] mb-3 uppercase tracking-wide">Cloud-Native Scale</h3>
               <p className="text-[var(--text-secondary)] text-sm leading-relaxed">
@@ -95,7 +95,7 @@ export default function SkillsPage() {
             </div>
 
             {/* Matrix Cell 4 */}
-            <div className="p-8 border-r border-b border-[var(--border-strong)] hover:bg-[var(--surface-3)] transition-colors duration-300 group cursor-default">
+            <div className="p-8 border-b border-[var(--border-strong)] hover:bg-[var(--surface-3)] transition-colors duration-300 group cursor-default">
               <h2 className="font-mono text-xs tracking-widest text-[var(--text-secondary)] mb-4 group-hover:text-[var(--accent)] transition-colors">04 // EXECUTION</h2>
               <h3 className="text-xl font-bold font-display text-[var(--text-primary)] mb-3 uppercase tracking-wide">Full-Stack Delivery</h3>
               <p className="text-[var(--text-secondary)] text-sm leading-relaxed">
@@ -106,11 +106,11 @@ export default function SkillsPage() {
         </ScrollReveal>
 
         {/* Constrain the grid strictly to 70% width */}
-        <div className="grid grid-cols-1 border-t border-l border-[var(--border-strong)] relative z-10 w-full lg:w-[70vw] max-w-5xl">
+        <div className="grid grid-cols-1 border-t border-[var(--border-strong)] relative z-10 w-full lg:w-[70vw] max-w-5xl">
           {SKILL_CATEGORIES.map((cat, i) => (
             <ScrollReveal key={cat.num} animation="fade-up" delay={i * 100} className="h-full">
               <div 
-                className="group relative h-full flex flex-col p-8 border-r border-b border-[var(--border-strong)] bg-[var(--surface-translucent)] transition-all duration-500 hover:bg-[var(--surface-3)]"
+                className="group relative h-full flex flex-col p-8 border-b border-[var(--border-strong)] bg-[var(--surface-translucent)] transition-all duration-500 hover:bg-[var(--surface-3)]"
                 style={{ backdropFilter: "blur(12px)" }}
               >
                 {/* Subtle top gradient line */}
