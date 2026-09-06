@@ -7,8 +7,23 @@ import { ThemeProvider } from "next-themes";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { FoldingGrid } from "@/components/FoldingGrid";
 import { ScrollProgressBar } from "@/components/ScrollProgressBar";
+import { useEffect } from "react";
 
 export function ClientLayout({ children }: { children: React.ReactNode }) {
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      // Disable browser's default scroll restoration
+      if ("scrollRestoration" in history) {
+        history.scrollRestoration = "manual";
+      }
+      
+      // Smoothly scroll to top on reload
+      setTimeout(() => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }, 100);
+    }
+  }, []);
+
   return (
     <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
       <ViewportHeightHandler />
