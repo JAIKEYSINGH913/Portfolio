@@ -83,7 +83,7 @@ export default function JourneyPage() {
 
       {/* ─── EDUCATION ─── */}
       <div className="section-wrap left-bias relative z-10 mb-32">
-        <div className="bg-label" style={{ top: -80, right: -40, opacity: 0.15, pointerEvents: "none" }}>ACADEMICS</div>
+        <div className="bg-label" style={{ top: -80, left: -40, opacity: 0.15, pointerEvents: "none" }}>ACADEMICS</div>
         
         <ScrollReveal animation="fade-up" className="mb-16">
           <div className="mb-12">
