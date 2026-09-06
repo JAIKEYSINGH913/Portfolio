@@ -41,7 +41,7 @@ export function FoldingGrid() {
       const isDark = resolvedTheme !== "light";
       
       // Styling
-      const strokeColor = isDark ? "rgba(200, 90, 42, 0.4)" : "rgba(0, 0, 0, 0.15)";
+      const strokeColor = "rgba(200, 90, 42, 0.4)";
       const fillColor = isDark ? "var(--canvas)" : "#F5F5F5";
       
       ctx.strokeStyle = strokeColor;
@@ -108,7 +108,7 @@ export function FoldingGrid() {
           if (!p1 || !p2 || !p3 || !p4) continue;
 
           const alpha = Math.min(1, Math.max(0, (p1.scale * 2.5) - 0.2));
-          ctx.strokeStyle = isDark ? `rgba(200, 90, 42, ${alpha * 0.6})` : `rgba(0, 0, 0, ${alpha * 0.3})`;
+          ctx.strokeStyle = `rgba(200, 90, 42, ${alpha * 0.6})`;
           
           const slope1 = terrain[y][x] - terrain[y+1][x];
           const shade1 = isDark ? Math.max(0, slope1 * 0.5) : Math.max(0, slope1 * 0.5);
