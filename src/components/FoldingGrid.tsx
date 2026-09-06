@@ -2,25 +2,12 @@
 
 import React, { useEffect, useRef } from "react";
 import { useTheme } from "next-themes";
-import { motion, useScroll, useTransform, useSpring, useMotionTemplate } from "framer-motion";
 import { usePathname } from "next/navigation";
 
 export function FoldingGrid() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const { resolvedTheme } = useTheme();
   const pathname = usePathname();
-  
-  const { scrollYProgress } = useScroll();
-  const smoothProgress = useSpring(scrollYProgress, { stiffness: 50, damping: 20 });
-  
-  // On home page, animate based on scroll. On other pages, fully expand.
-  const isHome = pathname === "/";
-  
-  const maskCore = useTransform(smoothProgress, [0, 0.45], isHome ? [30, 80] : [80, 80]);
-  const maskFade = useTransform(smoothProgress, [0, 0.45], isHome ? [70, 150] : [150, 150]);
-  
-  // Mask radiates from the right wall
-  const maskImage = useMotionTemplate`radial-gradient(ellipse at 100% 50%, black ${maskCore}%, transparent ${maskFade}%)`;
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -162,13 +149,9 @@ export function FoldingGrid() {
   }, [resolvedTheme]);
 
   return (
-    <motion.canvas 
+    <canvas 
       ref={canvasRef} 
-      className="absolute inset-0 z-0 pointer-events-none"
-      style={{
-        maskImage: maskImage,
-        WebkitMaskImage: maskImage,
-      }}
+      className="fixed inset-0 z-0 pointer-events-none"
     />
   );
 }
