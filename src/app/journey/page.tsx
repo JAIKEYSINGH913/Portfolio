@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { ScrollReveal } from "@/components/ScrollReveal";
-import { EXPERIENCE, CERTS } from "@/data/content";
+import { EXPERIENCE, CERTS, EDUCATION } from "@/data/content";
 
 function CertModal({ url, onClose }: { url: string; onClose: () => void }) {
   return (
@@ -70,6 +70,58 @@ export default function JourneyPage() {
                     {exp.points.map((pt, j) => (
                       <li key={j} className="flex items-start gap-4 text-[var(--text-secondary)] text-sm md:text-base leading-relaxed">
                         <span className="w-1.5 h-1.5 rounded-none mt-2 flex-shrink-0" style={{ backgroundColor: exp.accent || "var(--accent)" }} />
+                        {pt}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </ScrollReveal>
+          ))}
+        </div>
+      </div>
+
+      {/* ─── EDUCATION ─── */}
+      <div className="section-wrap left-bias relative z-10 mb-24">
+        <div className="bg-label" style={{ top: -80, right: -40, opacity: 0.15, pointerEvents: "none" }}>ACADEMICS</div>
+        
+        <ScrollReveal animation="fade-up" className="mb-16">
+          <div className="mb-12">
+            <h1 className="text-3xl md:text-5xl font-display font-bold text-[var(--text-primary)] uppercase tracking-tight">
+              Academic <span style={{ color: "var(--accent)" }}>Foundations.</span>
+            </h1>
+          </div>
+          <p style={{ fontSize: "1.1rem", color: "var(--text-secondary)", lineHeight: 1.8, maxWidth: "700px" }}>
+            The theoretical and academic grounding driving my engineering intuition, emphasizing systems design, computational logic, and cloud infrastructure.
+          </p>
+        </ScrollReveal>
+
+        {/* Education Matrix Grid */}
+        <div className="grid grid-cols-1 border-t border-[var(--border-strong)] relative z-10 w-full lg:w-[70vw] max-w-5xl">
+          {EDUCATION.map((edu, i) => (
+            <ScrollReveal key={i} animation="fade-up" delay={i * 100} className="h-full">
+              <div 
+                className="group relative h-full flex flex-col p-8 md:p-10 border-b border-[var(--border-strong)] bg-[var(--surface-translucent)] transition-all duration-500 hover:bg-[var(--surface-3)] overflow-hidden"
+                style={{ backdropFilter: "blur(12px)" }}
+              >
+                <div className="absolute left-0 top-0 bottom-0 w-1 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500" style={{ backgroundColor: edu.accent || "var(--accent)" }} />
+                <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[var(--accent)] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                
+                <div className="transform transition-transform duration-500 group-hover:translate-x-3 flex flex-col h-full">
+                  <div className="flex flex-wrap items-start justify-between mb-4 gap-4">
+                    <div>
+                      <h3 className="font-display font-bold text-2xl md:text-3xl text-[var(--text-primary)] leading-tight">{edu.degree}</h3>
+                      <p className="text-[var(--text-secondary)] font-mono text-sm tracking-widest mt-2 uppercase">{edu.institution}</p>
+                    </div>
+                    <span className="font-mono text-sm tracking-widest font-bold opacity-80" style={{ color: edu.accent || "var(--accent)" }}>{edu.date}</span>
+                  </div>
+                  
+                  <div className="w-16 h-1 mb-8 opacity-80" style={{ backgroundColor: edu.accent || "var(--accent)" }} />
+                  
+                  <ul className="flex flex-col gap-4">
+                    {edu.points.map((pt, j) => (
+                      <li key={j} className="flex items-start gap-4 text-[var(--text-secondary)] text-sm md:text-base leading-relaxed">
+                        <span className="w-1.5 h-1.5 rounded-none mt-2 flex-shrink-0" style={{ backgroundColor: edu.accent || "var(--accent)" }} />
                         {pt}
                       </li>
                     ))}

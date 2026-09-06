@@ -120,7 +120,7 @@ export const EXPERIENCE = [
   {
     role: "Software Engineering Intern",
     company: "Infosys Springboard India",
-    date: "Dec 2025 – Present",
+    date: "Dec 2025 – Mar 2026",
     points: [
       "Engineered scalable backend infrastructure utilizing Microservices Architecture and optimized Database Schema Design.",
       "Enhanced system throughput by implementing high-performance Data Structures and Algorithms (DSA) for complex data processing.",
@@ -146,10 +146,13 @@ export const EXPERIENCE = [
     ],
     accent: "#6BA86F",
   },
+];
+
+export const EDUCATION = [
   {
-    role: "B.Tech Computer Science and Engineering",
-    company: "NITRA Technical Campus",
-    date: "Expected: 2026",
+    degree: "B.Tech Computer Science and Engineering",
+    institution: "NITRA Technical Campus",
+    date: "Sep 2022 – June 2026",
     points: [
       "Key Coursework: Operating Systems, Database Management (DBMS), System Design, Computer Networks, OOP.",
       "Google Cloud Arcade Champion: Top-tier performer in Cloud Architecture and DevOps-focused technical challenges.",
