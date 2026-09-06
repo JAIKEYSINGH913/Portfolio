@@ -106,7 +106,7 @@ export default function Portfolio() {
         <div className="section-wrap">
           {/* Stats row */}
           <ScrollReveal animation="fade-up">
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(1, 1fr)", '@media (min-width: 768px)': { gridTemplateColumns: "repeat(3, 1fr)" }, gap: 1, background: "var(--glass-border)", borderRadius: 24, overflow: "hidden", marginBottom: "3rem" }} className="md:grid-cols-3">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-1 overflow-hidden rounded-3xl mb-12" style={{ background: "var(--glass-border)" }}>
               {[
                 { num: "100%", label: "Hallucination\nMitigation (GraphRAG)" },
                 { num: "30%", label: "Reduced API\nLatency" },
