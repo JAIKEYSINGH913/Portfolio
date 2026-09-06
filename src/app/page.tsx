@@ -73,9 +73,9 @@ function Hero() {
         <div style={{ width: "clamp(120px, 40vw, 360px)", height: 1, background: "rgba(255,255,255,0.1)", marginBottom: "1.5rem" }} />
 
         {/* Descriptor */}
-        <p className="hero-desc mb-8" style={{ textAlign: "right" }}>
-          I architect scalable, intelligent backend systems — Java microservices,
-          GraphRAG AI pipelines, and cloud-native platforms that ship to production.
+        <p className="hero-desc mb-8 max-w-lg" style={{ textAlign: "right" }}>
+          Highly analytical Full-Stack Developer & Software Engineering Intern.
+          Specializing in Distributed Systems, Cloud-Native Backend Architecture, and AI/LLM Integration.
         </p>
       </div>
 
@@ -108,9 +108,9 @@ export default function Portfolio() {
           <ScrollReveal animation="fade-up">
             <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 1, background: "rgba(255,255,255,0.07)", borderRadius: 24, overflow: "hidden", marginBottom: "6rem" }}>
               {[
-                { num: "3×", label: "Faster API\nvia caching" },
-                { num: "4+", label: "Production\nprojects shipped" },
-                { num: "95%", label: "LLM hallucination\nreduction" },
+                { num: "100%", label: "Hallucination\nMitigation (GraphRAG)" },
+                { num: "30%", label: "Reduced API\nLatency" },
+                { num: "9.2", label: "CGPA at NITRA\nTechnical Campus" },
               ].map(s => (
                 <div key={s.num} className="stat-card" style={{ padding: "3rem 2rem", textAlign: "center", background: "rgba(15,13,11,0.8)", backdropFilter: "blur(12px)" }}>
                   <div className="stat-number">{s.num}</div>
@@ -128,10 +128,10 @@ export default function Portfolio() {
                 Engineering for<br /><span style={{ color: "#C85A2A" }}>Scale & Impact.</span>
               </h2>
               <p style={{ fontSize: "1.05rem", color: "var(--text-secondary)", lineHeight: 1.8, marginBottom: "1.5rem" }}>
-                As a Software Engineer specializing in backend architecture, I don&apos;t just write code — I build robust, self-healing systems that scale under pressure.
+                Expert in engineering scalable Java/Spring Boot Microservices and high-performance cross-platform applications. I don&apos;t just write code — I build robust, self-healing systems that scale under pressure.
               </p>
               <p style={{ fontSize: "1.05rem", color: "var(--text-secondary)", lineHeight: 1.8 }}>
-                Currently pursuing my B.Tech in CSE at NITRA Technical Campus, maintaining a 9.2 CGPA while shipping production-ready applications.
+                Published researcher in GraphRAG technologies with deep expertise in System Design and end-to-end Product Development, currently pursuing my B.Tech in CSE at NITRA Technical Campus.
               </p>
             </ScrollReveal>
             <ScrollReveal animation="slide-left" delay={150}>

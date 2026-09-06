@@ -1,40 +1,40 @@
 export const SKILLS_A = [
-  { n: "Java", e: "☕" }, { n: "Spring Boot", e: "🍃" }, { n: "React", e: "⚛️" },
-  { n: "Next.js", e: "▲" }, { n: "TypeScript", e: "💙" }, { n: "Node.js", e: "🟩" },
-  { n: "Python", e: "🐍" }, { n: "GraphRAG", e: "🕸️" },
+  { n: "Java (J2EE)", e: "☕" }, { n: "Spring Boot", e: "🍃" }, { n: "Python", e: "🐍" },
+  { n: "Flutter", e: "💙" }, { n: "Kotlin", e: "📱" }, { n: "SQL", e: "🗄️" },
+  { n: "GraphRAG", e: "🕸️" }, { n: "React.js", e: "⚛️" },
 ];
 export const SKILLS_B = [
-  { n: "Neo4j", e: "🔵" }, { n: "GCP", e: "☁️" }, { n: "Docker", e: "🐳" },
-  { n: "MongoDB", e: "🍃" }, { n: "PostgreSQL", e: "🐘" }, { n: "Kubernetes", e: "⚙️" },
-  { n: "Django", e: "🎯" }, { n: "Flutter", e: "💙" },
+  { n: "Neo4j", e: "🔵" }, { n: "GCP", e: "☁️" }, { n: "MongoDB", e: "🍃" },
+  { n: "Microservices", e: "⚙️" }, { n: "FastAPI", e: "⚡" }, { n: "Dart", e: "🎯" },
+  { n: "Firebase", e: "🔥" }, { n: "System Design", e: "📐" },
 ];
 
 export const PROJECTS = [
   {
-    title: "EcoThread Backend",
-    desc: "Architected a scalable microservices backend in Java/Spring Boot for a sustainable fashion platform. Implemented JWT auth and PostgreSQL.",
-    tags: ["Java", "Spring Boot", "PostgreSQL", "Docker", "JWT"],
+    title: "NyayMitra: GraphRAG Architecture",
+    desc: "Published research at HRIT University. Hybrid Knowledge Graph using Neo4j and GraphRAG to solve statutory concept drift. Integrated Legal-BERT embeddings for sub-50ms multi-hop retrieval and 100% hallucination mitigation.",
+    tags: ["GraphRAG", "Neo4j", "Python", "Legal-BERT", "AI/LLM"],
     accent: "#6BA86F",
     num: "01",
   },
   {
-    title: "GraphRAG Engine",
-    desc: "AI knowledge retrieval system combining LLMs with Neo4j graph databases to eliminate hallucinations by 95%.",
-    tags: ["Python", "Neo4j", "OpenAI", "FastAPI"],
+    title: "BudgetWise: AI Financial Ecosystem",
+    desc: "Full-stack financial engine with automated categorization logic and real-time analytical dashboards. Implemented secure JWT Authentication and encrypted communication layers.",
+    tags: ["Java", "Spring Boot", "JWT", "PostgreSQL", "Cloud"],
     accent: "#6096BA",
     num: "02",
   },
   {
-    title: "FinDash Realtime",
-    desc: "A high-performance financial dashboard handling WebSockets for live market data visualization.",
-    tags: ["React", "TypeScript", "Tailwind", "WebSockets"],
+    title: "SoulSync: Multimedia Engine",
+    desc: "Engineered a high-performance mobile app with real-time data persistence. Integrated an AI Recommendation Engine that increased User Retention and Engagement by 28%.",
+    tags: ["Flutter", "Dart", "Firebase", "NoSQL", "Algorithms"],
     accent: "#E5A93D",
     num: "03",
   },
   {
-    title: "Cloud Infrastructure CI/CD",
-    desc: "Automated deployment pipelines to GCP using GitHub Actions, Terraform, and Docker registries. Zero-downtime deploys.",
-    tags: ["GCP", "Terraform", "GitHub Actions", "Docker"],
+    title: "SMS Spam Detection Pipeline",
+    desc: "Natural Language Processing (NLP) classifier using TF-IDF and Naive Bayes, achieving 95% Accuracy. Optimized performance via tokenization and hyperparameter tuning.",
+    tags: ["Python", "NLTK", "Scikit-Learn", "NLP", "Machine Learning"],
     accent: "#C85A2A",
     num: "04",
   },
@@ -42,44 +42,51 @@ export const PROJECTS = [
 
 export const EXPERIENCE = [
   {
-    role: "Backend Architecture Trainee",
-    company: "Tech Mahindra",
-    date: "Jun 2024 – Present",
+    role: "Software Engineering Intern",
+    company: "Infosys Springboard India",
+    date: "Dec 2025 – Present",
     points: [
-      "Designed and implemented RESTful microservices using Spring Boot and Java 17.",
-      "Optimized database queries, reducing response times by 30%.",
-      "Collaborated in an Agile team to deliver features in 2-week sprints.",
+      "Engineered scalable backend infrastructure utilizing Microservices Architecture and optimized Database Schema Design.",
+      "Enhanced system throughput by implementing high-performance Data Structures and Algorithms (DSA) for complex data processing.",
     ],
     accent: "#C85A2A",
   },
   {
-    role: "Full Stack Developer Intern",
-    company: "StartUp Inc.",
-    date: "Jan 2024 – May 2024",
+    role: "Java Backend Developer Intern",
+    company: "The Skybrisk India",
+    date: "Jun 2025 – Dec 2025",
     points: [
-      "Built a modern React frontend with Next.js and complex state management.",
-      "Developed Python automation scripts for data processing pipelines.",
-      "Set up CI/CD pipelines via GitHub Actions.",
+      "Developed and deployed production-grade RESTful APIs using Spring Boot, improving modularity and system maintainability.",
+      "Optimized complex SQL queries and indexing strategies, reducing API response latency by 30%.",
     ],
     accent: "#6096BA",
   },
   {
-    role: "B.Tech Computer Science",
-    company: "NITRA Technical Campus",
-    date: "2022 – 2026",
+    role: "AI Intern",
+    company: "TechSaksham (Microsoft & SAP Collaboration)",
+    date: "Dec 2024 – Jan 2025",
     points: [
-      "Core coursework: DSA, OS, DBMS, Computer Networks.",
-      "Vice President of the Coding Club — organized hackathons for 200+ students.",
-      "Maintaining 9.2 CGPA across 5 semesters.",
+      "Designed end-to-end Machine Learning pipelines involving Exploratory Data Analysis (EDA) and advanced Feature Engineering.",
     ],
     accent: "#6BA86F",
+  },
+  {
+    role: "B.Tech Computer Science and Engineering",
+    company: "NITRA Technical Campus",
+    date: "Expected: 2026",
+    points: [
+      "Key Coursework: Operating Systems, Database Management (DBMS), System Design, Computer Networks, OOP.",
+      "Google Cloud Arcade Champion: Top-tier performer in Cloud Architecture and DevOps-focused technical challenges.",
+      "Reliance Foundation Scholar (2022): Prestigious national scholarship awarded for exceptional academic and leadership merit.",
+    ],
+    accent: "#E5A93D",
   },
 ];
 
 export const CERTS = [
-  { name: "Big Data & Hadoop", url: "https://drive.google.com/file/d/1MdiT7AG94_l482c6DyL8qfBmxrH3n76I/preview", color: "#6096BA" },
-  { name: "Android App Dev", url: "https://drive.google.com/file/d/1yJKvzYBPgMcD_yzs2uPGchgxFOme_Mea/preview", color: "#6BA86F" },
-  { name: "Java Fundamentals", url: "https://drive.google.com/file/d/1phjadKG2GQzZ55n55yvBS7jQIWIFZHZO/preview", color: "#E5A93D" },
-  { name: "Agile Development", url: "https://drive.google.com/file/d/1FQ9vPboe0u6QcQv6QX2cXEEhNDQ9V2cD/preview", color: "#C85A2A" },
-  { name: "Gen AI Overview", url: "https://drive.google.com/file/d/1cY7SivizIIM_Lm15HlLXT4LAr9cRb_dW/preview", color: "#B460BA" },
+  { name: "Big Data & Cloud Computing (YBI)", url: "https://drive.google.com/file/d/1MdiT7AG94_l482c6DyL8qfBmxrH3n76I/preview", color: "#6096BA" },
+  { name: "Professional Android & Kotlin", url: "https://drive.google.com/file/d/1yJKvzYBPgMcD_yzs2uPGchgxFOme_Mea/preview", color: "#6BA86F" },
+  { name: "Java Foundation (Infosys)", url: "https://drive.google.com/file/d/1phjadKG2GQzZ55n55yvBS7jQIWIFZHZO/preview", color: "#E5A93D" },
+  { name: "Agile Software Development", url: "https://drive.google.com/file/d/1FQ9vPboe0u6QcQv6QX2cXEEhNDQ9V2cD/preview", color: "#C85A2A" },
+  { name: "Gen AI & LLM Fundamentals", url: "https://drive.google.com/file/d/1cY7SivizIIM_Lm15HlLXT4LAr9cRb_dW/preview", color: "#B460BA" },
 ];
