@@ -43,7 +43,7 @@ export function FoldingGrid() {
 
     // Grid configuration
     const size = 90; // Size of each cell
-    const cols = Math.floor(width / size) + 12;
+    const cols = Math.floor(width / size) + 40; // Increased to cover all corners perfectly
     const rows = 35; // How far into the distance it renders
     
     let flying = 0;
@@ -61,7 +61,7 @@ export function FoldingGrid() {
       ctx.fillStyle = fillColor;
       ctx.lineWidth = 1.5;
 
-      flying -= 0.04; // Speed of forward motion
+      flying -= 0.01; // Reduced speed of forward motion
       
       // Generate terrain heights using intersecting sine waves for "folding zig-zag"
       const terrain: number[][] = [];

@@ -16,15 +16,15 @@ function AmbientCanvas() {
     window.addEventListener("resize", onResize);
     const pts = Array.from({ length: 22 }, () => ({
       x: Math.random() * w, y: Math.random() * h,
-      vx: (Math.random() - 0.5) * 0.15, vy: -0.08 - Math.random() * 0.25,
+      vx: (Math.random() - 0.5) * 0.05, vy: -0.04 - Math.random() * 0.1,
       r: Math.random() * 1.8 + 0.5, sw: Math.random() * Math.PI * 2,
     }));
     let raf: number, t = 0;
     const draw = () => {
       ctx.clearRect(0, 0, w, h);
-      t += 0.008;
+      t += 0.003;
       pts.forEach(p => {
-        p.x += p.vx + Math.sin(t + p.sw) * 0.25;
+        p.x += p.vx + Math.sin(t + p.sw) * 0.1;
         p.y += p.vy;
         if (p.y < -60) { p.y = h + 60; p.x = Math.random() * w; }
         const alpha = 0.15 + Math.sin(t * 2 + p.sw) * 0.08;
