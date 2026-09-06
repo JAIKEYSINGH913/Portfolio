@@ -68,39 +68,51 @@ export default function SkillsPage() {
           
           <div className="grid grid-cols-1 border-t border-[var(--border-strong)] w-full lg:w-[70vw] max-w-5xl bg-[var(--surface-translucent)]" style={{ backdropFilter: "blur(12px)" }}>
             {/* Matrix Cell 1 */}
-            <div className="p-8 border-b border-[var(--border-strong)] hover:bg-[var(--surface-3)] transition-colors duration-300 group cursor-default">
-              <h2 className="font-mono text-xs tracking-widest text-[var(--text-secondary)] mb-4 group-hover:text-[var(--accent)] transition-colors">01 // ARCHITECTURE</h2>
-              <h3 className="text-xl font-bold font-display text-[var(--text-primary)] mb-3 uppercase tracking-wide">Intelligent Systems</h3>
-              <p className="text-[var(--text-secondary)] text-sm leading-relaxed">
-                Specializing in distributed backend infrastructure, orchestrating high-throughput microservices engineered for zero-downtime and massive scale from the ground up.
-              </p>
+            <div className="relative p-8 border-b border-[var(--border-strong)] hover:bg-[var(--surface-3)] transition-all duration-500 group cursor-default overflow-hidden">
+              <div className="absolute left-0 top-0 bottom-0 w-1 bg-[var(--accent)] transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500" />
+              <div className="transform transition-transform duration-500 group-hover:translate-x-3">
+                <h2 className="font-mono text-xs tracking-widest text-[var(--text-secondary)] mb-4 group-hover:text-[var(--accent)] transition-colors">01 // ARCHITECTURE</h2>
+                <h3 className="text-xl font-bold font-display text-[var(--text-primary)] mb-3 uppercase tracking-wide">Intelligent Systems</h3>
+                <p className="text-[var(--text-secondary)] text-sm leading-relaxed">
+                  Specializing in distributed backend infrastructure, orchestrating high-throughput microservices engineered for zero-downtime and massive scale from the ground up.
+                </p>
+              </div>
             </div>
             
             {/* Matrix Cell 2 */}
-            <div className="p-8 border-b border-[var(--border-strong)] hover:bg-[var(--surface-3)] transition-colors duration-300 group cursor-default">
-              <h2 className="font-mono text-xs tracking-widest text-[var(--text-secondary)] mb-4 group-hover:text-[var(--accent)] transition-colors">02 // DATA PIPELINES</h2>
-              <h3 className="text-xl font-bold font-display text-[var(--text-primary)] mb-3 uppercase tracking-wide">Graph AI & RAG</h3>
-              <p className="text-[var(--text-secondary)] text-sm leading-relaxed">
-                Pioneering hybrid Knowledge Graph topologies and advanced LLM integrations to eliminate hallucinations and achieve sub-50ms deterministic data retrieval.
-              </p>
+            <div className="relative p-8 border-b border-[var(--border-strong)] hover:bg-[var(--surface-3)] transition-all duration-500 group cursor-default overflow-hidden">
+              <div className="absolute left-0 top-0 bottom-0 w-1 bg-[var(--accent)] transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500" />
+              <div className="transform transition-transform duration-500 group-hover:translate-x-3">
+                <h2 className="font-mono text-xs tracking-widest text-[var(--text-secondary)] mb-4 group-hover:text-[var(--accent)] transition-colors">02 // DATA PIPELINES</h2>
+                <h3 className="text-xl font-bold font-display text-[var(--text-primary)] mb-3 uppercase tracking-wide">Graph AI & RAG</h3>
+                <p className="text-[var(--text-secondary)] text-sm leading-relaxed">
+                  Pioneering hybrid Knowledge Graph topologies and advanced LLM integrations to eliminate hallucinations and achieve sub-50ms deterministic data retrieval.
+                </p>
+              </div>
             </div>
 
             {/* Matrix Cell 3 */}
-            <div className="p-8 border-b border-[var(--border-strong)] hover:bg-[var(--surface-3)] transition-colors duration-300 group cursor-default">
-              <h2 className="font-mono text-xs tracking-widest text-[var(--text-secondary)] mb-4 group-hover:text-[var(--accent)] transition-colors">03 // INFRASTRUCTURE</h2>
-              <h3 className="text-xl font-bold font-display text-[var(--text-primary)] mb-3 uppercase tracking-wide">Cloud-Native Scale</h3>
-              <p className="text-[var(--text-secondary)] text-sm leading-relaxed">
-                Deep expertise in container orchestration, bare-metal server deployment, and designing highly resilient, autonomous CI/CD automation pipelines.
-              </p>
+            <div className="relative p-8 border-b border-[var(--border-strong)] hover:bg-[var(--surface-3)] transition-all duration-500 group cursor-default overflow-hidden">
+              <div className="absolute left-0 top-0 bottom-0 w-1 bg-[var(--accent)] transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500" />
+              <div className="transform transition-transform duration-500 group-hover:translate-x-3">
+                <h2 className="font-mono text-xs tracking-widest text-[var(--text-secondary)] mb-4 group-hover:text-[var(--accent)] transition-colors">03 // INFRASTRUCTURE</h2>
+                <h3 className="text-xl font-bold font-display text-[var(--text-primary)] mb-3 uppercase tracking-wide">Cloud-Native Scale</h3>
+                <p className="text-[var(--text-secondary)] text-sm leading-relaxed">
+                  Deep expertise in container orchestration, bare-metal server deployment, and designing highly resilient, autonomous CI/CD automation pipelines.
+                </p>
+              </div>
             </div>
 
             {/* Matrix Cell 4 */}
-            <div className="p-8 border-b border-[var(--border-strong)] hover:bg-[var(--surface-3)] transition-colors duration-300 group cursor-default">
-              <h2 className="font-mono text-xs tracking-widest text-[var(--text-secondary)] mb-4 group-hover:text-[var(--accent)] transition-colors">04 // EXECUTION</h2>
-              <h3 className="text-xl font-bold font-display text-[var(--text-primary)] mb-3 uppercase tracking-wide">Full-Stack Delivery</h3>
-              <p className="text-[var(--text-secondary)] text-sm leading-relaxed">
-                Bridging rigorous backend engines with fluid, reactive cross-platform client interfaces utilizing modern component-driven paradigms.
-              </p>
+            <div className="relative p-8 border-b border-[var(--border-strong)] hover:bg-[var(--surface-3)] transition-all duration-500 group cursor-default overflow-hidden">
+              <div className="absolute left-0 top-0 bottom-0 w-1 bg-[var(--accent)] transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500" />
+              <div className="transform transition-transform duration-500 group-hover:translate-x-3">
+                <h2 className="font-mono text-xs tracking-widest text-[var(--text-secondary)] mb-4 group-hover:text-[var(--accent)] transition-colors">04 // EXECUTION</h2>
+                <h3 className="text-xl font-bold font-display text-[var(--text-primary)] mb-3 uppercase tracking-wide">Full-Stack Delivery</h3>
+                <p className="text-[var(--text-secondary)] text-sm leading-relaxed">
+                  Bridging rigorous backend engines with fluid, reactive cross-platform client interfaces utilizing modern component-driven paradigms.
+                </p>
+              </div>
             </div>
           </div>
         </ScrollReveal>
@@ -110,37 +122,39 @@ export default function SkillsPage() {
           {SKILL_CATEGORIES.map((cat, i) => (
             <ScrollReveal key={cat.num} animation="fade-up" delay={i * 100} className="h-full">
               <div 
-                className="group relative h-full flex flex-col p-8 border-b border-[var(--border-strong)] bg-[var(--surface-translucent)] transition-all duration-500 hover:bg-[var(--surface-3)]"
+                className="group relative h-full flex flex-col p-8 border-b border-[var(--border-strong)] bg-[var(--surface-translucent)] transition-all duration-500 hover:bg-[var(--surface-3)] overflow-hidden"
                 style={{ backdropFilter: "blur(12px)" }}
               >
-                {/* Subtle top gradient line */}
+                <div className="absolute left-0 top-0 bottom-0 w-1 bg-[var(--accent)] transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500" />
                 <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[var(--accent)] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-                {/* Number & Title */}
-                <div className="flex items-start justify-between mb-4">
-                  <h3 className="font-display font-bold text-xl md:text-2xl text-[var(--text-primary)] leading-tight max-w-[80%]">
-                    {cat.title}
-                  </h3>
-                  <span className="font-mono text-xs tracking-widest text-[var(--accent)] opacity-50 font-bold ml-2">
-                    {cat.num}
-                  </span>
-                </div>
-
-                {/* Description */}
-                <p className="text-[var(--text-secondary)] text-sm md:text-base leading-relaxed mb-6 flex-grow">
-                  {cat.desc}
-                </p>
-
-                {/* Skill Tags */}
-                <div className="flex flex-wrap gap-2 mt-auto pt-4 border-t border-[var(--glass-border)] group-hover:border-[var(--accent-glow)] transition-colors duration-500">
-                  {cat.skills.map(skill => (
-                    <span 
-                      key={skill} 
-                      className="px-3 py-1.5 font-mono text-[10px] font-bold tracking-widest uppercase border border-[var(--border-strong)] text-[var(--text-primary)] bg-[var(--surface-2)] group-hover:border-[var(--accent-glow)] group-hover:bg-[var(--accent-light)] transition-colors duration-300"
-                    >
-                      {skill}
+                <div className="transform transition-transform duration-500 group-hover:translate-x-3 flex flex-col h-full">
+                  {/* Number & Title */}
+                  <div className="flex items-start justify-between mb-4">
+                    <h3 className="font-display font-bold text-xl md:text-2xl text-[var(--text-primary)] leading-tight max-w-[80%]">
+                      {cat.title}
+                    </h3>
+                    <span className="font-mono text-xs tracking-widest text-[var(--accent)] opacity-50 font-bold ml-2">
+                      {cat.num}
                     </span>
-                  ))}
+                  </div>
+
+                  {/* Description */}
+                  <p className="text-[var(--text-secondary)] text-sm md:text-base leading-relaxed mb-6 flex-grow">
+                    {cat.desc}
+                  </p>
+
+                  {/* Skill Tags */}
+                  <div className="flex flex-wrap gap-2 mt-auto pt-4 border-t border-[var(--glass-border)] group-hover:border-[var(--accent-glow)] transition-colors duration-500">
+                    {cat.skills.map(skill => (
+                      <span 
+                        key={skill} 
+                        className="px-3 py-1.5 font-mono text-[10px] font-bold tracking-widest uppercase border border-[var(--border-strong)] text-[var(--text-primary)] bg-[var(--surface-2)] group-hover:border-[var(--accent-glow)] group-hover:bg-[var(--accent-light)] transition-colors duration-300"
+                      >
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </div>
             </ScrollReveal>
