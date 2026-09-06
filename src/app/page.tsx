@@ -102,18 +102,18 @@ export default function Portfolio() {
       <Hero />
 
       {/* ─── ABOUT ─── */}
-      <section id="about" className="relative z-10" style={{ paddingTop: "4rem", paddingBottom: "6rem" }}>
+      <section id="about" className="relative z-10" style={{ paddingTop: "2rem", paddingBottom: "3rem" }}>
         <div className="section-wrap">
           {/* Stats row */}
           <ScrollReveal animation="fade-up">
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 1, background: "var(--glass-border)", borderRadius: 24, overflow: "hidden", marginBottom: "6rem" }}>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(1, 1fr)", '@media (min-width: 768px)': { gridTemplateColumns: "repeat(3, 1fr)" }, gap: 1, background: "var(--glass-border)", borderRadius: 24, overflow: "hidden", marginBottom: "3rem" }} className="md:grid-cols-3">
               {[
                 { num: "100%", label: "Hallucination\nMitigation (GraphRAG)" },
                 { num: "30%", label: "Reduced API\nLatency" },
                 { num: "9.2", label: "CGPA at NITRA\nTechnical Campus" },
               ].map(s => (
-                <div key={s.num} className="stat-card" style={{ padding: "3rem 2rem", textAlign: "center", background: "var(--surface-translucent)", backdropFilter: "blur(12px)" }}>
-                  <div className="stat-number">{s.num}</div>
+                <div key={s.num} className="stat-card" style={{ padding: "2rem 1.5rem", textAlign: "center", background: "var(--surface-translucent)", backdropFilter: "blur(12px)" }}>
+                  <div className="stat-number" style={{ fontSize: "clamp(2rem, 4vw, 3.5rem)" }}>{s.num}</div>
                   <div className="stat-label" style={{ whiteSpace: "pre-line" }}>{s.label}</div>
                 </div>
               ))}
@@ -121,22 +121,22 @@ export default function Portfolio() {
           </ScrollReveal>
 
           {/* Bio */}
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "5rem", alignItems: "center" }}>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
             <ScrollReveal animation="slide-right">
-              <p className="eyebrow" style={{ marginBottom: "1.5rem" }}>The Architecture</p>
-              <h2 className="display-lg" style={{ marginBottom: "2rem" }}>
+              <p className="eyebrow" style={{ marginBottom: "1rem" }}>The Architecture</p>
+              <h2 className="display-lg" style={{ marginBottom: "1.5rem" }}>
                 Engineering for<br /><span style={{ color: "#C85A2A" }}>Scale & Impact.</span>
               </h2>
-              <p style={{ fontSize: "1.05rem", color: "var(--text-secondary)", lineHeight: 1.8, marginBottom: "1.5rem" }}>
+              <p style={{ fontSize: "1rem", color: "var(--text-secondary)", lineHeight: 1.6, marginBottom: "1rem" }}>
                 Expert in engineering scalable Java/Spring Boot Microservices and high-performance cross-platform applications. I don&apos;t just write code — I build robust, self-healing systems that scale under pressure.
               </p>
-              <p style={{ fontSize: "1.05rem", color: "var(--text-secondary)", lineHeight: 1.8 }}>
+              <p style={{ fontSize: "1rem", color: "var(--text-secondary)", lineHeight: 1.6 }}>
                 Published researcher in GraphRAG technologies with deep expertise in System Design and end-to-end Product Development, currently pursuing my B.Tech in CSE at NITRA Technical Campus.
               </p>
             </ScrollReveal>
             <ScrollReveal animation="slide-left" delay={150}>
-              <blockquote style={{ borderLeft: "3px solid #C85A2A", paddingLeft: "2rem", margin: 0 }}>
-                <p style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1.4rem,3vw,2.2rem)", fontWeight: 700, lineHeight: 1.3, letterSpacing: "-0.02em", color: "var(--text-primary)", marginBottom: "1rem" }}>
+              <blockquote style={{ borderLeft: "3px solid #C85A2A", paddingLeft: "1.5rem", margin: 0 }}>
+                <p style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1.2rem, 2.5vw, 1.8rem)", fontWeight: 700, lineHeight: 1.3, letterSpacing: "-0.02em", color: "var(--text-primary)", marginBottom: "0.5rem" }}>
                   &ldquo;Code is the closest thing we have to a superpower.&rdquo;
                 </p>
                 <cite style={{ fontFamily: "var(--font-mono)", fontSize: 10, letterSpacing: "0.15em", textTransform: "uppercase", color: "#C85A2A", fontStyle: "normal" }}>— Jaikey Singh</cite>
