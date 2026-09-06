@@ -102,31 +102,16 @@ export default function Portfolio() {
       <Hero />
 
       {/* ─── ABOUT ─── */}
-      <section id="about" className="relative z-10" style={{ paddingTop: "2rem", paddingBottom: "3rem" }}>
-        <div className="bg-label" style={{ top: -60, right: -40, pointerEvents: "none" }}>ABOUT</div>
-        <div className="section-wrap relative z-10">
-          {/* Stats row */}
-          <ScrollReveal animation="fade-up">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-1 overflow-hidden rounded-3xl mb-12" style={{ background: "var(--glass-border)" }}>
-              {[
-                { num: "100%", label: "Hallucination\nMitigation (GraphRAG)" },
-                { num: "30%", label: "Reduced API\nLatency" },
-                { num: "9.2", label: "CGPA at NITRA\nTechnical Campus" },
-              ].map(s => (
-                <div key={s.num} className="stat-card" style={{ padding: "2rem 1.5rem", textAlign: "center", background: "var(--surface-translucent)", backdropFilter: "blur(12px)" }}>
-                  <div className="stat-number" style={{ fontSize: "clamp(2rem, 4vw, 3.5rem)" }}>{s.num}</div>
-                  <div className="stat-label" style={{ whiteSpace: "pre-line" }}>{s.label}</div>
-                </div>
-              ))}
-            </div>
-          </ScrollReveal>
-
+      <section id="about" className="relative z-10" style={{ paddingTop: "2rem", paddingBottom: "6rem" }}>
+        <div className="bg-label" style={{ top: -60, left: -40, opacity: 0.15, pointerEvents: "none" }}>ABOUT</div>
+        <div className="section-wrap left-bias relative z-10">
+          
           {/* Bio */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center mb-16">
             <ScrollReveal animation="slide-right">
               <p className="eyebrow" style={{ marginBottom: "1rem" }}>The Architecture</p>
               <h2 className="display-lg" style={{ marginBottom: "1.5rem" }}>
-                Engineering for<br /><span style={{ color: "#C85A2A" }}>Scale & Impact.</span>
+                Engineering for<br /><span style={{ color: "var(--accent)" }}>Scale & Impact.</span>
               </h2>
               <p style={{ fontSize: "1rem", color: "var(--text-secondary)", lineHeight: 1.6, marginBottom: "1rem" }}>
                 Expert in engineering scalable Java/Spring Boot Microservices and high-performance cross-platform applications. I don&apos;t just write code — I build robust, self-healing systems that scale under pressure.
@@ -136,14 +121,32 @@ export default function Portfolio() {
               </p>
             </ScrollReveal>
             <ScrollReveal animation="slide-left" delay={150}>
-              <blockquote style={{ borderLeft: "3px solid #C85A2A", paddingLeft: "1.5rem", margin: 0 }}>
+              <blockquote style={{ borderLeft: "3px solid var(--accent)", paddingLeft: "1.5rem", margin: 0 }}>
                 <p style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1.2rem, 2.5vw, 1.8rem)", fontWeight: 700, lineHeight: 1.3, letterSpacing: "-0.02em", color: "var(--text-primary)", marginBottom: "0.5rem" }}>
                   &ldquo;Code is the closest thing we have to a superpower.&rdquo;
                 </p>
-                <cite style={{ fontFamily: "var(--font-mono)", fontSize: 10, letterSpacing: "0.15em", textTransform: "uppercase", color: "#C85A2A", fontStyle: "normal" }}>— Jaikey Singh</cite>
+                <cite style={{ fontFamily: "var(--font-mono)", fontSize: 10, letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--accent)", fontStyle: "normal" }}>— Jaikey Singh</cite>
               </blockquote>
             </ScrollReveal>
           </div>
+
+          {/* Stats row */}
+          <ScrollReveal animation="fade-up">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-[1px] bg-[var(--border-strong)] border border-[var(--border-strong)]">
+              {[
+                { num: "100%", label: "Hallucination\nMitigation (GraphRAG)" },
+                { num: "30%", label: "Reduced API\nLatency" },
+                { num: "9.2", label: "CGPA at NITRA\nTechnical Campus" },
+              ].map((s, i) => (
+                <div key={s.num} className="stat-card group relative p-8 text-center bg-[var(--surface-translucent)] hover:bg-[var(--surface-3)] transition-colors duration-500 overflow-hidden" style={{ backdropFilter: "blur(12px)" }}>
+                  <div className="absolute top-0 left-0 w-full h-[2px] bg-[var(--accent)] transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500" />
+                  <div className="stat-number transition-transform duration-500 group-hover:-translate-y-1" style={{ fontSize: "clamp(2rem, 4vw, 3.5rem)" }}>{s.num}</div>
+                  <div className="stat-label transition-transform duration-500 group-hover:translate-y-1" style={{ whiteSpace: "pre-line" }}>{s.label}</div>
+                </div>
+              ))}
+            </div>
+          </ScrollReveal>
+
         </div>
       </section>
 
