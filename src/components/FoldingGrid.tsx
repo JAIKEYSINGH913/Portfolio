@@ -16,11 +16,11 @@ export function FoldingGrid() {
   // On home page, animate based on scroll. On other pages, fully expand.
   const isHome = pathname === "/";
   
-  const maskPositionX = useTransform(smoothProgress, [0, 0.45], isHome ? [80, 50] : [50, 50]);
   const maskCore = useTransform(smoothProgress, [0, 0.45], isHome ? [30, 80] : [80, 80]);
   const maskFade = useTransform(smoothProgress, [0, 0.45], isHome ? [70, 150] : [150, 150]);
   
-  const maskImage = useMotionTemplate`radial-gradient(ellipse at ${maskPositionX}% 100%, black ${maskCore}%, transparent ${maskFade}%)`;
+  // Mask radiates from the right wall
+  const maskImage = useMotionTemplate`radial-gradient(ellipse at 100% 50%, black ${maskCore}%, transparent ${maskFade}%)`;
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -43,8 +43,8 @@ export function FoldingGrid() {
 
     // Grid configuration
     const size = 90; // Size of each cell
-    const cols = Math.floor(width / size) + 40; // Increased to cover all corners perfectly
-    const rows = 35; // How far into the distance it renders
+    const cols = Math.floor(height / size) + 40; // Now represents vertical segments
+    const rows = 35; // Depth into the screen
     
     let flying = 0;
 
@@ -63,14 +63,13 @@ export function FoldingGrid() {
 
       flying -= 0.01; // Reduced speed of forward motion
       
-      // Generate terrain heights using intersecting sine waves for "folding zig-zag"
+      // Generate terrain heights (protrusions from the wall)
       const terrain: number[][] = [];
       let yOff = flying;
       for (let y = 0; y < rows; y++) {
         let xOff = 0;
         terrain[y] = [];
         for (let x = 0; x < cols; x++) {
-          // Creates a zig-zag folding pattern
           terrain[y][x] = Math.sin(xOff) * Math.cos(yOff) * 80;
           xOff += 0.3;
         }
@@ -78,21 +77,25 @@ export function FoldingGrid() {
       }
 
       ctx.save();
-      // Center the origin at the bottom of the screen
-      ctx.translate(width / 2, height - 100);
+      // Center origin at the middle of the RIGHT wall
+      ctx.translate(width, height / 2);
 
-      // 3D to 2D projection function
+      // 3D to 2D projection function for a right wall
       const project = (x: number, y: number, z: number) => {
-        // World coordinates
-        const wx = (x - cols / 2) * size;
-        const wy = z; // elevation
-        const wz = y * size; // depth into screen
+        // x goes from 0 to cols (vertical span)
+        // y goes from 0 to rows (depth into screen)
+        // z goes from -80 to 80 (protrusion)
 
-        // Camera position
-        const camY = 150; // height above grid
+        const wx = -z; // Protrudes left from the right wall
+        const wy = (x - cols / 2) * size; // Vertical span
+        const wz = y * size; // Depth
+
+        // Camera position (stand slightly to the left, look right)
+        const camX = 150; 
+        const camY = 0; 
         const camZ = -200; 
 
-        const rx = wx;
+        const rx = wx - camX;
         const ry = wy - camY;
         const rz = wz - camZ;
 
@@ -104,10 +107,9 @@ export function FoldingGrid() {
         return { x: rx * scale, y: ry * scale, scale };
       };
 
-      // Render back-to-front for proper overlapping (Painter's Algorithm)
+      // Render back-to-front
       for (let y = rows - 2; y >= 0; y--) {
         for (let x = 0; x < cols - 1; x++) {
-          // Calculate grid offset to make perfectly equilateral/isometric triangles
           const xOffsetCurrentRow = (y % 2 === 0) ? 0 : 0.5;
           const xOffsetNextRow = ((y + 1) % 2 === 0) ? 0 : 0.5;
 
@@ -118,17 +120,13 @@ export function FoldingGrid() {
 
           if (!p1 || !p2 || !p3 || !p4) continue;
 
-          // Fade out in the distance based on scale
           const alpha = Math.min(1, Math.max(0, (p1.scale * 2.5) - 0.2));
           ctx.strokeStyle = isDark ? `rgba(200, 90, 42, ${alpha * 0.6})` : `rgba(0, 0, 0, ${alpha * 0.3})`;
           
-          // To create a shading effect on the folds, we vary the fill slightly
-          // based on the slope of the triangle.
           const slope1 = terrain[y][x] - terrain[y+1][x];
           const shade1 = isDark ? Math.max(0, slope1 * 0.5) : Math.max(0, slope1 * 0.5);
           ctx.fillStyle = isDark ? `rgb(${8 + shade1}, ${6 + shade1}, ${4 + shade1})` : `rgb(${245 - shade1}, ${245 - shade1}, ${245 - shade1})`;
 
-          // Triangle 1 (Left/Top)
           ctx.beginPath();
           ctx.moveTo(p1.x, p1.y);
           ctx.lineTo(p2.x, p2.y);
@@ -141,7 +139,6 @@ export function FoldingGrid() {
           const shade2 = isDark ? Math.max(0, slope2 * 0.5) : Math.max(0, slope2 * 0.5);
           ctx.fillStyle = isDark ? `rgb(${8 + shade2}, ${6 + shade2}, ${4 + shade2})` : `rgb(${245 - shade2}, ${245 - shade2}, ${245 - shade2})`;
 
-          // Triangle 2 (Right/Bottom)
           ctx.beginPath();
           ctx.moveTo(p2.x, p2.y);
           ctx.lineTo(p4.x, p4.y);
