@@ -24,9 +24,9 @@ export default function ContactPage() {
         <div className="bg-label" style={{ top: -80, left: -40, opacity: 0.15, pointerEvents: "none" }}>CONTACT</div>
         
         <ScrollReveal animation="fade-up" className="mb-16">
-          <div className="mb-6">
-            <h1 className="text-3xl md:text-5xl font-display font-bold text-[var(--text-primary)] uppercase tracking-tight">
-              Initiate <span style={{ color: "var(--accent)" }}>Protocol</span>
+          <div className="mb-12">
+            <h1 className="display-xl text-[var(--text-primary)]">
+              Initiate<br /><span style={{ color: "var(--accent)" }}>Protocol.</span>
             </h1>
           </div>
           <p style={{ fontSize: "1.1rem", color: "var(--text-secondary)", lineHeight: 1.8, maxWidth: "700px" }}>

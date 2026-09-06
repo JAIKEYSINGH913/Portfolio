@@ -34,9 +34,9 @@ export default function JourneyPage() {
         <div className="bg-label" style={{ top: -80, left: -40, opacity: 0.15, pointerEvents: "none" }}>JOURNEY</div>
         
         <ScrollReveal animation="fade-up" className="mb-16">
-          <div className="mb-6">
-            <h1 className="text-3xl md:text-5xl font-display font-bold text-[var(--text-primary)] uppercase tracking-tight">
-              Professional <span style={{ color: "var(--accent)" }}>Timeline</span>
+          <div className="mb-12">
+            <h1 className="display-xl text-[var(--text-primary)]">
+              Professional<br /><span style={{ color: "var(--accent)" }}>Timeline.</span>
             </h1>
           </div>
           <p style={{ fontSize: "1.1rem", color: "var(--text-secondary)", lineHeight: 1.8, maxWidth: "700px" }}>
