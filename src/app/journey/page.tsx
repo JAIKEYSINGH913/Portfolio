@@ -82,8 +82,8 @@ export default function JourneyPage() {
       </div>
 
       {/* ─── EDUCATION ─── */}
-      <div className="section-wrap left-bias relative z-10 mb-32">
-        <div className="bg-label" style={{ top: -80, left: -40, opacity: 0.15, pointerEvents: "none" }}>ACADEMICS</div>
+      <div className="section-wrap left-bias relative z-10 mb-32 pt-20">
+        <div className="bg-label" style={{ top: 0, left: -40, opacity: 0.15, pointerEvents: "none" }}>ACADEMICS</div>
         
         <ScrollReveal animation="fade-up" className="mb-16">
           <div className="mb-12">
@@ -134,8 +134,8 @@ export default function JourneyPage() {
       </div>
 
       {/* ─── CERTIFICATIONS ─── */}
-      <div className="section-wrap left-bias relative z-10 mb-32">
-        <div className="bg-label" style={{ top: -80, right: -40, opacity: 0.15, pointerEvents: "none" }}>CERTS</div>
+      <div className="section-wrap left-bias relative z-10 mb-32 pt-20">
+        <div className="bg-label" style={{ top: 0, left: -40, opacity: 0.15, pointerEvents: "none" }}>CERTS</div>
         
         <ScrollReveal animation="fade-up" className="mb-16">
           <div className="mb-6">
