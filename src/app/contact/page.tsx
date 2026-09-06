@@ -10,7 +10,7 @@ export default function ContactPage() {
     <div className="w-full relative text-white" style={{ paddingTop: '8rem', paddingBottom: '4rem' }}>
       <section id="contact" className="relative z-10">
         <div className="bg-label" style={{ top: -60, left: 0 }}>CONTACT</div>
-        <div className="section-wrap">
+        <div className="section-wrap left-bias">
           <ScrollReveal animation="fade-up">
             <p className="eyebrow" style={{ marginBottom: "1rem", textAlign: "center" }}>Let&apos;s Collaborate</p>
             <h2 className="display-lg" style={{ textAlign: "center", marginBottom: "5rem" }}>Let&apos;s build<br /><span style={{ color: "#C85A2A" }}>Something.</span></h2>

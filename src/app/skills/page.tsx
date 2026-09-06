@@ -45,7 +45,7 @@ export default function SkillsPage() {
         </div>
       </div>
 
-      <div className="section-wrap mt-16 md:mt-24 relative">
+      <div className="section-wrap left-bias mt-16 md:mt-24 relative">
         <div className="bg-label" style={{ top: -80, left: -40, pointerEvents: "none" }}>SKILLS</div>
         <ScrollReveal animation="fade-up" className="relative z-10">
           <p className="eyebrow" style={{ marginBottom: "1.5rem" }}>Technical Arsenal</p>

@@ -33,7 +33,7 @@ export default function JourneyPage() {
       {/* ─── EXPERIENCE ─── */}
       <section id="experience" className="relative z-10" style={{ paddingBottom: "8rem" }}>
         <div className="bg-label" style={{ top: "20%", left: -40 }}>EXP.</div>
-        <div className="section-wrap">
+        <div className="section-wrap left-bias">
           <ScrollReveal animation="fade-up">
             <p className="eyebrow" style={{ marginBottom: "1rem", textAlign: "center" }}>The Journey</p>
             <h2 className="display-lg" style={{ textAlign: "center", marginBottom: "5rem" }}>Professional<br /><span style={{ color: "#C85A2A" }}>Timeline.</span></h2>
@@ -71,7 +71,7 @@ export default function JourneyPage() {
       {/* ─── CERTIFICATIONS ─── */}
       <section id="certifications" className="relative z-10" style={{ paddingTop: "8rem", paddingBottom: "8rem", background: "var(--surface-translucent)", backdropFilter: "blur(12px)" }}>
         <div className="bg-label" style={{ top: 0, right: -40, color: "var(--text-primary)" }}>CERTS</div>
-        <div className="section-wrap">
+        <div className="section-wrap left-bias">
           <ScrollReveal animation="fade-up">
             <p className="eyebrow" style={{ marginBottom: "1rem" }}>Verified Credentials</p>
             <h2 className="display-lg" style={{ marginBottom: "4rem" }}>Continuous<br /><span style={{ color: "#C88A2A" }}>Learning.</span></h2>
