@@ -32,7 +32,7 @@ export default function JourneyPage() {
     <div className="w-full relative text-white" style={{ paddingTop: '8rem', paddingBottom: '4rem' }}>
       {/* ─── EXPERIENCE ─── */}
       <section id="experience" className="relative z-10" style={{ paddingBottom: "8rem" }}>
-        <div className="bg-label" style={{ top: "20%", left: -40, opacity: 0.3 }}>EXP.</div>
+        <div className="bg-label" style={{ top: "20%", left: -40 }}>EXP.</div>
         <div className="section-wrap">
           <ScrollReveal animation="fade-up">
             <p className="eyebrow" style={{ marginBottom: "1rem", textAlign: "center" }}>The Journey</p>
@@ -70,7 +70,7 @@ export default function JourneyPage() {
 
       {/* ─── CERTIFICATIONS ─── */}
       <section id="certifications" className="relative z-10" style={{ paddingTop: "8rem", paddingBottom: "8rem", background: "var(--surface-translucent)", backdropFilter: "blur(12px)" }}>
-        <div className="bg-label" style={{ top: 0, right: -40, opacity: 0.1, color: "var(--text-primary)" }}>CERTS</div>
+        <div className="bg-label" style={{ top: 0, right: -40, color: "var(--text-primary)" }}>CERTS</div>
         <div className="section-wrap">
           <ScrollReveal animation="fade-up">
             <p className="eyebrow" style={{ marginBottom: "1rem" }}>Verified Credentials</p>

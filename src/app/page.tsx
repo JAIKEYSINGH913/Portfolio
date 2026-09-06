@@ -103,7 +103,8 @@ export default function Portfolio() {
 
       {/* ─── ABOUT ─── */}
       <section id="about" className="relative z-10" style={{ paddingTop: "2rem", paddingBottom: "3rem" }}>
-        <div className="section-wrap">
+        <div className="bg-label" style={{ top: -60, right: -40, pointerEvents: "none" }}>ABOUT</div>
+        <div className="section-wrap relative z-10">
           {/* Stats row */}
           <ScrollReveal animation="fade-up">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-1 overflow-hidden rounded-3xl mb-12" style={{ background: "var(--glass-border)" }}>

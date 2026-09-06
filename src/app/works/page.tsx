@@ -8,7 +8,7 @@ export default function WorksPage() {
   return (
     <div className="w-full relative text-white" style={{ paddingTop: '8rem', paddingBottom: '4rem' }}>
       <section id="works" className="relative z-10" style={{ background: "var(--canvas)", backdropFilter: "blur(4px)", padding: '2rem' }}>
-        <div className="bg-label" style={{ top: -20, right: -40, opacity: 0.4 }}>WORKS</div>
+        <div className="bg-label" style={{ top: -20, right: -40 }}>WORKS</div>
         <div className="section-wrap">
           <ScrollReveal animation="fade-up">
             <div style={{ marginBottom: "4rem" }}>
