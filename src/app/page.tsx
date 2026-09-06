@@ -151,7 +151,7 @@ export default function Portfolio() {
       </section>
 
       {/* ─── FOOTER ─── */}
-      <footer className="relative z-10" style={{ background: "var(--canvas)", borderTop: "1px solid var(--border-strong)", padding: "2.5rem 0" }}>
+      <footer className="relative z-10" style={{ background: "var(--surface-translucent)", backdropFilter: "blur(12px)", borderTop: "1px solid var(--border-strong)", padding: "2.5rem 0" }}>
         <div className="section-wrap">
           <div className="flex flex-wrap items-center justify-between gap-6">
             <div className="flex items-center gap-4">

@@ -35,14 +35,14 @@ export const Navbar: React.FC = () => {
   return (
     <>
       <header className="fixed top-4 right-4 md:right-8 z-[100] flex justify-end">
-        <nav className="flex items-center gap-4 md:gap-6 px-4 md:px-6 py-3 rounded-full border border-[var(--border-light)] bg-[var(--surface-translucent)] shadow-lg backdrop-blur-xl">
+        <nav className="flex items-center gap-4 md:gap-6 px-4 md:px-6 py-3 rounded-full border border-[var(--glass-border)] bg-[var(--surface-translucent)] shadow-lg backdrop-blur-xl">
           <Link href="/" className="no-underline relative z-10" onClick={(e) => { if (isOpen) { e.preventDefault(); setIsOpen(false); }}}>
-            <span className="font-display font-bold text-sm tracking-widest text-[var(--text-primary)] hover:text-[var(--terracotta)] transition-colors">
+            <span className="font-display font-bold text-sm tracking-widest text-[var(--text-primary)] hover:text-[var(--accent)] transition-colors">
               JAIKEY
             </span>
           </Link>
           
-          <div className="w-[1px] h-4 bg-[var(--border-light)]"></div>
+          <div className="w-[1px] h-4 bg-[var(--border-strong)]"></div>
 
           <Link 
             href="/contact" 
@@ -51,11 +51,11 @@ export const Navbar: React.FC = () => {
             CONTACT
           </Link>
 
-          <div className="w-[1px] h-4 bg-[var(--border-light)]"></div>
+          <div className="w-[1px] h-4 bg-[var(--border-strong)]"></div>
 
           <button 
             onClick={() => setIsOpen(!isOpen)}
-            className="font-mono text-[10px] md:text-xs font-bold uppercase tracking-widest text-[var(--text-secondary)] hover:text-[var(--terracotta)] transition-colors cursor-pointer bg-transparent border-none p-0 flex items-center gap-2"
+            className="font-mono text-[10px] md:text-xs font-bold uppercase tracking-widest text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors cursor-pointer bg-transparent border-none p-0 flex items-center gap-2"
           >
             {isOpen ? "CLOSE" : "MENU"}
             <div className="flex flex-col gap-[3px]">

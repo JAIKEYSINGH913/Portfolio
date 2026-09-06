@@ -34,7 +34,7 @@
   --shadow-md:     0 4px 16px rgba(0,0,0,0.08);
   --shadow-lg:     0 20px 48px rgba(0,0,0,0.1);
   --shadow-accent: 0 8px 32px rgba(200,90,42,0.2), 0 2px 8px rgba(200,90,42,0.1);
-  --surface-translucent: var(--text-primary);
+  --surface-translucent: rgba(255, 255, 255, 0.65);
   --glass-border:  rgba(0,0,0,0.08);
 }
 
@@ -66,7 +66,7 @@
   --shadow-md:     0 4px 16px rgba(0,0,0,0.4);
   --shadow-lg:     0 20px 48px rgba(0,0,0,0.5);
   --shadow-accent: 0 8px 32px rgba(200,90,42,0.3), 0 2px 8px rgba(200,90,42,0.2);
-  --surface-translucent: var(--surface-translucent);
+  --surface-translucent: rgba(8, 6, 4, 0.65);
   --glass-border:  rgba(255,255,255,0.08);
 }
 
