@@ -98,6 +98,19 @@ export default function WorksPage() {
                           LIVE
                         </a>
                       )}
+                      {(p as { apiUrl?: string }).apiUrl && (
+                        <a
+                          href={(p as { apiUrl?: string }).apiUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={e => e.stopPropagation()}
+                          className="flex items-center gap-1.5 font-mono text-[10px] font-bold tracking-widest uppercase px-3 py-1.5 border transition-all duration-300 hover:brightness-125"
+                          style={{ borderColor: p.accent || "var(--accent)", color: p.accent || "var(--accent)", background: (p.accent || "var(--accent)") + "10" }}
+                        >
+                          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>
+                          API
+                        </a>
+                      )}
                       {p.github && (
                         <a
                           href={p.github}
@@ -151,6 +164,17 @@ export default function WorksPage() {
                               style={{ background: p.accent || "var(--accent)" }}
                             >
                               VIEW LIVE PROJECT ↗
+                            </a>
+                          )}
+                          {(p as { apiUrl?: string }).apiUrl && (
+                            <a
+                              href={(p as { apiUrl?: string }).apiUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="font-mono text-xs font-bold tracking-widest uppercase px-5 py-2.5 border transition-all duration-300 hover:brightness-110"
+                              style={{ borderColor: p.accent || "var(--accent)", color: p.accent || "var(--accent)", background: (p.accent || "var(--accent)") + "12" }}
+                            >
+                              VIEW API DOCS ↗
                             </a>
                           )}
                           {p.github && (

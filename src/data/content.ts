@@ -75,7 +75,8 @@ Core Features & Engineering:
     accent: "#E5A93D",
     num: "04",
     github: "https://github.com/JAIKEYSINGH913/BudgetWise-AI-Driven-Expense-Tracker-and-Budget-Advisor",
-    live: null,
+    live: "https://budgetwise-jaikeysingh913.me",
+    apiUrl: "https://api.budgetwise-jaikeysingh913.me/",
   },
   {
     title: "Bookstore Management System — REST + JWT",
