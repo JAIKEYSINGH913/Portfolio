@@ -66,14 +66,14 @@ export const Navbar: React.FC = () => {
             exit={{ x: "100%" }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="fixed inset-0 z-[90] flex flex-col items-center overflow-y-auto overflow-x-hidden"
-            style={{ background: "rgba(8, 6, 4, 0.98)", backdropFilter: "blur(20px)" }}
+            style={{ background: "var(--canvas)", backdropFilter: "blur(20px)" }}
           >
             {/* Decorative background grid for the menu */}
-            <div className="fixed inset-0 z-0 opacity-10 pointer-events-none" style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
+            <div className="fixed inset-0 z-0 opacity-10 pointer-events-none" style={{ backgroundImage: 'linear-gradient(var(--border-strong) 1px, transparent 1px), linear-gradient(90deg, var(--border-strong) 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
 
             <div className="relative z-10 flex flex-col w-full max-w-7xl px-4 md:px-12 mt-24 mb-24 min-h-max">
               {/* Top boundary line */}
-              <div className="w-full h-[1px] bg-white/10"></div>
+              <div className="w-full h-[1px] bg-[var(--border)]"></div>
 
               {NAV_ITEMS.map((item, i) => {
                 const isActive = pathname === item.href;
@@ -84,7 +84,7 @@ export const Navbar: React.FC = () => {
                       animate={{ opacity: 1, x: 0 }}
                       exit={{ opacity: 0, x: 50 }}
                       transition={{ duration: 0.6, delay: 0.1 + (i * 0.1), ease: [0.16, 1, 0.3, 1] }}
-                      className="w-full group hover:bg-white/[0.03] transition-colors duration-500"
+                      className="w-full group hover:bg-[var(--surface-2)] transition-colors duration-500"
                     >
                       <Link
                         href={item.href}
@@ -92,7 +92,7 @@ export const Navbar: React.FC = () => {
                       >
                         <span className="relative z-10 flex flex-col md:flex-row md:items-center gap-2 md:gap-12">
                           {/* Row Number */}
-                          <span className="font-mono text-sm md:text-base tracking-widest text-white/30 self-start md:mt-2">
+                          <span className="font-mono text-sm md:text-base tracking-widest text-[var(--text-muted)] self-start md:mt-2">
                             0{i + 1}
                           </span>
                           
@@ -101,7 +101,7 @@ export const Navbar: React.FC = () => {
                             className={`leading-[0.85] transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] md:group-hover:translate-x-6 ${
                               isActive 
                                 ? "text-[var(--terracotta)]" 
-                                : "text-[#FAFAF7] group-hover:text-[var(--gold-400)]"
+                                : "text-[var(--text-primary)] group-hover:text-[var(--gold-400)]"
                             }`}
                             style={{ fontSize: "clamp(3rem, min(9vw, 13vh), 9rem)" }}
                           >
@@ -117,7 +117,7 @@ export const Navbar: React.FC = () => {
                     </motion.div>
                     
                     {/* Visible row line separating items */}
-                    <div className="w-full h-[1px] bg-white/10"></div>
+                    <div className="w-full h-[1px] bg-[var(--border)]"></div>
                   </React.Fragment>
                 );
               })}
@@ -128,7 +128,7 @@ export const Navbar: React.FC = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.8, duration: 1 }}
-              className="w-full max-w-7xl px-4 md:px-12 pb-12 flex justify-center gap-8 font-mono text-xs tracking-widest text-white/50 uppercase mt-auto"
+              className="w-full max-w-7xl px-4 md:px-12 pb-12 flex justify-center gap-8 font-mono text-xs tracking-widest text-[var(--text-muted)] uppercase mt-auto"
             >
               <a href="#" className="hover:text-[var(--terracotta)] transition-colors">LinkedIn</a>
               <a href="#" className="hover:text-[var(--terracotta)] transition-colors">GitHub</a>

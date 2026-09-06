@@ -24,7 +24,7 @@ export function CinematicBackground() {
   return (
     <div 
       className="fixed inset-0 z-0 pointer-events-none overflow-hidden transition-colors duration-700"
-      style={{ backgroundColor: isLight ? "#F5F5F5" : "#080604" }}
+      style={{ backgroundColor: isLight ? "#F5F5F5" : "var(--canvas)" }}
     >
 
       <motion.div

@@ -55,7 +55,7 @@ export function FoldingGrid() {
       
       // Styling
       const strokeColor = isDark ? "rgba(200, 90, 42, 0.4)" : "rgba(0, 0, 0, 0.15)";
-      const fillColor = isDark ? "#080604" : "#F5F5F5";
+      const fillColor = isDark ? "var(--canvas)" : "#F5F5F5";
       
       ctx.strokeStyle = strokeColor;
       ctx.fillStyle = fillColor;

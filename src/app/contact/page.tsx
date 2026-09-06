@@ -20,7 +20,7 @@ export default function ContactPage() {
               <ResumeViewer />
             </ScrollReveal>
             <ScrollReveal animation="slide-left" delay={120}>
-              <div style={{ background: "rgba(15,13,11,0.8)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 24, padding: "2.5rem", backdropFilter: "blur(12px)" }}>
+              <div style={{ background: "var(--surface-translucent)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 24, padding: "2.5rem", backdropFilter: "blur(12px)" }}>
                 <ContactForm />
               </div>
             </ScrollReveal>

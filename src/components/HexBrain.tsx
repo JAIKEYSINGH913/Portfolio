@@ -119,7 +119,7 @@ export function HexBrainCanvas({ visible }: { visible: boolean }) {
       ctx.globalAlpha = alphaRef.current;
 
       // Dark BG
-      ctx.fillStyle = "#080604";
+      ctx.fillStyle = "var(--canvas)";
       ctx.fillRect(0, 0, W, H);
 
       // Radial brain glow from center

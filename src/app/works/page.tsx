@@ -7,7 +7,7 @@ import { PROJECTS } from "@/data/content";
 export default function WorksPage() {
   return (
     <div className="w-full relative text-white" style={{ paddingTop: '8rem', paddingBottom: '4rem' }}>
-      <section id="works" className="relative z-10" style={{ background: "rgba(8,6,4,0.5)", backdropFilter: "blur(4px)", padding: '2rem' }}>
+      <section id="works" className="relative z-10" style={{ background: "var(--canvas)", backdropFilter: "blur(4px)", padding: '2rem' }}>
         <div className="bg-label" style={{ top: -20, right: -40, opacity: 0.4 }}>WORKS</div>
         <div className="section-wrap">
           <ScrollReveal animation="fade-up">
@@ -30,7 +30,7 @@ export default function WorksPage() {
                   <div style={{ height: 2, background: p.accent, borderRadius: 2, margin: "1.5rem 0", width: "40%", opacity: 0.7 }} />
                   {/* Content */}
                   <div style={{ flex: 1 }}>
-                    <h3 style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "clamp(1.3rem,2.5vw,1.8rem)", color: "#FAFAF7", marginBottom: "0.75rem", lineHeight: 1.2, letterSpacing: "-0.02em" }}>{p.title}</h3>
+                    <h3 style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "clamp(1.3rem,2.5vw,1.8rem)", color: "var(--text-primary)", marginBottom: "0.75rem", lineHeight: 1.2, letterSpacing: "-0.02em" }}>{p.title}</h3>
                     <p style={{ color: "var(--text-secondary)", fontSize: "0.92rem", lineHeight: 1.65, marginBottom: "1.5rem" }}>{p.desc}</p>
                   </div>
                   {/* Tags + Arrow */}

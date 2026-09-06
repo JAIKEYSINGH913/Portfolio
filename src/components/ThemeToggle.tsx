@@ -63,7 +63,7 @@ export function ThemeToggle() {
             <polygon 
               points="-25,-30 0,-45 25,-30 35,0 15,45 -15,45 -35,0"
               fill={isDark ? "rgba(40,40,40,0.4)" : "#FFEA75"} 
-              stroke={isDark ? "rgba(255,255,255,0.15)" : "#E6B319"} 
+              stroke={isDark ? "var(--border-strong)" : "#E6B319"} 
               strokeWidth="2"
               className={`transition-all duration-500 ${isDark ? '' : 'drop-shadow-[0_0_20px_rgba(255,234,117,1)]'}`}
               style={{ strokeLinejoin: "round" }}
@@ -98,7 +98,7 @@ export function ThemeToggle() {
             <polygon points="0,-45 25,-30 0,0" fill="rgba(0,0,0,0.05)" />
             <polygon points="25,-30 35,0 0,0" fill="rgba(0,0,0,0.1)" />
             <polygon points="35,0 15,45 0,0" fill="rgba(0,0,0,0.15)" />
-            <polygon points="0,0 -15,45 -35,0" fill="rgba(255,255,255,0.1)" />
+            <polygon points="0,0 -15,45 -35,0" fill="var(--border-strong)" />
             <polygon points="0,0 -35,0 -25,-30" fill="rgba(255,255,255,0.2)" />
             <polygon points="0,0 -25,-30 0,-45" fill="rgba(255,255,255,0.3)" />
           </g>

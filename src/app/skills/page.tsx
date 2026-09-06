@@ -26,7 +26,7 @@ function HexSkillsSection() {
             Neural Skill Map
             <span style={{ width: 28, height: 1.5, background: "#C85A2A", display: "inline-block" }} />
           </p>
-          <h2 style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "clamp(2.5rem,6vw,4.5rem)", lineHeight: 0.9, letterSpacing: "-0.04em", textTransform: "uppercase", color: "#FAFAF7", marginBottom: "1.25rem" }}>
+          <h2 style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "clamp(2.5rem,6vw,4.5rem)", lineHeight: 0.9, letterSpacing: "-0.04em", textTransform: "uppercase", color: "var(--text-primary)", marginBottom: "1.25rem" }}>
             Technology<br /><span style={{ color: "#C85A2A" }}>Arsenal.</span>
           </h2>
           <p style={{ fontSize: "1rem", color: "rgba(255,255,255,0.45)", lineHeight: 1.7, marginBottom: "2rem" }}>
@@ -49,7 +49,7 @@ function HexSkillsSection() {
 export default function SkillsPage() {
   return (
     <div className="w-full relative text-white" style={{ paddingTop: '8rem' }}>
-      <div className="ticker-wrap" style={{ padding: "2rem 0", borderTop: "1px solid rgba(255,255,255,0.07)", borderBottom: "1px solid rgba(255,255,255,0.07)", background: "rgba(8,6,4,0.6)", backdropFilter: "blur(8px)", position: "relative", zIndex: 10 }}>
+      <div className="ticker-wrap" style={{ padding: "2rem 0", borderTop: "1px solid var(--glass-border)", borderBottom: "1px solid var(--glass-border)", background: "rgba(8,6,4,0.6)", backdropFilter: "blur(8px)", position: "relative", zIndex: 10 }}>
         <div className="ticker-track ticker-left" style={{ marginBottom: 10 }}>
           {[...SKILLS_A, ...SKILLS_A, ...SKILLS_A].map((s, i) => <span className="skill-chip" key={i}><span>{s.e}</span>{s.n}</span>)}
         </div>

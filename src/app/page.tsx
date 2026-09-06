@@ -55,7 +55,7 @@ function Hero() {
       style={{ background: "transparent" }}
     >
       {/* Bottom fade to blend into next section */}
-      <div className="absolute inset-x-0 bottom-0 h-48 z-[5]" style={{ background: "linear-gradient(to top, #080604, transparent)" }} />
+      <div className="absolute inset-x-0 bottom-0 h-48 z-[5]" style={{ background: "linear-gradient(to top, var(--canvas), transparent)" }} />
 
       <div className="hero-content relative z-10 flex flex-col items-end text-right">
         {/* Role eyebrow */}
@@ -70,7 +70,7 @@ function Hero() {
         </h1>
 
         {/* Thin divider */}
-        <div style={{ width: "clamp(120px, 40vw, 360px)", height: 1, background: "rgba(255,255,255,0.1)", marginBottom: "1.5rem" }} />
+        <div style={{ width: "clamp(120px, 40vw, 360px)", height: 1, background: "var(--border-strong)", marginBottom: "1.5rem" }} />
 
         {/* Descriptor */}
         <p className="hero-desc mb-8 max-w-lg" style={{ textAlign: "right" }}>
@@ -94,7 +94,7 @@ function Hero() {
 ══════════════════════════════════════════ */
 export default function Portfolio() {
   return (
-    <div className="w-full relative text-white" style={{ background: "#080604" }}>
+    <div className="w-full relative text-white" style={{ background: "var(--canvas)" }}>
       <CinematicBackground />
       <AmbientCanvas />
 
@@ -106,13 +106,13 @@ export default function Portfolio() {
         <div className="section-wrap">
           {/* Stats row */}
           <ScrollReveal animation="fade-up">
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 1, background: "rgba(255,255,255,0.07)", borderRadius: 24, overflow: "hidden", marginBottom: "6rem" }}>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 1, background: "var(--glass-border)", borderRadius: 24, overflow: "hidden", marginBottom: "6rem" }}>
               {[
                 { num: "100%", label: "Hallucination\nMitigation (GraphRAG)" },
                 { num: "30%", label: "Reduced API\nLatency" },
                 { num: "9.2", label: "CGPA at NITRA\nTechnical Campus" },
               ].map(s => (
-                <div key={s.num} className="stat-card" style={{ padding: "3rem 2rem", textAlign: "center", background: "rgba(15,13,11,0.8)", backdropFilter: "blur(12px)" }}>
+                <div key={s.num} className="stat-card" style={{ padding: "3rem 2rem", textAlign: "center", background: "var(--surface-translucent)", backdropFilter: "blur(12px)" }}>
                   <div className="stat-number">{s.num}</div>
                   <div className="stat-label" style={{ whiteSpace: "pre-line" }}>{s.label}</div>
                 </div>
@@ -136,7 +136,7 @@ export default function Portfolio() {
             </ScrollReveal>
             <ScrollReveal animation="slide-left" delay={150}>
               <blockquote style={{ borderLeft: "3px solid #C85A2A", paddingLeft: "2rem", margin: 0 }}>
-                <p style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1.4rem,3vw,2.2rem)", fontWeight: 700, lineHeight: 1.3, letterSpacing: "-0.02em", color: "rgba(255,255,255,0.85)", marginBottom: "1rem" }}>
+                <p style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1.4rem,3vw,2.2rem)", fontWeight: 700, lineHeight: 1.3, letterSpacing: "-0.02em", color: "var(--text-primary)", marginBottom: "1rem" }}>
                   &ldquo;Code is the closest thing we have to a superpower.&rdquo;
                 </p>
                 <cite style={{ fontFamily: "var(--font-mono)", fontSize: 10, letterSpacing: "0.15em", textTransform: "uppercase", color: "#C85A2A", fontStyle: "normal" }}>— Jaikey Singh</cite>
@@ -147,7 +147,7 @@ export default function Portfolio() {
       </section>
 
       {/* ─── FOOTER ─── */}
-      <footer className="relative z-10" style={{ background: "rgba(8,6,4,0.95)", borderTop: "1px solid rgba(255,255,255,0.07)", padding: "2.5rem 0" }}>
+      <footer className="relative z-10" style={{ background: "var(--canvas)", borderTop: "1px solid var(--glass-border)", padding: "2.5rem 0" }}>
         <div className="section-wrap">
           <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "space-between", gap: 20 }}>
             <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
