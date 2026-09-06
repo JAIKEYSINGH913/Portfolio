@@ -66,7 +66,7 @@ export default function SkillsPage() {
             </h1>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 border-t border-l border-[var(--border-strong)] max-w-[850px] bg-[var(--surface-translucent)]" style={{ backdropFilter: "blur(12px)" }}>
+          <div className="grid grid-cols-1 border-t border-l border-[var(--border-strong)] w-full lg:w-[70vw] max-w-5xl bg-[var(--surface-translucent)]" style={{ backdropFilter: "blur(12px)" }}>
             {/* Matrix Cell 1 */}
             <div className="p-8 border-r border-b border-[var(--border-strong)] hover:bg-[var(--surface-3)] transition-colors duration-300 group cursor-default">
               <h2 className="font-mono text-xs tracking-widest text-[var(--text-secondary)] mb-4 group-hover:text-[var(--accent)] transition-colors">01 // ARCHITECTURE</h2>
@@ -105,8 +105,8 @@ export default function SkillsPage() {
           </div>
         </ScrollReveal>
 
-        {/* Constrain the grid strictly to the left side (max 850px) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 border-t border-l border-[var(--border-strong)] relative z-10" style={{ maxWidth: "850px" }}>
+        {/* Constrain the grid strictly to 70% width */}
+        <div className="grid grid-cols-1 border-t border-l border-[var(--border-strong)] relative z-10 w-full lg:w-[70vw] max-w-5xl">
           {SKILL_CATEGORIES.map((cat, i) => (
             <ScrollReveal key={cat.num} animation="fade-up" delay={i * 100} className="h-full">
               <div 
