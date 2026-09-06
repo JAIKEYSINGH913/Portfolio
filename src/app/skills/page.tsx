@@ -59,24 +59,58 @@ export default function SkillsPage() {
       <div className="section-wrap left-bias mt-16 md:mt-24 relative">
         <div className="bg-label" style={{ top: -80, left: -40, opacity: 0.15, pointerEvents: "none" }}>SKILLS</div>
         
-        <ScrollReveal animation="fade-up" className="relative z-10">
-          <div style={{ maxWidth: "750px" }}>
-            <p className="eyebrow" style={{ marginBottom: "1.5rem" }}>Technical Arsenal</p>
-            <h1 className="display-lg" style={{ marginBottom: "1.5rem" }}>
-              Architecting <span style={{ color: "var(--accent)" }}>Intelligent Systems</span> from the ground up.
+        <ScrollReveal animation="fade-up" className="relative z-10 mb-16">
+          <div className="mb-6">
+            <h1 className="text-3xl md:text-5xl font-display font-bold text-[var(--text-primary)] uppercase tracking-tight">
+              Technical <span style={{ color: "var(--accent)" }}>Arsenal</span>
             </h1>
-            <p style={{ fontSize: "1.1rem", color: "var(--text-secondary)", lineHeight: 1.8, marginBottom: "4rem" }}>
-              I specialize in full-stack engineering with a heavy focus on distributed backend systems, AI/ML data pipelines, and cloud-native architecture. Every tool in this stack is utilized with a deep understanding of its underlying trade-offs and performance implications.
-            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 border-t border-l border-[var(--border-strong)] max-w-[850px] bg-[var(--surface-translucent)]" style={{ backdropFilter: "blur(12px)" }}>
+            {/* Matrix Cell 1 */}
+            <div className="p-8 border-r border-b border-[var(--border-strong)] hover:bg-[var(--surface-3)] transition-colors duration-300 group cursor-default">
+              <h2 className="font-mono text-xs tracking-widest text-[var(--text-secondary)] mb-4 group-hover:text-[var(--accent)] transition-colors">01 // ARCHITECTURE</h2>
+              <h3 className="text-xl font-bold font-display text-[var(--text-primary)] mb-3 uppercase tracking-wide">Intelligent Systems</h3>
+              <p className="text-[var(--text-secondary)] text-sm leading-relaxed">
+                Specializing in distributed backend infrastructure, orchestrating high-throughput microservices engineered for zero-downtime and massive scale from the ground up.
+              </p>
+            </div>
+            
+            {/* Matrix Cell 2 */}
+            <div className="p-8 border-r border-b border-[var(--border-strong)] hover:bg-[var(--surface-3)] transition-colors duration-300 group cursor-default">
+              <h2 className="font-mono text-xs tracking-widest text-[var(--text-secondary)] mb-4 group-hover:text-[var(--accent)] transition-colors">02 // DATA PIPELINES</h2>
+              <h3 className="text-xl font-bold font-display text-[var(--text-primary)] mb-3 uppercase tracking-wide">Graph AI & RAG</h3>
+              <p className="text-[var(--text-secondary)] text-sm leading-relaxed">
+                Pioneering hybrid Knowledge Graph topologies and advanced LLM integrations to eliminate hallucinations and achieve sub-50ms deterministic data retrieval.
+              </p>
+            </div>
+
+            {/* Matrix Cell 3 */}
+            <div className="p-8 border-r border-b border-[var(--border-strong)] hover:bg-[var(--surface-3)] transition-colors duration-300 group cursor-default">
+              <h2 className="font-mono text-xs tracking-widest text-[var(--text-secondary)] mb-4 group-hover:text-[var(--accent)] transition-colors">03 // INFRASTRUCTURE</h2>
+              <h3 className="text-xl font-bold font-display text-[var(--text-primary)] mb-3 uppercase tracking-wide">Cloud-Native Scale</h3>
+              <p className="text-[var(--text-secondary)] text-sm leading-relaxed">
+                Deep expertise in container orchestration, bare-metal server deployment, and designing highly resilient, autonomous CI/CD automation pipelines.
+              </p>
+            </div>
+
+            {/* Matrix Cell 4 */}
+            <div className="p-8 border-r border-b border-[var(--border-strong)] hover:bg-[var(--surface-3)] transition-colors duration-300 group cursor-default">
+              <h2 className="font-mono text-xs tracking-widest text-[var(--text-secondary)] mb-4 group-hover:text-[var(--accent)] transition-colors">04 // EXECUTION</h2>
+              <h3 className="text-xl font-bold font-display text-[var(--text-primary)] mb-3 uppercase tracking-wide">Full-Stack Delivery</h3>
+              <p className="text-[var(--text-secondary)] text-sm leading-relaxed">
+                Bridging rigorous backend engines with fluid, reactive cross-platform client interfaces utilizing modern component-driven paradigms.
+              </p>
+            </div>
           </div>
         </ScrollReveal>
 
         {/* Constrain the grid strictly to the left side (max 850px) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 relative z-10" style={{ maxWidth: "850px" }}>
+        <div className="grid grid-cols-1 md:grid-cols-2 border-t border-l border-[var(--border-strong)] relative z-10" style={{ maxWidth: "850px" }}>
           {SKILL_CATEGORIES.map((cat, i) => (
-            <ScrollReveal key={cat.num} animation="fade-up" delay={i * 100}>
+            <ScrollReveal key={cat.num} animation="fade-up" delay={i * 100} className="h-full">
               <div 
-                className="group relative h-full flex flex-col p-8 rounded-2xl border border-[var(--glass-border)] bg-[var(--surface-translucent)] transition-all duration-500 hover:border-[var(--accent)] hover:shadow-[var(--shadow-accent)]"
+                className="group relative h-full flex flex-col p-8 border-r border-b border-[var(--border-strong)] bg-[var(--surface-translucent)] transition-all duration-500 hover:bg-[var(--surface-3)]"
                 style={{ backdropFilter: "blur(12px)" }}
               >
                 {/* Subtle top gradient line */}
@@ -102,7 +136,7 @@ export default function SkillsPage() {
                   {cat.skills.map(skill => (
                     <span 
                       key={skill} 
-                      className="px-3 py-1.5 rounded-md font-mono text-[10px] font-bold tracking-widest uppercase border border-[var(--border-strong)] text-[var(--text-primary)] bg-[var(--surface-2)] group-hover:border-[var(--accent-glow)] group-hover:bg-[var(--accent-light)] transition-colors duration-300"
+                      className="px-3 py-1.5 font-mono text-[10px] font-bold tracking-widest uppercase border border-[var(--border-strong)] text-[var(--text-primary)] bg-[var(--surface-2)] group-hover:border-[var(--accent-glow)] group-hover:bg-[var(--accent-light)] transition-colors duration-300"
                     >
                       {skill}
                     </span>
