@@ -2,7 +2,28 @@
 
 import React from "react";
 import { ScrollReveal } from "@/components/ScrollReveal";
-import { SKILLS_A, SKILLS_B } from "@/data/content";
+
+const SKILLS_TOP = [
+  { n: "Java (J2EE)", e: "☕" },
+  { n: "Spring Boot", e: "🍃" },
+  { n: "Python", e: "🐍" },
+  { n: "Flutter", e: "💙" },
+  { n: "Kotlin", e: "📱" },
+  { n: "SQL", e: "🗄️" },
+  { n: "GraphRAG", e: "🕸️" },
+  { n: "React.js", e: "⚛️" }
+];
+
+const SKILLS_BOT = [
+  { n: "Neo4j", e: "🔵" },
+  { n: "GCP", e: "☁️" },
+  { n: "MongoDB", e: "🍃" },
+  { n: "Microservices", e: "⚙️" },
+  { n: "FastAPI", e: "⚡" },
+  { n: "Dart", e: "🎯" },
+  { n: "Firebase", e: "🔥" },
+  { n: "System Design", e: "📐" }
+];
 
 const SKILL_CATEGORIES = [
   {
@@ -35,27 +56,6 @@ export default function SkillsPage() {
   return (
     <div className="w-full relative text-[var(--text-primary)]" style={{ paddingTop: '8rem', paddingBottom: '6rem' }}>
       
-      {/* Vertical Ticker Tape */}
-      <div 
-        className="fixed top-0 bottom-0 right-2 md:right-12 z-0 flex gap-4 md:gap-6 pointer-events-none opacity-40 md:opacity-60" 
-        style={{ maskImage: 'linear-gradient(to bottom, transparent, black 10%, black 90%, transparent)', WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 10%, black 90%, transparent)' }}
-      >
-        <div className="ticker-wrap h-full w-full max-w-[160px] overflow-hidden">
-          <div className="ticker-track-vertical ticker-up">
-            {[...SKILLS_A, ...SKILLS_B, ...SKILLS_A, ...SKILLS_B, ...SKILLS_A, ...SKILLS_B].map((s, i) => (
-              <span className="skill-chip !my-2 !mx-0 justify-center" key={i}><span>{s.e}</span>{s.n}</span>
-            ))}
-          </div>
-        </div>
-        <div className="ticker-wrap h-full w-full max-w-[160px] overflow-hidden hidden lg:block" style={{ marginTop: '-50%' }}>
-          <div className="ticker-track-vertical ticker-down">
-            {[...SKILLS_B, ...SKILLS_A, ...SKILLS_B, ...SKILLS_A, ...SKILLS_B, ...SKILLS_A].map((s, i) => (
-              <span className="skill-chip !my-2 !mx-0 justify-center" key={i}><span>{s.e}</span>{s.n}</span>
-            ))}
-          </div>
-        </div>
-      </div>
-
       <div className="section-wrap left-bias mt-16 md:mt-24 relative">
         <div className="bg-label" style={{ top: -80, left: -40, opacity: 0.15, pointerEvents: "none" }}>SKILLS</div>
         
@@ -111,6 +111,16 @@ export default function SkillsPage() {
               </div>
             </ScrollReveal>
           ))}
+        </div>
+      </div>
+
+      {/* Ticker Tape Fixed to Bottom */}
+      <div className="fixed bottom-0 left-0 w-full ticker-wrap" style={{ padding: "1.5rem 0", borderTop: "1px solid var(--border-strong)", background: "var(--surface-translucent)", backdropFilter: "blur(12px)", zIndex: 40 }}>
+        <div className="ticker-track ticker-left" style={{ marginBottom: 10 }}>
+          {[...SKILLS_TOP, ...SKILLS_TOP, ...SKILLS_TOP].map((s, i) => <span className="skill-chip" key={i}><span>{s.e}</span>{s.n}</span>)}
+        </div>
+        <div className="ticker-track ticker-right">
+          {[...SKILLS_BOT, ...SKILLS_BOT, ...SKILLS_BOT].map((s, i) => <span className="skill-chip" key={i}><span>{s.e}</span>{s.n}</span>)}
         </div>
       </div>
     </div>
