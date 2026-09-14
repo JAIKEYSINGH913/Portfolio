@@ -25,7 +25,8 @@ Key Engineering Decisions:
     accent: "#6BA86F",
     num: "01",
     github: "https://github.com/JAIKEYSINGH913/Cleev",
-    live: "https://apicleev.vercel.app",
+    live: "https://cleev.vercel.app/",
+    apiUrl: "https://apicleev.vercel.app/",
   },
   {
     title: "NyayMitra — GraphRAG Legal Intelligence",
@@ -151,12 +152,13 @@ export const EXPERIENCE = [
 export const EDUCATION = [
   {
     degree: "B.Tech Computer Science and Engineering",
-    institution: "NITRA Technical Campus",
+    institution: "Dr. A. P. J. Abdul Kalam Technical University, Lucknow",
     date: "Sep 2022 – June 2026",
     points: [
       "Key Coursework: Operating Systems, Database Management (DBMS), System Design, Computer Networks, OOP.",
       "Google Cloud Arcade Champion: Top-tier performer in Cloud Architecture and DevOps-focused technical challenges.",
       "Reliance Foundation Scholar (2022): Prestigious national scholarship awarded for exceptional academic and leadership merit.",
+      "Published research at HRIT University on GraphRAG-based Legal AI — accepted and presented at the inter-university research conference.",
     ],
     accent: "#E5A93D",
   },

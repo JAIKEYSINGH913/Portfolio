@@ -68,34 +68,34 @@ export default function ContactPage() {
               
               <div className="transform transition-transform duration-500 group-hover:translate-x-3 flex flex-col h-full">
                 <div className="flex items-start justify-between mb-8">
-                  <h3 className="font-display font-bold text-2xl md:text-3xl text-[var(--text-primary)] leading-tight">Secure Transmission</h3>
+                  <h3 className="font-display font-bold text-2xl md:text-3xl text-[var(--text-primary)] leading-tight">Send a Message</h3>
                   <span className="font-mono text-sm tracking-widest text-[var(--accent)] opacity-80 font-bold ml-2">01</span>
                 </div>
 
                 {isSuccess ? (
                   <div className="flex flex-col items-center justify-center p-12 border border-[var(--border-strong)] bg-[var(--surface-1)] h-full min-h-[300px]">
                     <span className="text-[var(--accent)] text-4xl mb-4">✓</span>
-                    <h3 className="text-xl font-display font-bold text-[var(--text-primary)] mb-2 uppercase tracking-wide">Transmission Received</h3>
-                    <p className="text-[var(--text-secondary)] text-sm font-mono tracking-widest">Awaiting processing...</p>
+                    <h3 className="text-xl font-display font-bold text-[var(--text-primary)] mb-2 uppercase tracking-wide">Message Sent!</h3>
+                    <p className="text-[var(--text-secondary)] text-sm font-mono tracking-widest">I'll get back to you soon.</p>
                   </div>
                 ) : (
                   <form onSubmit={handleSubmit} className="flex flex-col gap-6 w-full">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div className="flex flex-col gap-2">
-                        <label className="font-mono text-[10px] tracking-widest text-[var(--text-secondary)] font-bold uppercase">IDENTIFIER *</label>
-                        <input type="text" value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} required className="w-full bg-[var(--surface-1)] border border-[var(--border-strong)] p-3 text-[var(--text-primary)] font-mono text-sm focus:border-[var(--accent)] focus:outline-none transition-colors" placeholder="Jaikey Singh" />
+                        <label className="font-mono text-[10px] tracking-widest text-[var(--text-secondary)] font-bold uppercase">Your Name *</label>
+                        <input type="text" value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} required className="w-full bg-[var(--surface-1)] border border-[var(--border-strong)] p-3 text-[var(--text-primary)] font-mono text-sm focus:border-[var(--accent)] focus:outline-none transition-colors" placeholder="John Doe" />
                       </div>
                       <div className="flex flex-col gap-2">
-                        <label className="font-mono text-[10px] tracking-widest text-[var(--text-secondary)] font-bold uppercase">ROUTING VECTOR (EMAIL) *</label>
-                        <input type="email" value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})} required className="w-full bg-[var(--surface-1)] border border-[var(--border-strong)] p-3 text-[var(--text-primary)] font-mono text-sm focus:border-[var(--accent)] focus:outline-none transition-colors" placeholder="hello@network.com" />
+                        <label className="font-mono text-[10px] tracking-widest text-[var(--text-secondary)] font-bold uppercase">Your Email *</label>
+                        <input type="email" value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})} required className="w-full bg-[var(--surface-1)] border border-[var(--border-strong)] p-3 text-[var(--text-primary)] font-mono text-sm focus:border-[var(--accent)] focus:outline-none transition-colors" placeholder="you@example.com" />
                       </div>
                     </div>
                     <div className="flex flex-col gap-2">
-                      <label className="font-mono text-[10px] tracking-widest text-[var(--text-secondary)] font-bold uppercase">PAYLOAD (MESSAGE) *</label>
-                      <textarea value={formData.message} onChange={e => setFormData({...formData, message: e.target.value})} required rows={4} className="w-full bg-[var(--surface-1)] border border-[var(--border-strong)] p-3 text-[var(--text-primary)] font-mono text-sm focus:border-[var(--accent)] focus:outline-none transition-colors resize-none" placeholder="Initiate handshake..." />
+                      <label className="font-mono text-[10px] tracking-widest text-[var(--text-secondary)] font-bold uppercase">Message *</label>
+                      <textarea value={formData.message} onChange={e => setFormData({...formData, message: e.target.value})} required rows={4} className="w-full bg-[var(--surface-1)] border border-[var(--border-strong)] p-3 text-[var(--text-primary)] font-mono text-sm focus:border-[var(--accent)] focus:outline-none transition-colors resize-none" placeholder="Hi Jaikey, I'd love to connect about..." />
                     </div>
                     <button type="submit" disabled={isSubmitting} className="self-start px-8 py-3 bg-[var(--surface-2)] border border-[var(--border-strong)] font-mono text-xs font-bold tracking-widest uppercase text-[var(--text-primary)] hover:bg-[var(--accent-light)] hover:border-[var(--accent-glow)] transition-colors duration-300 disabled:opacity-50 cursor-pointer">
-                      {isSubmitting ? "TRANSMITTING..." : "EXECUTE"}
+                      {isSubmitting ? "Sending..." : "Send Message"}
                     </button>
                   </form>
                 )}
