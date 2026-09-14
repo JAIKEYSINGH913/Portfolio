@@ -117,7 +117,7 @@ export default function Portfolio() {
                 Expert in engineering scalable Java/Spring Boot Microservices and high-performance cross-platform applications. I don&apos;t just write code — I build robust, self-healing systems that scale under pressure.
               </p>
               <p style={{ fontSize: "1rem", color: "var(--text-secondary)", lineHeight: 1.6 }}>
-                Published researcher in GraphRAG technologies with deep expertise in System Design and end-to-end Product Development, currently pursuing my B.Tech in CSE at NITRA Technical Campus.
+                Published researcher in GraphRAG technologies with deep expertise in System Design and end-to-end Product Development, currently pursuing my B.Tech in CSE at Dr. A. P. J. Abdul Kalam Technical University, Lucknow.
               </p>
             </ScrollReveal>
             <ScrollReveal animation="slide-left" delay={150}>
@@ -136,7 +136,7 @@ export default function Portfolio() {
               {[
                 { num: "100%", label: "Hallucination\nMitigation (GraphRAG)" },
                 { num: "30%", label: "Reduced API\nLatency" },
-                { num: "9.2", label: "CGPA at NITRA\nTechnical Campus" },
+                { num: "1", label: "Research Paper\nPublished" },
               ].map((s, i) => (
                 <div key={s.num} className="stat-card group relative p-8 text-center bg-[var(--surface-translucent)] hover:bg-[var(--surface-3)] transition-colors duration-500 overflow-hidden" style={{ backdropFilter: "blur(12px)" }}>
                   <div className="absolute top-0 left-0 w-full h-[2px] bg-[var(--accent)] transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500" />
